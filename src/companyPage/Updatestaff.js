@@ -115,7 +115,7 @@ function Updatestaff() {
   </div>
   <div className="email">
     <label className="form__label" htmlFor="imagepath">
-    salary
+    Salary
     </label>
     <input
       id="imagepath"
@@ -129,7 +129,7 @@ function Updatestaff() {
   </div>
   <div className="email">
     <label className="form__label" htmlFor="imagepath">
-     position
+     Position
     </label>
     <input
       id="imagepath"
@@ -143,7 +143,7 @@ function Updatestaff() {
   </div>
   <div className="email">
     <label className="form__label" htmlFor="imagepath">
-  gender
+  Gender
     </label>
     <input
       id="imagepath"

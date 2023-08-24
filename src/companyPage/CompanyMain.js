@@ -75,6 +75,4 @@ function CompanyMain() {
     }
     
    
-
-
 export default CompanyMain

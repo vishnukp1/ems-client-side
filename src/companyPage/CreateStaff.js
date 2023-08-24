@@ -41,7 +41,7 @@ function CreateStaff() {
       <div className="form-body">
         <div className="username">
           <label className="form__label" for="firstName">
-            name{" "}
+            Name{" "}
           </label>
           <input
             className="form__input"
@@ -53,7 +53,7 @@ function CreateStaff() {
         </div>
         <div className="username">
           <label className="form__label" for="firstName">
-            password{" "}
+            Password{" "}
           </label>
           <input
             className="form__input"
@@ -65,7 +65,7 @@ function CreateStaff() {
         </div>
         <div className="username">
           <label className="form__label" for="firstName">
-            image{" "}
+            Image{" "}
           </label>
           <input
             className="form__input"
@@ -77,7 +77,7 @@ function CreateStaff() {
         </div>
         <div className="username">
           <label className="form__label" for="firstName">
-            phone{" "}
+            Phone{" "}
           </label>
           <input
             className="form__input"
@@ -88,27 +88,40 @@ function CreateStaff() {
           />
         </div>
 
+        <div className="username">
+          <label className="form__label" for="firstName">
+            Email{" "}
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            id="lastName"
+            placeholder="price"
+            name="email"
+          />
+        </div>
+
         <div className="email">
           <label className="form__label" for="email">
-            address{" "}
+            Address{" "}
           </label>
           <input id="email" className="form__input" name="address" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
-            gender{" "}
+            Gender{" "}
           </label>
           <input className="form__input" id="password" name="gender" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
-            salary{" "}
+            Salary{" "}
           </label>
           <input className="form__input" id="password" name="salary" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
-            postion{" "}
+            Postion{" "}
           </label>
           <input className="form__input" id="password" name="position" />
         </div>

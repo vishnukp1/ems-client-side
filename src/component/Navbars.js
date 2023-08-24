@@ -1,12 +1,28 @@
+import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/esm/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setToken } from '../Reducers/useReducer';
 
 function Navbars() {
   const navigate = useNavigate()
+  const token = useSelector((state) => state.auth);
+const dispatch = useDispatch()
+
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+  dispatch(setToken(token));
+
+});
+
+const logout = () =>{
+localStorage.removeItem("token")
+}
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{background:"red"}}>
       <Container>
@@ -30,7 +46,8 @@ function Navbars() {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      <Button  onClick={() => navigate("company/login")}>login</Button>
+      {token ? 
+      <Button onClick={() =>logout()} >logout</Button>:<Button  onClick={() => navigate("company/login")}>login</Button>}
     </Navbar>
   );
 }

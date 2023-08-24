@@ -14,7 +14,6 @@ import Staff from './companyPage/Staff';
 import CompanyLogin from './companyPage/CompanyLogin';
 import CreateStaff from './companyPage/CreateStaff';
 import Task from './companyPage/Task';
-import Addemployee from './companyPage/Addemployee';
 import Salary from './companyPage/Salary';
 import Updatestaff from './companyPage/Updatestaff';
 import Addtask from './companyPage/Addtask';
@@ -72,8 +71,6 @@ function App() {
       <Route exact path="/company/task" element={<Task />} />
    
       <Route exact path="/company/staff" element={<Staff />} />
-
-      <Route exact path="/company/addemployee" element={<Addemployee/>} />
 
       <Route exact path="/company/salary" element={<Salary/>} />
 

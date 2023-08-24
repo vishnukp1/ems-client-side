@@ -35,7 +35,7 @@ function Addemployee() {
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>Task Title</Form.Label>
-            <Form.Control type="title" name="first_name" className="form-control" />
+            <Form.Control type="title" name="title" className="form-control" />
         </Form.Group>
        
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">

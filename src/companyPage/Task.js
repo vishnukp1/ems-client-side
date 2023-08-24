@@ -16,6 +16,7 @@ function Task() {
     border: "1px solid #343a40",
   };
   const [task, setTasks] = useState([]);
+  
 
   const getStaffData = async () => {
     try {
@@ -24,7 +25,8 @@ function Task() {
       );
       const responseData = response.data;
 
-      setTasks(responseData);
+      setTasks(responseData.tasks);
+      console.log(responseData.tasks);
     } catch (error) {
       console.error("Error fetching customer data:", error);
     }
@@ -100,9 +102,9 @@ function Task() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{post.title}</td>
-                <td>{/* Render assigned to data here */}</td>
-                <td>{post.starttime}</td>
-                <td>{post.endtime}</td>
+                <td>{post._id}</td>
+                <td>{post.startTime}</td>
+                <td>{post.endTime}</td>
                 <td>{post.status}</td>
                 <td>
                   <div style={{ display: "flex", alignItems: "center" }}>

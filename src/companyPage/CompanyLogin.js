@@ -1,4 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from "../Reducers/useReducer";
 import {
   MDBBtn,
   MDBContainer,
@@ -10,17 +14,18 @@ import {
   MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 function CompanyLogin() {
   const navigate = useNavigate();
   const inputref = useRef();
+  const dispatch = useDispatch();
+ 
 
-  const loginPass = async () => {
+  const loginPass = async (e) => {
+    e.preventDefault(); 
     const setPassword = inputref.current.upassword.value;
     const setUsername = inputref.current.username.value;
-
     const items = {
       username: setUsername,
       password: setPassword,
@@ -32,19 +37,25 @@ function CompanyLogin() {
         items
       );
       const data = response.data;
+      console.log(response.data);
 
-      if (data) {
+      if (data.token) {
         try {
-          localStorage.setItem("token", data.token);
-          const token = localStorage.getItem("token");
-          console.log(token);
           alert("Login Successfully!");
           navigate("/");
+          localStorage.setItem("token", data.token);
+          const token = localStorage.getItem("token");
+          dispatch(setToken(data.token));
+          console.log(token);
+       
         } catch (error) {
           console.error("Error in token:", error);
         }
       } else {
         alert("Email and Password did not match");
+        localStorage.clear("token");
+        dispatch(setToken(data.token));
+        navigate("/company/login")
       }
     } catch (error) {
       console.error("Error getting customer data:", error);
@@ -53,6 +64,11 @@ function CompanyLogin() {
 
   return (
     <>
+       {/* <form ref={inputref} onSubmit={loginPass}>
+      <input name="username"></input>
+      <input name="upassword"></input>
+      <button>sigin</button>
+    </form> */}
       <MDBContainer className="my-5">
         <MDBCard>
           <MDBRow className="g-0">
@@ -125,7 +141,7 @@ function CompanyLogin() {
             </MDBCol>
           </MDBRow>
         </MDBCard>
-      </MDBContainer>
+      </MDBContainer> 
     </>
   );
 }
