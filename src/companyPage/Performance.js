@@ -4,9 +4,12 @@ import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import Table from 'react-bootstrap/esm/Table'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Performance() {
+
   const [performance, setPerformances] = useState([]);
+  const navigate = useNavigate()
 
   const getStaffData = async () => {
     try {
@@ -39,7 +42,7 @@ function Performance() {
       </Dropdown.Menu>
     </Dropdown>
     <Button style={{height:"2.2rem",width:"8.8rem"}}>Show Report</Button>
-   
+    <Button style={{height:"2.4rem"}} onClick={()=>navigate("/company/addperformance/:id")}><p>Add Performance</p></Button>
     </div>
     <div>  <MDBCol md="12">
       <div className="active-pink-3 active-pink-4 mb-4 ">

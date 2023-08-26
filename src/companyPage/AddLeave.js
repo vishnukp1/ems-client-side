@@ -3,22 +3,20 @@ import React, { useRef } from 'react'
 import { Form, InputGroup, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 
-function Addemployee() {
+function Addleave() {
     const formRef = useRef(null)
     const { id } = useParams();
                                                                         
    const submitButton= async (e) => {
       e.preventDefault();
 
-      const response = await axios.get(`http://localhost:4444/company/users/${id}`);
-      const responseData = response.data;
-      console.log(responseData.name);
+     
   
       const items = {
       
-        title: formRef.current.title.value,
-        startTime: formRef.current.starttime.value,
-        endTime: formRef.current.endtime.value,
+        fromDate: formRef.current.formDate.value,
+        toDate: formRef.current.toDate.value,
+        reason: formRef.current.reason.value,
         status: formRef.current.status.value,
         
       };
@@ -40,19 +38,19 @@ function Addemployee() {
     
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-            <Form.Label>Task Title</Form.Label>
-            <Form.Control type="title" name="title" className="form-control" />
+            <Form.Label>Task formDate</Form.Label>
+            <Form.Control type="formDate" name="formDate" className="form-control" />
         </Form.Group>
        
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>Start time</Form.Label>
-            <Form.Control type="starttime" name="starttime" className="form-control" />
+            <Form.Control type="toDate" name="toDate" className="form-control" />
         </Form.Group>
     </Row>
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>End time</Form.Label>
-            <Form.Control type="endtime" name="endtime"className="form-control" />
+            <Form.Control type="reason" name="reason"className="form-control" />
         </Form.Group>
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>Status</Form.Label>
@@ -72,4 +70,4 @@ function Addemployee() {
   )
 }
 
-export default Addemployee
+export default Addleave

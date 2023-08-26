@@ -4,9 +4,29 @@ import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Leave() {
-  const [leave, setLeaves] = useState([]);
+  const navigate = useNavigate();
+  const [leave, setLeave] = useState([]);
+
+  const { staffId, leaveId } = useParams();
+ 
+
+  useEffect(() => {
+    const fetchleaveDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4444/company/leave`);
+        const leaveData = response.data;
+        setLeave(leaveData.leave);
+        console.log(leaveData.leave);
+      } catch (error) {
+        console.error("Error fetching leave details:", error);
+      }
+    };
+    
+    fetchleaveDetails();
+  }, [staffId, leaveId]);
 
   const getStaffData = async () => {
     try {
@@ -14,7 +34,7 @@ function Leave() {
         `http://localhost:4444/company/leave`
       );
       const responseData = response.data;
-      setLeaves(responseData);
+      setLeave(responseData);
     } catch (error) {
       console.error("Error fetching customer data:", error);
     }
@@ -38,6 +58,8 @@ function Leave() {
       </Dropdown.Menu>
     </Dropdown>
     <Button style={{height:"2.2rem",width:"8.8rem"}}>Show Report</Button>
+
+    <Button variant="outline-dark"  onClick={() => navigate(`/company/addleave/:id`)}>addtask</Button>
    
     </div>
     <div>  <MDBCol md="12">

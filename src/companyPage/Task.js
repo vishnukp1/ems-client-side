@@ -18,22 +18,31 @@ function Task() {
   const [task, setTasks] = useState([]);
   
 
-  const getStaffData = async () => {
+  const getStaffTasks = async () => {
     try {
       const response = await axios.get(
         `http://localhost:4444/company/staff/tasks`
       );
       const responseData = response.data;
 
-      setTasks(responseData.tasks);
-      console.log(responseData.tasks);
+      setTasks(responseData.tasks)
+      console.log(responseData);
     } catch (error) {
       console.error("Error fetching customer data:", error);
     }
   };
+  const deleteTask = async (staffId,taskId) => {
+    try {
+      await axios.delete(`http://localhost:4444/${staffId}/tasks/${taskId}`);
+      
+      getStaffTasks();
+    } catch (error) {
+      console.error('Error deleting staff:', error);
+    }
+  };
 
   useEffect(() => {
-    getStaffData();
+    getStaffTasks();
   }, []);
   return (
     <div className="form" style={{ width: "100%", height: "100vh" }}>
@@ -101,17 +110,17 @@ function Task() {
             {task.map((post, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{post.title}</td>
-                <td>{post._id}</td>
+                <td>{post.taskTitle}</td>
+                <td>{post.name}</td>
                 <td>{post.startTime}</td>
                 <td>{post.endTime}</td>
                 <td>{post.status}</td>
                 <td>
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <Button variant="outline-dark" style={buttonStyle}>
+                    <Button variant="outline-dark" onClick={()=>deleteTask(post.staffId,post.taskId)} style={buttonStyle}>
                       Delete
                     </Button>
-                    <Button variant="outline-dark" style={buttonStyle}>
+                    <Button variant="outline-dark" style={buttonStyle} onClick={() => navigate(`/company/updatetask/${post.staffId}/${post.taskId}`)}>
                       Update
                     </Button>
                   </div>

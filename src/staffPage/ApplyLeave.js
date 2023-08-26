@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useRef } from 'react'
-import { Form, InputGroup, Row } from 'react-bootstrap'
+import { Form,  Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 
 function Addemployee() {
@@ -16,14 +16,15 @@ function Addemployee() {
   
       const items = {
       
-        title: formRef.current.title.value,
-        startTime: formRef.current.starttime.value,
-        endTime: formRef.current.endtime.value,
-        status: formRef.current.status.value,
+        reason: formRef.current.reason.value,
+        fromDate: formRef.current.from.value,
+        toDate: formRef.current.to.value,
+        description: formRef.current.description.value,
+        applyOn: formRef.current.apply.value,
         
       };
   
-       await axios.post( `http://localhost:4444/company/task/${id}`,items)
+       await axios.post( `http://localhost:4444/company/leave/${id}`,items)
       .then(response => console.log(response.data))
       .catch(error => {
         console.error("Error fetching customer data:", error);
@@ -40,25 +41,32 @@ function Addemployee() {
     
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-            <Form.Label>Task Title</Form.Label>
-            <Form.Control type="title" name="title" className="form-control" />
+            <Form.Label>Reason</Form.Label>
+            <Form.Control type="title" name="reason" className="form-control" />
         </Form.Group>
        
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-            <Form.Label>Start time</Form.Label>
-            <Form.Control type="starttime" name="starttime" className="form-control" />
+            <Form.Label>From</Form.Label>
+            <Form.Control type="starttime" name="from" className="form-control" />
         </Form.Group>
     </Row>
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-            <Form.Label>End time</Form.Label>
-            <Form.Control type="endtime" name="endtime"className="form-control" />
+            <Form.Label>To</Form.Label>
+            <Form.Control type="endtime" name="to"className="form-control" />
         </Form.Group>
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-            <Form.Label>Status</Form.Label>
-            <Form.Control type="status" name="status" className="form-control" />
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="status" name="description" className="form-control" />
         </Form.Group>
         
+    </Row>
+
+    <Row className="mb-3">
+        <Form.Group controlId="formBasicEmail" className="col col-sm-6">
+            <Form.Label>Applied On</Form.Label>
+            <Form.Control type="status" name="apply" className="form-control" />
+        </Form.Group>
     </Row>
     <Row className="mb-3">
         <Form.Group controlId="formGridCheckbox" className="col col-sm-6">

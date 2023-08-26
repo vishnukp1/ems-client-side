@@ -1,10 +1,28 @@
 import { MDBCol } from 'mdb-react-ui-kit';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
+import axios from 'axios';
 
 function ViewAttendance() {
+  const [attendance, setAttendances] = useState([]);
+
+  const getStaffData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4444/company/attendance`
+      );
+      const responseData = response.data;
+      setAttendances(responseData);
+    } catch (error) {
+      console.error("Error fetching customer data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getStaffData();
+  }, []);
   return (
     <div className="App " style={{width:"100%",height: '100vh'}}><h2>Attendance Management</h2>
     <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>

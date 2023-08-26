@@ -6,10 +6,9 @@ import Leave from './companyPage/Leave';
 import Performance from './companyPage/Performance';
 import StaffLogin from './staffPage/StaffLogin';
 import Sidebars from './companyPage/Sidebars';
-import { Profiler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbars from './component/Navbars';
 import CompanyMain from './companyPage/CompanyMain';
-import Sample from './sample';
 import Staff from './companyPage/Staff';
 import CompanyLogin from './companyPage/CompanyLogin';
 import CreateStaff from './companyPage/CreateStaff';
@@ -25,6 +24,12 @@ import AdminLogin from './adminPage/AdminLogin';
 import Allusers from './adminPage/Allusers';
 import UpdateUser from './adminPage/UpdateUser';
 import User from './adminPage/User';
+import UpdateTasks from './companyPage/UpdateTasks';
+import Addleave from './companyPage/AddLeave';
+import ViewEmployee from './staffPage/ViewEmployee';
+import StaffDashboard from './staffPage/StaffDashboard';
+import ApplyLeave from './staffPage/ApplyLeave';
+import AddPerformance from './companyPage/AddPerformance';
 
 
 function App() {
@@ -59,6 +64,8 @@ function App() {
       <Route exact path="/" element={<CompanyMain />} />
 
       <Route exact path="/company/attendance" element={<Attendance />} />
+
+      <Route exact path="/employees/Dashboard" element={<StaffDashboard />} />
      
       <Route exact path="/company/createstaff" element={<CreateStaff />} />
 
@@ -78,15 +85,25 @@ function App() {
 
       <Route exact path="/company/addtask/:id" element={<Addtask/>} />
 
+      <Route exact path="/company/addperformance/:id" element={<AddPerformance/>} />
+
+      <Route exact path="/company/addleave/:id" element={<Addleave/>} />
+
+      <Route exact path="/company/updatetask/:staffId/:taskId" element={<UpdateTasks/>} />
+
       <Route exact path="/employees/staff" element={<Profile />} />
 
-<Route exact path="/employees/addemployee" element={<ViewAttendance/>} />
+<Route exact path="/employees/viewattendance" element={<ViewAttendance/>} />
 
-<Route exact path="/employees/salary" element={<ViewPerformance/>} />
+<Route exact path="/employees/viewstaff" element={<ViewEmployee/>} />
 
-<Route exact path="/employees/updatestaff" element={<ViewTask/>} />
+<Route exact path="/employees/performance" element={<ViewPerformance/>} />
 
-<Route exact path="/employees/addtask" element={<StaffLogin/>} />
+<Route exact path="/employees/addleave" element={<ApplyLeave />} />
+
+<Route exact path="/employees/viewtask" element={<ViewTask/>} />
+
+<Route exact path="/employees/stafflogin" element={<StaffLogin/>} />
 
       </Routes>
       </div>
