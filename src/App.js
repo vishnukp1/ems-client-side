@@ -5,7 +5,7 @@ import Attendance from './companyPage/Attendance';
 import Leave from './companyPage/Leave';
 import Performance from './companyPage/Performance';
 import StaffLogin from './staffPage/StaffLogin';
-import Sidebars from './companyPage/Sidebars';
+import Sidebars from './component/Sidebars';
 import { useEffect, useState } from 'react';
 import Navbars from './component/Navbars';
 import CompanyMain from './companyPage/CompanyMain';

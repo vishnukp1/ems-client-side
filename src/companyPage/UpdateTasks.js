@@ -32,12 +32,11 @@ function UpdateTasks() {
     setTask({ ...task, [name]: value });
   };
 
-  console.log("tasken :",task);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`http://localhost:4444/company/${staffId}/task/${taskId}`,task);
+      const response = await axios.put(`http://localhost:4444/company/${staffId}/task/${taskId}`, task);
       console.log(response.data);
     } catch (error) {
       console.error("Error updating task:", error);
@@ -54,11 +53,11 @@ function UpdateTasks() {
         </div>
         <div>
           <label>Start Time</label>
-          <input  name="startTime" value={task.startTime} onChange={handleInputChange} />
+          <input type="datetime-local" name="startTime" value={task.startTime} onChange={handleInputChange} />
         </div>
         <div>
           <label>End Time</label>
-          <input  name="endTime" value={task.endTime} onChange={handleInputChange} />
+          <input type="datetime-local" name="endTime" value={task.endTime} onChange={handleInputChange} />
         </div>
         <div>
           <label>Status</label>
