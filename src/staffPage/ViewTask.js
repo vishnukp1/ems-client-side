@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { MDBCol } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../companyPage/company.css";
+import "../styles/company.css";
 
 function ViewTask() {
   const navigate = useNavigate();

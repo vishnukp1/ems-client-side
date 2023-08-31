@@ -2,12 +2,15 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
+import Sidebars from '../../component/Sidebars';
 
 function CompanyMain() {
    const navigate = useNavigate()
     
    
       return (
+        <>
+          <Sidebars />
         <div style={{ display: 'flex', height:"100vh", flexWrap: 'wrap' ,justifyContent:"space-around" ,alignContent:"space-around"}}>
         <Card style={{ width: '23%',background: "#e4b7e8" }}>
         <Card.Img variant="top" src="" />
@@ -82,6 +85,7 @@ function CompanyMain() {
         </Card.Body>
       </Card>
       </div>
+      </>
       );
     }
     

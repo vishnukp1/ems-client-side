@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {  useRef, } from 'react'
 import { Button,  } from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom';
-import  "./company.css"
+import  "../styles/company.css"
 
 function CreateStaff() {
   const formRef = useRef(null)

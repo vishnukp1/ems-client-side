@@ -6,8 +6,11 @@ import Button from 'react-bootstrap/esm/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import Sidebars from '../../component/Sidebars';
+import Navbars from '../../component/Navbars';
 
-function AllStaffs() {
+
+function Staff() {
   const navigate = useNavigate()
   const [staff,setStaff] = useState([])
   const buttonStyle = {
@@ -42,6 +45,9 @@ function AllStaffs() {
     getStaffData();
   }, []);
   return (
+    <>
+  
+    <Sidebars />
     <div style={{width:"100%",height: '100vh'}}><h2>Staff Management</h2>
   
      <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
@@ -121,9 +127,10 @@ function AllStaffs() {
 </Table>
    
  </div>
+ </>
 
 
   )
 }
 
-export default AllStaffs
+export default Staff

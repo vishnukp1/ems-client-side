@@ -8,11 +8,8 @@ import StaffLogin from './staffPage/StaffLogin';
 import Sidebars from './component/Sidebars';
 import { useEffect, useState } from 'react';
 import Navbars from './component/Navbars';
-import CompanyMain from './companyPage/CompanyMain';
-import Staff from './companyPage/Staff';
 import CompanyLogin from './companyPage/CompanyLogin';
 import CreateStaff from './companyPage/CreateStaff';
-import Task from './companyPage/Task';
 import Salary from './companyPage/Salary';
 import Updatestaff from './companyPage/Updatestaff';
 import Addtask from './companyPage/Addtask';
@@ -20,28 +17,31 @@ import ViewAttendance from './staffPage/ViewAttendance';
 import ViewPerformance from './staffPage/ViewPerformace';
 import ViewTask from './staffPage/ViewTask';
 import Profile from './staffPage/Profile';
-import AdminLogin from './adminPage/AdminLogin';
-import Allusers from './adminPage/Allusers';
-import UpdateUser from './adminPage/UpdateUser';
-import User from './adminPage/User';
+import AdminLogin from './Pages/adminPage/AdminLogin';
+import Allusers from './Pages/adminPage/Allusers';
+import UpdateUser from './Pages/adminPage/UpdateUser';
+import User from './Pages/adminPage/User';
 import UpdateTasks from './companyPage/UpdateTasks';
 import Addleave from './companyPage/AddLeave';
 import ViewEmployee from './staffPage/ViewEmployee';
 import StaffDashboard from './staffPage/StaffDashboard';
 import ApplyLeave from './staffPage/ApplyLeave';
 import AddPerformance from './companyPage/AddPerformance';
+import Task from './Pages/companyPage/Task';
+import Staff from './Pages/companyPage/Staff';
+import CompanyMain from './Pages/companyPage/CompanyMain';
 
 
 function App() {
-  const location = useLocation()
-  const [admin, setAdmin] = useState(false);
-  useEffect(()=>{
-    if(location.pathname.includes("admin")){
-  setAdmin(true)
-  }else{
-  setAdmin(false)
-  }
-  },[location])
+  // const location = useLocation()
+  // const [admin, setAdmin] = useState(false);
+  // useEffect(()=>{
+  //   if(location.pathname.includes("admin")){
+  // setAdmin(true)
+  // }else{
+  // setAdmin(false)
+  // }
+  // },[location])
   return (
     <div className="App " style={{background:"#f0f9ff",height:"100%"}}>
      <div style={{position:'sticky',top:'0',zIndex:'999'}}>
@@ -51,7 +51,7 @@ function App() {
 {/* <Sample /> */}
 
 <div style={{ display: 'flex' }}>
-      {admin ? null : <Sidebars />}
+      {/* {admin ? null : <Sidebars />} */}
       <Routes>
       <Route exact path="/admin" element={<AdminLogin />} />
 

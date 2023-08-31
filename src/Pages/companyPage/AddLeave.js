@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useRef } from 'react'
-import { Form, InputGroup, Row } from 'react-bootstrap'
+import { Form, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 
 function Addleave() {
@@ -10,8 +10,6 @@ function Addleave() {
    const submitButton= async (e) => {
       e.preventDefault();
 
-     
-  
       const items = {
       
         fromDate: formRef.current.formDate.value,

@@ -5,7 +5,10 @@ import { Button } from "react-bootstrap";
 import { MDBCol } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./company.css";
+import "../../styles/company.css";
+import Sidebars from "../../component/Sidebars";
+import Navbars from "../../component/Navbars";
+
 
 function Task() {
   const navigate = useNavigate();
@@ -45,6 +48,9 @@ function Task() {
     getStaffTasks();
   }, []);
   return (
+    <>
+  
+      <Sidebars />
     <div className="form" style={{ width: "100%", height: "100vh" }}>
       Task Management
       <div
@@ -137,6 +143,7 @@ function Task() {
         )}
       </Table>
     </div>
+    </>
   );
 }
 

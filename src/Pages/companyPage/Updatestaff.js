@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import "./company.css"
+import "../styles/company.css"
 
 function Updatestaff() {
   const navigate = useNavigate();
