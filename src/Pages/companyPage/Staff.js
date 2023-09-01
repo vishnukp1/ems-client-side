@@ -21,7 +21,7 @@ function Staff() {
   };
   const getStaffData = async () => {
     try {
-      const response = await axios.get(`http://localhost:4444/company/users`);
+      const response = await axios.get(`http://localhost:4444/company/staff`);
       const responseData = response.data;
   
       console.log(responseData);

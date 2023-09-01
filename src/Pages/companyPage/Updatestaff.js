@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import "../styles/company.css"
+import "../../styles/company.css"
 
 function Updatestaff() {
   const navigate = useNavigate();
@@ -31,8 +31,9 @@ function Updatestaff() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4444/company/users/${id}`
+          `http://localhost:4444/company/staff/${id}`
         );
+        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -44,7 +45,7 @@ function Updatestaff() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:4444/company/users/${id}`, data);
+      await axios.put(`http://localhost:4444/company/staff/${id}`, data);
       navigate("/company/staff");
     } catch (error) {
       console.error("Error updating data:", error);

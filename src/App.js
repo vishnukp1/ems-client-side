@@ -1,35 +1,35 @@
 import './App.css';
 import {  Route, Routes, useLocation}
     from "react-router-dom";
-import Attendance from './companyPage/Attendance';
-import Leave from './companyPage/Leave';
-import Performance from './companyPage/Performance';
-import StaffLogin from './staffPage/StaffLogin';
+import Attendance from './Pages/companyPage/Attendance';
+import Leave from './Pages/companyPage/Leave';
+import Performance from './Pages/companyPage/Performance';
+import StaffLogin from './Pages/staffPage/StaffLogin';
 import Sidebars from './component/Sidebars';
 import { useEffect, useState } from 'react';
 import Navbars from './component/Navbars';
-import CompanyLogin from './companyPage/CompanyLogin';
-import CreateStaff from './companyPage/CreateStaff';
-import Salary from './companyPage/Salary';
-import Updatestaff from './companyPage/Updatestaff';
-import Addtask from './companyPage/Addtask';
-import ViewAttendance from './staffPage/ViewAttendance';
-import ViewPerformance from './staffPage/ViewPerformace';
-import ViewTask from './staffPage/ViewTask';
-import Profile from './staffPage/Profile';
+import CompanyLogin from './Pages/companyPage/CompanyLogin';
+import CreateStaff from './Pages/companyPage/CreateStaff';
+import Salary from './Pages/companyPage/Salary';
+import Updatestaff from './Pages/companyPage/Updatestaff';
+import Addtask from './Pages/companyPage/Addtask';
+import ViewAttendance from './Pages/staffPage/ViewAttendance';
+import ViewPerformance from './Pages/staffPage/ViewPerformace';
+import ViewTask from './Pages/staffPage/ViewTask';
+import Profile from './Pages/staffPage/Profile';
 import AdminLogin from './Pages/adminPage/AdminLogin';
 import Allusers from './Pages/adminPage/Allusers';
 import UpdateUser from './Pages/adminPage/UpdateUser';
 import User from './Pages/adminPage/User';
-import UpdateTasks from './companyPage/UpdateTasks';
-import Addleave from './companyPage/AddLeave';
-import ViewEmployee from './staffPage/ViewEmployee';
-import StaffDashboard from './staffPage/StaffDashboard';
-import ApplyLeave from './staffPage/ApplyLeave';
-import AddPerformance from './companyPage/AddPerformance';
+import Addleave from './Pages/companyPage/AddLeave';
+import ViewEmployee from './Pages/staffPage/ViewEmployee';
+import StaffDashboard from './Pages/staffPage/StaffDashboard';
+import ApplyLeave from './Pages/staffPage/ApplyLeave';
+import AddPerformance from './Pages/companyPage/AddPerformance';
 import Task from './Pages/companyPage/Task';
 import Staff from './Pages/companyPage/Staff';
 import CompanyMain from './Pages/companyPage/CompanyMain';
+import UpdateTasks from './Pages/companyPage/UpdateTasks';
 
 
 function App() {
@@ -81,7 +81,7 @@ function App() {
 
       <Route exact path="/company/salary" element={<Salary/>} />
 
-      <Route exact path="/company/updatestaff/:id" element={<Updatestaff/>} />
+      <Route exact path="/company/updatestaff/:id" element={<Updatestaff />} />
 
       <Route exact path="/company/addtask/:id" element={<Addtask/>} />
 

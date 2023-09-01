@@ -24,7 +24,7 @@ function Task() {
   const getStaffTasks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/staff/tasks`
+        `http://localhost:4444/company/alltasks`
       );
       const responseData = response.data;
 
@@ -123,6 +123,7 @@ function Task() {
                 <td>{post.status}</td>
                 <td>
                   <div style={{ display: "flex", alignItems: "center" }}>
+                    
                     <Button variant="outline-dark" onClick={()=>deleteTask(post.staffId,post.taskId)} style={buttonStyle}>
                       Delete
                     </Button>

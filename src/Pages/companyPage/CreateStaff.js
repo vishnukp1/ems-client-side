@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {  useRef, } from 'react'
 import { Button,  } from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom';
-import  "../styles/company.css"
+import  "../../styles/company.css"
 
 function CreateStaff() {
   const formRef = useRef(null)
@@ -26,7 +26,7 @@ function CreateStaff() {
        address: formRef.current.address.value,
     };
 
-     await axios.post( `http://localhost:4444/company/createuser`,items)
+     await axios.post( `http://localhost:4444/company/createstaff`,items)
     .then(response => console.log(response.data))
     .catch(error => {
       console.error("Error fetching customer data:", error);

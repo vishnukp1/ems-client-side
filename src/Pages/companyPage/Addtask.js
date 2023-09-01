@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useRef } from 'react'
-import { Form, InputGroup, Row } from 'react-bootstrap'
+import { Form, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 
 function Addemployee() {
@@ -9,11 +9,8 @@ function Addemployee() {
                                                                         
    const submitButton= async (e) => {
       e.preventDefault();
+      try{
 
-      const response = await axios.get(`http://localhost:4444/company/users/${id}`);
-      const responseData = response.data;
-      console.log(responseData.name);
-  
       const items = {
       
         title: formRef.current.title.value,
@@ -23,16 +20,21 @@ function Addemployee() {
         
       };
   
-       await axios.post( `http://localhost:4444/company/task/${id}`,items)
-      .then(response => console.log(response.data))
-      .catch(error => {
-        console.error("Error fetching customer data:", error);
-      
-      });
-    
-  
+      const postResponse = await axios.post(`http://localhost:4444/company/task/${id}`, items);
+      console.log(postResponse.data);
+
       formRef.current.reset();
     }
+      catch(error) {
+        console.error("Error fetching customer data:", error);
+      
+      };
+    
+  
+    }
+    const resetButton = () => {
+        formRef.current.reset();
+    };
 
   return (
      <div class="add-employee-section">
@@ -63,7 +65,7 @@ function Addemployee() {
     <Row className="mb-3">
         <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
             <button type="submit" className="me-4 btn btn-success btn-lg btn-block">Submit</button>
-            <button type="reset" onClick="{resetButton}" className="me-4 btn btn-danger btn-lg btn-block">Cancel</button>
+            <button type="reset" onClick={resetButton} className="me-4 btn btn-danger btn-lg btn-block">Cancel</button>
         </Form.Group>
     </Row>
 

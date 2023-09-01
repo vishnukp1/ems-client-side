@@ -19,6 +19,7 @@ function UpdateTasks() {
         const taskData = response.data;
         setTask(taskData.task);
         console.log(taskData.task);
+        console.log('success');
       } catch (error) {
         console.error("Error fetching task details:", error);
       }
@@ -34,8 +35,10 @@ function UpdateTasks() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
+    
+try{
+  console.log(task);
+  
       const response = await axios.put(`http://localhost:4444/company/${staffId}/task/${taskId}`, task);
       console.log(response.data);
     } catch (error) {
@@ -49,19 +52,19 @@ function UpdateTasks() {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Title</label>
-          <input type="text" name="title" value={task.title} onChange={handleInputChange} />
+          <input  name="title" value={task.title} onChange={handleInputChange} />
         </div>
         <div>
           <label>Start Time</label>
-          <input type="datetime-local" name="startTime" value={task.startTime} onChange={handleInputChange} />
+          <input  name="startTime" value={task.startTime} onChange={handleInputChange} />
         </div>
         <div>
           <label>End Time</label>
-          <input type="datetime-local" name="endTime" value={task.endTime} onChange={handleInputChange} />
+          <input  name="endTime" value={task.endTime} onChange={handleInputChange} />
         </div>
         <div>
           <label>Status</label>
-          <input type="text" name="status" value={task.status} onChange={handleInputChange} />
+          <input  name="status" value={task.status} onChange={handleInputChange} />
         </div>
         <button type="submit">Update Task</button>
       </form>
