@@ -14,6 +14,8 @@ import {
   MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
 
 function CompanyLogin() {
@@ -69,6 +71,7 @@ function CompanyLogin() {
       <input name="upassword"></input>
       <button>sigin</button>
     </form> */}
+
       <MDBContainer className="my-5">
         <MDBCard>
           <MDBRow className="g-0">
@@ -119,6 +122,18 @@ function CompanyLogin() {
                     Login
                   </MDBBtn>
                 </form>
+                <GoogleOAuthProvider clientId="323449366596-pi4nerf06act4c6bcp9f2n1iedmkstnn.apps.googleusercontent.com">
+         <GoogleLogin
+    onSuccess={credentialResponse => {
+        var decoded = jwt_decode(credentialResponse.credential);
+    console.log(decoded);
+    }}
+    onError={() => {
+    console.log('Login Failed');
+    }}
+    />;
+            
+            </GoogleOAuthProvider>;
                 <a className="small text-muted" href="#!">
                   Forgot password?
                 </a>
@@ -128,6 +143,7 @@ function CompanyLogin() {
                     Register here
                   </a>
                 </p>
+  
 
                 <div className="d-flex flex-row justify-content-start">
                   <a href="#!" className="small text-muted me-1">
@@ -142,6 +158,7 @@ function CompanyLogin() {
           </MDBRow>
         </MDBCard>
       </MDBContainer> 
+     
     </>
   );
 }

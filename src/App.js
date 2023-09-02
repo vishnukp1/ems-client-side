@@ -28,8 +28,9 @@ import ApplyLeave from './Pages/staffPage/ApplyLeave';
 import AddPerformance from './Pages/companyPage/AddPerformance';
 import Task from './Pages/companyPage/Task';
 import Staff from './Pages/companyPage/Staff';
-import CompanyMain from './Pages/companyPage/CompanyMain';
+import CompanyMain from './component/CompanyMain';
 import UpdateTasks from './Pages/companyPage/UpdateTasks';
+import GoogleOauth from './component/GoogleOauth';
 
 
 function App() {
@@ -104,6 +105,8 @@ function App() {
 <Route exact path="/employees/viewtask" element={<ViewTask/>} />
 
 <Route exact path="/employees/stafflogin" element={<StaffLogin/>} />
+
+<Route exact path="/new" element={<GoogleOauth />} />
 
       </Routes>
       </div>

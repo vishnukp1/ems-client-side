@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
-import Navbars from "../../component/Navbars";
-
 
 function Task() {
   const navigate = useNavigate();
@@ -47,9 +45,19 @@ function Task() {
   useEffect(() => {
     getStaffTasks();
   }, []);
+
+  const searchHandle = async (e) =>{
+    let key = e.target.value
+    const response = await axios.get(`http://localhost:4444/company/searchTask?name=${key}`);
+    const responseData = response.data.tasks;
+    console.log(responseData.tasks);
+    if(responseData){
+      setTasks(responseData)
+    }
+  }
+
   return (
     <>
-  
       <Sidebars />
     <div className="form" style={{ width: "100%", height: "100vh" }}>
       Task Management
@@ -94,6 +102,7 @@ function Task() {
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={searchHandle}
               />
             </div>
           </MDBCol>

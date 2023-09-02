@@ -44,6 +44,17 @@ function Staff() {
   useEffect(() => {
     getStaffData();
   }, []);
+
+  const searchHandle = async (e) =>{
+    let key = e.target.value
+    const response = await axios.get(`http://localhost:4444/company/search?name=${key}`);
+    const responseData = response.data;
+    if(responseData){
+      setStaff(responseData)
+    }
+
+  }
+
   return (
     <>
   
@@ -70,7 +81,7 @@ function Staff() {
 
     <div>  <MDBCol md="12">
       <div className="active-pink-3 active-pink-4 mb-4 ">
-        <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+        <input className="form-control" type="text" placeholder="Search" aria-label="Search" onChange={searchHandle}/>
       </div>
     </MDBCol>
     </div>
