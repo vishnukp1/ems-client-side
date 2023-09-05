@@ -31,6 +31,8 @@ import Staff from './Pages/companyPage/Staff';
 import CompanyMain from './component/CompanyMain';
 import UpdateTasks from './Pages/companyPage/UpdateTasks';
 import GoogleOauth from './component/GoogleOauth';
+import MarkAttendance from './Pages/companyPage/MarkAttendance';
+import UploadFile from './Pages/companyPage/UploadFile';
 
 
 function App() {
@@ -75,6 +77,8 @@ function App() {
       <Route exact path="/company/leave" element={<Leave />} />
       
       <Route exact path="/company/performance" element={<Performance />} />
+
+      <Route exact path="/upload" element={<UploadFile />} />
      
       <Route exact path="/company/task" element={<Task />} />
    
@@ -107,6 +111,8 @@ function App() {
 <Route exact path="/employees/stafflogin" element={<StaffLogin/>} />
 
 <Route exact path="/new" element={<GoogleOauth />} />
+
+<Route exact path="/mark" element={<MarkAttendance/>} />
 
       </Routes>
       </div>

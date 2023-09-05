@@ -33,7 +33,7 @@ function Staff() {
   };
   const handleDeleteStaff = async (staffId) => {
     try {
-      await axios.delete(`http://localhost:4444/company/users/${staffId}`);
+      await axios.delete(`http://localhost:4444/company/staff/${staffId}`);
       
       getStaffData();
     } catch (error) {
@@ -103,13 +103,13 @@ function Staff() {
 
  </tr>
 </thead>
-{staff.map((post) => (
+{staff.map((post,index) => (
 <tbody>
  <tr>
  
   
 
-   <td>1</td>
+   <td>{index + 1}</td>
    <td>{post.name}</td>
    <td><img style={{height:"55px",width:"55px"}} src={post.imagepath} alt="User" /></td>
 

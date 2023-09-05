@@ -4,9 +4,12 @@ import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Attendance() {
   const [attendance, setAttendances] = useState([]);
+
+  const navigate = useNavigate()
 
   const getStaffData = async () => {
     try {
@@ -38,6 +41,7 @@ function Attendance() {
       </Dropdown.Menu>
     </Dropdown>
     <Button style={{height:"2.2rem",width:"8.8rem"}}>Show Report</Button>
+    <Button style={{height:"2.2rem",width:"8.8rem"}} onClick={()=>navigate("/company/createstaff")}>Add Staff</Button>
    
     </div>
     <div>  <MDBCol md="12">
