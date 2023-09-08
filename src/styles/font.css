@@ -1,0 +1,54 @@
+/* 1. Pacifico */
+.font-link1{
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: .8px;
+
+}
+.textnav{
+  margin-top: .3rem;
+  font-size: 17px;
+}
+/* 2. Dancing Script */
+.font-link2 {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* 3. Patrick Hand */
+.font-link3 {
+  font-family: 'Patrick Hand', cursive;
+}
+
+/* 4. Shadows Into Light */
+.font-link4 {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+/* 5. Indie Flower */
+.font-link5 {
+  font-family: 'Indie Flower', cursive;
+}
+
+/* 6. Caveat */
+.font-link5 {
+  font-family: 'Caveat', cursive;
+}
+
+/* 7. Great Vibes */
+.font-link6 {
+  font-family: 'Great Vibes', cursive;
+}
+
+/* 8. Homemade Apple */
+.font-link7 {
+  font-family: 'Homemade Apple', cursive;
+}
+
+/* 9. Lobster */
+.font-link8 {
+  font-family: 'Lobster', cursive;
+}
+
+/* 10. Italianno */
+.font-link9 {
+  font-family: 'Italianno', cursive;
+}

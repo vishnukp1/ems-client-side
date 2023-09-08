@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useRef } from 'react'
 import { Form, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
+import "../../styles/company.css"
 
 function Addemployee() {
     const formRef = useRef(null)
@@ -37,11 +38,11 @@ function Addemployee() {
     };
 
   return (
-     <div class="add-employee-section">
-  <form className="container mt-3 mb-3" ref={formRef} onSubmit={submitButton}>
+     <div class="add-employee-section" >
+  <form className="container mt-5 mb-3" ref={formRef} onSubmit={submitButton}>
     
     <Row className="mb-3">
-        <Form.Group controlId="formBasicEmail" className="col col-sm-6">
+        <Form.Group controlId="formBasicEmail" className="form-taskadd col col-sm-6">
             <Form.Label>Task Title</Form.Label>
             <Form.Control type="title" name="title" className="form-control" />
         </Form.Group>

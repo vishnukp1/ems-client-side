@@ -85,13 +85,7 @@ function Task() {
           <Button style={{ height: "2.2rem", width: "8.8rem" }}>
             Show Report
           </Button>
-          <Button
-            variant="bg-light"
-            style={{ height: "2.2rem", width: "8.8rem" }}
-            onClick={() => navigate("/company/addtask")}
-          >
-            Add Task
-          </Button>
+          <Button style={{height:"2rem",width:"6rem",fontSize:".5rem",background:"#14539A"}} onClick={()=>navigate("/company/addtask")}>Add Staff</Button>
         </div>
         <div>
           {" "}
@@ -108,7 +102,7 @@ function Task() {
           </MDBCol>
         </div>
       </div>
-      <Table striped bordered hover size="sm">
+      <Table className="table-text" striped bordered hover size="sm" >
         <thead>
           <tr>
             <th style={{ width: "5%" }}>#</th>

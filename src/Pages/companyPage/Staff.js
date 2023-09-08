@@ -5,12 +5,18 @@ import Table from 'react-bootstrap/esm/Table'
 import Button from 'react-bootstrap/esm/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import "../../styles/company.css"
 import Sidebars from '../../component/Sidebars';
-import Navbars from '../../component/Navbars';
+import { useDispatch, useSelector } from 'react-redux';
+import { settaskpage } from '../../Reducers/taskpageReducer';
+import CreateStaff from './CreateStaff';
+
 
 
 function Staff() {
+  const taskpage = useSelector((state)=>state.taskpage)
+  const dispatch = useDispatch()
+  console.log(taskpage);
   const navigate = useNavigate()
   const [staff,setStaff] = useState([])
   const buttonStyle = {
@@ -18,6 +24,10 @@ function Staff() {
     padding: '2px 5px',
     marginLeft:"2px",
     border: '1px solid #343a40',
+    hover:{
+      background:"black"
+    }
+
   };
   const getStaffData = async () => {
     try {
@@ -43,7 +53,7 @@ function Staff() {
 
   useEffect(() => {
     getStaffData();
-  }, []);
+  }, [taskpage]);
 
   const searchHandle = async (e) =>{
     let key = e.target.value
@@ -59,27 +69,29 @@ function Staff() {
     <>
   
     <Sidebars />
-    <div style={{width:"100%",height: '100vh'}}><h2>Staff Management</h2>
+    <div className="col-sm mt-1 me-2" style={{width:"100%",height: '100vh',marginLeft:"1rem"}}>
+      <h4 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>EMPLOYEES</h4>
   
-     <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
-        <div style={{display:'flex'}}> <Dropdown>
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+     <div style={{width:"100%",display:"flex",justifyContent:"space-between" }}>
+        <div style={{display:'flex',gap:".5rem"}}> <Dropdown>
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{height:"2rem",width:"7rem",fontSize:".5rem",background:"#DDD6FF"}}>
        All Department
       </Dropdown.Toggle>
       
 
-      <Dropdown.Menu>
+      <Dropdown.Menu style={{background:"#D8E5FB"}}> 
         <Dropdown.Item href="#/action-1">Design</Dropdown.Item>
         <Dropdown.Item href="#/action-2">Front-developer</Dropdown.Item>
         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-    <Button style={{height:"2.2rem",width:"8.8rem"}}>Show Report</Button>
-    <Button style={{height:"2.2rem",width:"8.8rem"}} onClick={()=>navigate("/company/createstaff")}>Add Staff</Button>
+  
+    <Button style={{height:"2rem",width:"6rem",fontSize:".5rem",background:"#14539A"}} onClick={()=>dispatch(settaskpage())}>Add Staff</Button>
    
     </div>
+    
 
-    <div>  <MDBCol md="12">
+    <div>  <MDBCol md="14">
       <div className="active-pink-3 active-pink-4 mb-4 ">
         <input className="form-control" type="text" placeholder="Search" aria-label="Search" onChange={searchHandle}/>
       </div>
@@ -87,9 +99,9 @@ function Staff() {
     </div>
    
     </div>
-    <Table striped bordered hover size="sm" >
+    <Table className="table-text" striped bordered hover size="sm" >
 <thead>
- <tr>
+ <tr className='table-head'>
     <th style={{ width: '3%' }}>#</th>
     <th style={{ width: '14%' }}>Name</th>
     <th style={{ width: '8%' }}>Photo</th>
@@ -120,11 +132,11 @@ function Staff() {
    <td>{post.salary}</td>
    <td>{post.address}</td>
    <td>
-   <div style={{ display: "flex", alignItems: "center" }}>
+   <div  style={{ display: "flex", alignItems: "center" }}>
   
-   <Button variant="outline-dark" style={buttonStyle} onClick={() => navigate(`/company/addtask/${post._id}`)}>addtask</Button>
-              <Button variant="outline-dark" style={buttonStyle} onClick={()=>handleDeleteStaff (post._id)}>Delete</Button>
-              <Button variant="outline-dark" style={buttonStyle} onClick={() => navigate(`/company/updatestaff/${post._id}`)}>Update</Button>
+   <Button  variant="outline-dark" style={buttonStyle} onClick={() => navigate(`/company/addtask/${post._id}`)}>addtask</Button>
+              <Button className='delete-button' variant="outline-dark" style={buttonStyle} onClick={()=>handleDeleteStaff (post._id)}>Delete</Button>
+              <Button  variant="outline-dark" style={buttonStyle} onClick={() => navigate(`/company/updatestaff/${post._id}`)}>Update</Button>
             </div>
 
    </td>
@@ -136,6 +148,11 @@ function Staff() {
 </tbody>
  ))}
 </Table>
+{taskpage ? (
+          <div className="overlay">
+            <CreateStaff />
+          </div>
+        ) : null}
    
  </div>
  </>

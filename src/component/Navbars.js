@@ -7,6 +7,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from '../Reducers/useReducer';
+import logo from '../assets/work-removebg-preview12.png'
+import "../styles/company.css"
 
 function Navbars() {
   const navigate = useNavigate();
@@ -32,11 +34,11 @@ function Navbars() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{background:"red"}}>
       <Container>
-        <Navbar.Brand onClick={() => navigate("/")}>React-Bootstrap</Navbar.Brand>
+      <img style={{width:"6rem",height:"2rem" }} src={logo} alt='' onClick={()=>navigate("/")}></img>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
+            {/* <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="/employees/staff">Action</NavDropdown.Item>
@@ -48,12 +50,12 @@ function Navbars() {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
-      {token ? 
-      <Button onClick={() =>logout()} >logout</Button>:<Button  onClick={() => navigate("company/login")}>login</Button>}
+    
+      <button className='logout-btn' onClick={() =>logout()} >logout</button>
     </Navbar>
   );
 }

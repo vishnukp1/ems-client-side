@@ -3,10 +3,13 @@ import React, {  useRef, } from 'react'
 import { Button,  } from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom';
 import  "../../styles/company.css"
+import { useDispatch } from 'react-redux';
+import { setremove } from '../../Reducers/taskpageReducer';
 
 function CreateStaff() {
   const formRef = useRef(null)
-  const navigate = useNavigate()
+ 
+  const dispatch = useDispatch()
                                                                       
  const submitButton= async (e) => {
     e.preventDefault();
@@ -19,23 +22,29 @@ function CreateStaff() {
       password: formRef.current.password.value,
       phone: formRef.current.phone.value,
       email: formRef.current.email.value,
-      imagepath: formRef.current.image.value,
+      imagepath: formRef.current.image.files[0],
        gender: formRef.current.gender.value,
       salary: formRef.current.salary.value,
        position: formRef.current.position.value,
        address: formRef.current.address.value,
     };
 
-     await axios.post( `http://localhost:4444/company/createstaff`,items)
+     await axios.post( `http://localhost:4444/company/createstaff`,items, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }} )
+   
     .then(response => console.log(response.data))
+   
     .catch(error => {
       console.error("Error fetching customer data:", error);
     
     });
     formRef.current.reset();
+  
   }
   return (
-    <div className="form">
+    <div className="form-taskadd">
     <form ref={formRef} onSubmit={submitButton}>
       <h2 style={{ textAlign: "center" }}>Add Staff</h2>
       <div className="form-body">
@@ -44,7 +53,7 @@ function CreateStaff() {
             Name{" "}
           </label>
           <input
-            className="form__input"
+            className="input_form"
             type="text"
             id="firstName"
             placeholder="title"
@@ -56,7 +65,7 @@ function CreateStaff() {
             Password{" "}
           </label>
           <input
-            className="form__input"
+            className="input_form"
             type="text"
             id="lastName"
             placeholder="image"
@@ -68,11 +77,11 @@ function CreateStaff() {
             Image{" "}
           </label>
           <input
-            className="form__input"
-            type="text"
-            id="lastName"
-            placeholder="image"
-            name="image"
+           className="input_form"
+           type="file"
+           id="lastName"
+           placeholder="image"
+           name="image" // Update the name attribute to "image"
           />
         </div>
         <div className="username">
@@ -80,7 +89,7 @@ function CreateStaff() {
             Phone{" "}
           </label>
           <input
-            className="form__input"
+            className="input_form"
             type="text"
             id="lastName"
             placeholder="price"
@@ -93,7 +102,7 @@ function CreateStaff() {
             Email{" "}
           </label>
           <input
-            className="form__input"
+            className="input_form"
             type="text"
             id="lastName"
             placeholder="price"
@@ -105,31 +114,32 @@ function CreateStaff() {
           <label className="form__label" for="email">
             Address{" "}
           </label>
-          <input id="email" className="form__input" name="address" />
+          <input id="email" className="input_form" name="address" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
             Gender{" "}
           </label>
-          <input className="form__input" id="password" name="gender" />
+          <input className="input_form" id="password" name="gender" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
             Salary{" "}
           </label>
-          <input className="form__input" id="password" name="salary" />
+          <input className="input_form" id="password" name="salary" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
             Postion{" "}
           </label>
-          <input className="form__input" id="password" name="position" />
+          <input className="input_form" id="password" name="position" />
         </div>
       </div>
       <div class="footer">
-        <Button type="submit" class="btn" >
+        <button className='btn-task' type="submit" >
           Add Product
-        </Button>
+        </button>
+        <button className='btn-task' onClick={()=>dispatch(setremove())}>cancel</button>
       </div>
     </form>
   </div>

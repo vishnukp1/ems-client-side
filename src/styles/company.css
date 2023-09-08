@@ -25,3 +25,94 @@
  .form_input{
     width: 60%;
  }
+ .logout-btn {
+   background-color: #2c3c51;
+    margin-right: 1.5rem;
+    color:#f3f4f6; 
+    border-color: #334868;
+    border-radius: 9px;
+    width: 4.5rem;
+   
+ }
+
+ .sidebar-text {
+   font-size: 16px;
+   font-family: 'Montserrat', sans-serif;
+ }
+
+.table-text {
+   font-size: 16px;
+   font-family: 'Montserrat', sans-serif;
+   color: black;
+   border: 1px solid black;
+   background-color: #d3ecfc;
+
+}
+
+.main-container {
+
+   display: flex;
+   height: 100vh;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-content: space-around;
+}
+
+.table-head {
+   background-color: rgb(181, 210, 227);
+   
+}
+
+.delete-button:hover {
+   background-color:blue;
+   color: blueviolet
+}
+
+.form-control {
+   width: 16rem !important;
+   color: #334868 !important;
+  height: 2rem !important;
+}
+
+.overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000; /* Ensure the overlay is above other content */
+}
+
+.form-taskadd {
+   background-color: rgb(223, 223, 255);
+    border-radius: 5px;
+    width: 390px;
+    height: 35rem;
+    margin: 20px auto;
+    padding: 20px;
+    /* height: 600px; */
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    
+}
+
+.input_form {
+   height: 25px;
+
+}
+
+.btn-task {
+   background-color: #25336e;
+   margin-right: 1.5rem;
+   color:#f3f4f6; 
+   border-color: #25336e;
+   border-radius: 9px;
+   width: 7rem;
+   height: 2rem ;
+   font-size: 14px;
+}

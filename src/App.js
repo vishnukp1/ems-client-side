@@ -1,6 +1,7 @@
 import './App.css';
 import {  Route, Routes, useLocation}
     from "react-router-dom";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Attendance from './Pages/companyPage/Attendance';
 import Leave from './Pages/companyPage/Leave';
 import Performance from './Pages/companyPage/Performance';
@@ -28,11 +29,13 @@ import ApplyLeave from './Pages/staffPage/ApplyLeave';
 import AddPerformance from './Pages/companyPage/AddPerformance';
 import Task from './Pages/companyPage/Task';
 import Staff from './Pages/companyPage/Staff';
-import CompanyMain from './component/CompanyMain';
+import CompanyMain from './Pages/companyPage/CompanyMain';
 import UpdateTasks from './Pages/companyPage/UpdateTasks';
 import GoogleOauth from './component/GoogleOauth';
 import MarkAttendance from './Pages/companyPage/MarkAttendance';
 import UploadFile from './Pages/companyPage/UploadFile';
+import Login from './component/Login';
+import Home from './component/Home';
 
 
 function App() {
@@ -49,13 +52,20 @@ function App() {
     <div className="App " style={{background:"#f0f9ff",height:"100%"}}>
      <div style={{position:'sticky',top:'0',zIndex:'999'}}>
 
-<Navbars/>
+
 </div >
 {/* <Sample /> */}
+<Routes>
+      <Route exact path="/" element={<Home />} />
+      </Routes>
+      <Navbars />
+      <div style={{ display:"flex" }}>
+   
+<Routes>
 
-<div style={{ display: 'flex' }}>
       {/* {admin ? null : <Sidebars />} */}
-      <Routes>
+     
+
       <Route exact path="/admin" element={<AdminLogin />} />
 
 <Route exact path="/admin/allusers" element={<Allusers/>} />
@@ -64,7 +74,7 @@ function App() {
 
 <Route exact path="/admin/user" element={<User />} />
 
-      <Route exact path="/" element={<CompanyMain />} />
+      <Route exact path="/company/dashboard" element={<CompanyMain />} />
 
       <Route exact path="/company/attendance" element={<Attendance />} />
 
@@ -113,6 +123,8 @@ function App() {
 <Route exact path="/new" element={<GoogleOauth />} />
 
 <Route exact path="/mark" element={<MarkAttendance/>} />
+
+<Route exact path="/login1" element={<Login/>} />
 
       </Routes>
       </div>

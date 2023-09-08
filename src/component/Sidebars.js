@@ -1,4 +1,5 @@
 import React from 'react';
+import "../styles/company.css"
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -7,22 +8,23 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from 'cdbreact';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Sidebars = () => {
 
+
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
-      <CDBSidebar textColor="#060608" backgroundColor="#edf7f3">
+    <div style={{ display: 'flex', overflow: 'scroll initial'}}>
+      <CDBSidebar className='sidebar-text' textColor="white" backgroundColor="#040e3d" style={{height:"100vh" }}>
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-          Company
+        WORKWALE
           </a>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content" style={{textColor:"#060608"}}>
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            <NavLink exact to="/company/dashboard" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/company/staff" activeClassName="activeClicked">
