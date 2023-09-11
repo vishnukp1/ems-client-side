@@ -8,15 +8,18 @@ import axios from 'axios';
 import "../../styles/company.css"
 import Sidebars from '../../component/Sidebars';
 import { useDispatch, useSelector } from 'react-redux';
-import { settaskpage } from '../../Reducers/taskpageReducer';
 import CreateStaff from './CreateStaff';
+import {addStaff}from '../../Reducers/addstaffReducer';
+
+
 
 
 
 function Staff() {
-  const taskpage = useSelector((state)=>state.taskpage)
+  const addstaf = useSelector((state)=>state.addstaff)
+  
   const dispatch = useDispatch()
-  console.log(taskpage);
+  
   const navigate = useNavigate()
   const [staff,setStaff] = useState([])
   const buttonStyle = {
@@ -27,8 +30,8 @@ function Staff() {
     hover:{
       background:"black"
     }
-
   };
+
   const getStaffData = async () => {
     try {
       const response = await axios.get(`http://localhost:4444/company/staff`);
@@ -53,7 +56,7 @@ function Staff() {
 
   useEffect(() => {
     getStaffData();
-  }, [taskpage]);
+  }, [addstaf]);
 
   const searchHandle = async (e) =>{
     let key = e.target.value
@@ -86,7 +89,7 @@ function Staff() {
       </Dropdown.Menu>
     </Dropdown>
   
-    <Button style={{height:"2rem",width:"6rem",fontSize:".5rem",background:"#14539A"}} onClick={()=>dispatch(settaskpage())}>Add Staff</Button>
+    <Button style={{height:"2rem",width:"6rem",fontSize:".5rem",background:"#14539A"}} onClick={()=>dispatch(addStaff())}>Add Staff</Button>
    
     </div>
     
@@ -124,7 +127,6 @@ function Staff() {
    <td>{index + 1}</td>
    <td>{post.name}</td>
    <td><img style={{height:"55px",width:"55px"}} src={post.imagepath} alt="User" /></td>
-
    <td>{post.position}</td>
    <td>{post.gender}</td>
    <td>{post.phone}</td>
@@ -148,11 +150,13 @@ function Staff() {
 </tbody>
  ))}
 </Table>
-{taskpage ? (
+{addstaf ? (
           <div className="overlay">
             <CreateStaff />
           </div>
         ) : null}
+
+
    
  </div>
  </>

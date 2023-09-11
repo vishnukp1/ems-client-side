@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React, {  useRef, } from 'react'
-import { Button,  } from 'react-bootstrap'
-import { Navigate, useNavigate } from 'react-router-dom';
 import  "../../styles/company.css"
 import { useDispatch } from 'react-redux';
-import { setremove } from '../../Reducers/taskpageReducer';
+import { setremove } from '../../Reducers/addstaffReducer';
 
 function CreateStaff() {
   const formRef = useRef(null)
@@ -137,7 +135,7 @@ function CreateStaff() {
       </div>
       <div class="footer">
         <button className='btn-task' type="submit" >
-          Add Product
+          Add Staff
         </button>
         <button className='btn-task' onClick={()=>dispatch(setremove())}>cancel</button>
       </div>

@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import "../../styles/company.css"
+import { useDispatch } from 'react-redux';
+
 
 function Updatestaff() {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
@@ -53,7 +56,7 @@ function Updatestaff() {
   };
 
   return (
-    <div className="form">
+    <div className="form-upadate">
       <form onSubmit={handleSubmit}>
         <h2 style={{ textAlign: "center" }}>Edit Staff</h2>
         <div className="form-body">
@@ -63,7 +66,7 @@ function Updatestaff() {
       Name
     </label>
     <input
-      className="form__input"
+      className="input_form"
       type="text"
       id="name"
       placeholder="Name"
@@ -78,7 +81,7 @@ function Updatestaff() {
     </label>
     <input
       id="email"
-      className="form__input"
+      className="input_form"
       type="email"
       placeholder="Email"
       value={data.email}
@@ -91,7 +94,7 @@ function Updatestaff() {
       Phone
     </label>
     <input
-      className="form__input"
+      className="input_form"
       type="text"
       id="phone"
       placeholder="Phone"
@@ -106,7 +109,7 @@ function Updatestaff() {
     </label>
     <input
       id="imagepath"
-      className="form__input"
+      className="input_form"
       type="text"
       placeholder="Image Path"
       value={data.imagepath}
@@ -120,7 +123,7 @@ function Updatestaff() {
     </label>
     <input
       id="imagepath"
-      className="form__input"
+      className="input_form"
       type="text"
       placeholder="Image Path"
       value={data.salary}
@@ -134,7 +137,7 @@ function Updatestaff() {
     </label>
     <input
       id="imagepath"
-      className="form__input"
+      className="input_form"
       type="text"
       placeholder="Image Path"
       value={data.position}
@@ -148,7 +151,7 @@ function Updatestaff() {
     </label>
     <input
       id="imagepath"
-      className="form__input"
+      className="input_form"
       type="text"
       placeholder="Image Path"
       value={data.gender}
@@ -161,7 +164,7 @@ function Updatestaff() {
       Address
     </label>
     <input
-      className="form__input"
+      className="input_form"
       type="text"
       id="address"
       placeholder="Address"
@@ -174,9 +177,10 @@ function Updatestaff() {
 
         </div>
         <div className="footer">
-          <Button type="submit" className="btn">
-            Submit
-          </Button>
+        <button className='btn-task' type="submit" >
+          Update Staff
+        </button>
+       
         </div>
       </form>
     </div>

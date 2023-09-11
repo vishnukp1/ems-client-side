@@ -1,15 +1,29 @@
 
-.form-login {
+.form-logout {
     margin-left: auto;
-    margin-right: 5rem;
-    margin-top: 6rem;
+    margin-right: 0rem;
+    margin-top: 4rem;
     background: white;
-    width: 20rem;
+    width: 17rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-top: 0.5rem;
-    height: 27rem;
-    
+    height: 31rem;
+    box-shadow: 4px 4px 4px 4px rgba(233, 235, 236, 0.2);
+    border-radius: 6px;
+
+  }
+
+  .form-login {
+    margin-left: auto;
+    margin-right: 0rem;
+    margin-top: 4rem;
+    background: white;
+    width: 17rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    height: 26rem;
     box-shadow: 4px 4px 4px 4px rgba(233, 235, 236, 0.2);
     border-radius: 6px;
 

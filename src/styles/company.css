@@ -20,6 +20,7 @@
  
  .form__label{
     width: 40%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
  }
  
  .form_input{
@@ -115,4 +116,27 @@
    width: 7rem;
    height: 2rem ;
    font-size: 14px;
+}
+
+
+.form-upadate {
+   background-color: rgb(219, 219, 249);
+    border-radius: 5px;
+    width: 375px;
+    height: 28rem;
+    margin: 20px auto;
+    padding: 12px;
+    /* height: 600px; */
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    
+}
+
+.add-task-section {
+ 
+   background-color: rgb(212, 210, 244);
+margin-left: 21rem;
+margin-top: 6rem;
+margin-bottom: 10rem;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

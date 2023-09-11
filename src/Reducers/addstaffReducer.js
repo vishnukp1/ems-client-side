@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const taskpgeSlice = createSlice({
+const addstaffSlice = createSlice({
   name: "taskpge",
   initialState:false,
   reducers: {
-    settaskpage: (state, action) => {
+    addStaff: (state, action) => {
      return state= true;
     },
     setremove: (state, action) => {
@@ -14,5 +14,5 @@ const taskpgeSlice = createSlice({
   },
 });
 
-export const { settaskpage,setremove} = taskpgeSlice.actions;
-export default taskpgeSlice.reducer;
+export const { addStaff,setremove} = addstaffSlice.actions;
+export default addstaffSlice.reducer;

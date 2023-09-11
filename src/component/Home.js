@@ -19,6 +19,7 @@ function Home() {
           backgroundPosition: 'center', 
           minHeight: '100vh',
           display: 'flex', 
+          justifyContent:"space-between"
         }}
       ><div style={{width:"35rem",marginLeft:"4rem",marginTop:"6rem"}}>    <h2 style={{color:"white",fontSize:"2.5rem"}}>WorkWale Software is the #1 staff development tool used by companies</h2>
       
@@ -26,8 +27,8 @@ function Home() {
       <h4 style={{color:"white"}}>Trusted by 100K+ teams , they can plan task,manage performance, attendance, and salaries .</h4>
       </div>
     
-       <div className='form-login pl' > 
-        {signup ? <SignUp/>:<Login /> } </div> 
+       <div style={{marginRight:"8rem"}}> 
+        {signup ? <Login /> : <SignUp/> } </div> 
       </div>
 
       <Footer />

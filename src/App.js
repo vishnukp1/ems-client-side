@@ -29,7 +29,7 @@ import ApplyLeave from './Pages/staffPage/ApplyLeave';
 import AddPerformance from './Pages/companyPage/AddPerformance';
 import Task from './Pages/companyPage/Task';
 import Staff from './Pages/companyPage/Staff';
-import CompanyMain from './Pages/companyPage/CompanyMain';
+import CompanyDashboard from './Pages/companyPage/CompanyDashboard';
 import UpdateTasks from './Pages/companyPage/UpdateTasks';
 import GoogleOauth from './component/GoogleOauth';
 import MarkAttendance from './Pages/companyPage/MarkAttendance';
@@ -74,7 +74,7 @@ function App() {
 
 <Route exact path="/admin/user" element={<User />} />
 
-      <Route exact path="/company/dashboard" element={<CompanyMain />} />
+      <Route exact path="/company/dashboard" element={<CompanyDashboard />} />
 
       <Route exact path="/company/attendance" element={<Attendance />} />
 

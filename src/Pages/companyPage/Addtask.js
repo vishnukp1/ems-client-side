@@ -38,15 +38,15 @@ function Addemployee() {
     };
 
   return (
-     <div class="add-employee-section" >
-  <form className="container mt-5 mb-3" ref={formRef} onSubmit={submitButton}>
-    
+     <div class="add-task-section">
+  <form className="container mt-3 mb-3" ref={formRef} onSubmit={submitButton}>
+    <h2>Add Task</h2>
     <Row className="mb-3">
-        <Form.Group controlId="formBasicEmail" className="form-taskadd col col-sm-6">
+        <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>Task Title</Form.Label>
             <Form.Control type="title" name="title" className="form-control" />
         </Form.Group>
-       
+       <br></br>
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>Start time</Form.Label>
             <Form.Control type="starttime" name="starttime" className="form-control" />
@@ -57,6 +57,7 @@ function Addemployee() {
             <Form.Label>End time</Form.Label>
             <Form.Control type="endtime" name="endtime"className="form-control" />
         </Form.Group>
+        <br></br>
         <Form.Group controlId="formBasicEmail" className="col col-sm-6">
             <Form.Label>Status</Form.Label>
             <Form.Control type="status" name="status" className="form-control" />
@@ -64,10 +65,10 @@ function Addemployee() {
         
     </Row>
     <Row className="mb-3">
-        <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
-            <button type="submit" className="me-4 btn btn-success btn-lg btn-block">Submit</button>
-            <button type="reset" onClick={resetButton} className="me-4 btn btn-danger btn-lg btn-block">Cancel</button>
-        </Form.Group>
+        <Form.Group controlId="formGridCheckbox" className="col col-sm-5" style={{marginLeft:"10.5rem"}}>
+            <button type="submit" className="btn-task me-4  btn-lg btn-block">Submit</button>
+            <button type="reset" onClick={resetButton} className="btn-task me-4   btn-lg btn-block">Cancel</button> 
+         </Form.Group>  
     </Row>
 
 </form>

@@ -1,13 +1,56 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useRef, useState } from 'react'
 import "../styles/Login.css"
 import { useDispatch } from 'react-redux';
-import { setLogin } from '../Reducers/loginReducer';
+import { setLogin, setSignup } from '../Reducers/loginReducer';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp () {
+  
+  const navigate = useNavigate();
+  const inputref = useRef(null);
+  const submithandle = async () => {
+    const userFirstName = inputref.current.name.value;
+    const company = inputref.current.company.value;
+    const userPassword = inputref.current.password.value;
+    const userEmail = inputref.current.email.value;
+    const phone = inputref.current.phone.value;
+    // setemail([
+    //   ...email,
+    //   { userFirstName, userLastName, userEmail, userPassword },
+    // ]);
+    navigate("/");
+    const item = {
+     name: userFirstName,
+     company:company,
+     email:userEmail,
+      password: userPassword,
+      phone:phone
+   
+    };
+
+    await axios
+      .post(`http://localhost:4444/company/register`, item)
+      .then((response) => console.log(response.data))
+      .catch((error) => {
+        console.error("Error fetching customer data:", error);
+        // Handle the error, show an error message, etc.
+      });
+   
+
+
+  };
+
+  console.log(inputref);
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("You clicked submit.");
+  }
 
   const dispatch = useDispatch()
     return (
-      <form>
+      <div className='form-logout'>
+      <form ref={inputref} onSubmit={handleSubmit}>
         <h3  style={{marginTop:"1rem"}}>Sign Up</h3>
         <div className='form-text'>
         <div className="mb-3">
@@ -15,18 +58,16 @@ function SignUp () {
           <input
             type="text"
             className="form-control"
-          
+          name='name'
           />
         </div>
-        <div className="mb-3">
-          <label>Last name</label>
-          <input type="text" className="form-control"  />
-        </div>
+     
         <div className="mb-3">
           <label>Email address</label>
           <input
             type="email"
             className="form-control"
+            name='email'
             
           />
         </div>
@@ -35,19 +76,34 @@ function SignUp () {
           <input
             type="password"
             className="form-control"
+            name='password'
             
           />
           </div>
+          <div className="mb-3">
+          <label>Company</label>
+          <input
+            type="company"
+            className="form-control"
+            name='company'
+            
+          />
+          </div>
+          <div className="mb-3">
+          <label>Phone</label>
+          <input type="text" className="form-control" name='phone' />
+        </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="form-btn">
+          <button type="submit" className="form-btn" onClick={submithandle}>
             Sign Up
           </button>
         </div>
         <p className="forgot-password text-right">
-          Already registered <h6 style={{color:'red'}} onClick={()=>dispatch(setLogin())}>sign in?</h6>
+          Already registered <h6 style={{color:'red'}} onClick={()=>dispatch(setSignup())}>sign in?</h6>
         </p>
       </form>
+      </div>
     )
   }
 

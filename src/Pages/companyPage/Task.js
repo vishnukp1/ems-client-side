@@ -59,8 +59,8 @@ function Task() {
   return (
     <>
       <Sidebars />
-    <div className="form" style={{ width: "100%", height: "100vh" }}>
-      Task Management
+    <div className="form" style={{ width: "100%", height: "100vh" ,marginTop:"0px"}}>
+    <h4 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>STAFF TASK </h4>
       <div
         style={{
           width: "100%",
@@ -69,23 +69,19 @@ function Task() {
           borderRadius: "15px",
         }}
       >
-        <div style={{ display: "flex" }}>
-          {" "}
-          <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              All Department
-            </Dropdown.Toggle>
+        <div style={{display:'flex',gap:".5rem"}}> <Dropdown>
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{height:"2rem",width:"7rem",fontSize:".5rem",background:"#DDD6FF"}}>
+       All Department
+      </Dropdown.Toggle>
+      
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Design</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Front-developer</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Button style={{ height: "2.2rem", width: "8.8rem" }}>
-            Show Report
-          </Button>
-          <Button style={{height:"2rem",width:"6rem",fontSize:".5rem",background:"#14539A"}} onClick={()=>navigate("/company/addtask")}>Add Staff</Button>
+      <Dropdown.Menu style={{background:"#D8E5FB"}}> 
+        <Dropdown.Item href="#/action-1">Design</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Front-developer</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  
         </div>
         <div>
           {" "}
@@ -103,7 +99,7 @@ function Task() {
         </div>
       </div>
       <Table className="table-text" striped bordered hover size="sm" >
-        <thead>
+        <thead className='table-head'>
           <tr>
             <th style={{ width: "5%" }}>#</th>
             <th style={{ width: "14%" }}>Task Title</th>
