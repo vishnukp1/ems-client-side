@@ -1,47 +1,68 @@
+
+
 import axios from 'axios';
-import React, {  useRef, } from 'react'
-import  "../../styles/company.css"
+import React, { useEffect, useRef, useState } from 'react';
+import '../../styles/company.css';
 import { useDispatch } from 'react-redux';
 import { setremove } from '../../Reducers/addstaffReducer';
 
 function CreateStaff() {
-  const formRef = useRef(null)
- 
-  const dispatch = useDispatch()
-                                                                      
- const submitButton= async (e) => {
-    e.preventDefault();
-    
-   console.log(formRef.current.salary.value);
+  const formRef = useRef(null);
+  const dispatch = useDispatch();
+  const [department, setDepartment] = useState([]);
 
+  const submitButton = async (e) => {
+    e.preventDefault();
     const items = {
-    
       name: formRef.current.name.value,
       password: formRef.current.password.value,
       phone: formRef.current.phone.value,
       email: formRef.current.email.value,
       imagepath: formRef.current.image.files[0],
-       gender: formRef.current.gender.value,
+      gender: formRef.current.gender.value,
       salary: formRef.current.salary.value,
-       position: formRef.current.position.value,
-       address: formRef.current.address.value,
+      department: formRef.current.position.value,
+      address: formRef.current.address.value,
     };
 
-     await axios.post( `http://localhost:4444/company/createstaff`,items, {
+    await axios.post(`http://localhost:4444/company/createstaff`, items, {
       headers: {
         'Content-Type': 'multipart/form-data',
-      }} )
-   
-    .then(response => console.log(response.data))
-   
-    .catch(error => {
-      console.error("Error fetching customer data:", error);
-    
-    });
+      },
+    })
+      .then((response) => console.log(response.data))
+      .catch((error) => {
+        console.error("Error fetching customer data:", error);
+      });
+
     formRef.current.reset();
-  
-  }
+  };
+
+  const searchDepartment = async (key) => {
+    console.log(key);
+   
+    
+  };
+
+  const getDepartment = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4444/company/department`
+      );
+      const responseData = response.data;
+      setDepartment(responseData);
+      console.log("department:", responseData);
+    } catch (error) {
+      console.error("Error fetching department data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getDepartment();
+  }, []); 
+
   return (
+   
     <div className="form-taskadd">
     <form ref={formRef} onSubmit={submitButton}>
       <h2 style={{ textAlign: "center" }}>Add Staff</h2>
@@ -54,7 +75,7 @@ function CreateStaff() {
             className="input_form"
             type="text"
             id="firstName"
-            placeholder="title"
+          
             name="name"
           />
         </div>
@@ -64,22 +85,23 @@ function CreateStaff() {
           </label>
           <input
             className="input_form"
-            type="text"
+         
             id="lastName"
-            placeholder="image"
+        
             name="password"
           />
         </div>
-        <div className="username">
+        <div className="username" style={{display:"flex"}}>
           <label className="form__label" for="firstName">
             Image{" "}
           </label>
           <input
+          style={{marginLeft:"48px"}}
            className="input_form"
            type="file"
            id="lastName"
            placeholder="image"
-           name="image" // Update the name attribute to "image"
+           name="image" 
           />
         </div>
         <div className="username">
@@ -90,7 +112,7 @@ function CreateStaff() {
             className="input_form"
             type="text"
             id="lastName"
-            placeholder="price"
+          
             name="phone"
           />
         </div>
@@ -101,9 +123,9 @@ function CreateStaff() {
           </label>
           <input
             className="input_form"
-            type="text"
+          
             id="lastName"
-            placeholder="price"
+           
             name="email"
           />
         </div>
@@ -112,13 +134,21 @@ function CreateStaff() {
           <label className="form__label" for="email">
             Address{" "}
           </label>
-          <input id="email" className="input_form" name="address" />
+          <input  className="input_form" name="address" />
         </div>
         <div className="password">
           <label className="form__label" for="password">
             Gender{" "}
           </label>
-          <input className="input_form" id="password" name="gender" />
+          <select   name="gender" className="select-custom-addstaff">
+          <option>male
+          
+          </option>
+          <option>female
+          
+          </option>
+          </select>
+         
         </div>
         <div className="password">
           <label className="form__label" for="password">
@@ -130,7 +160,14 @@ function CreateStaff() {
           <label className="form__label" for="password">
             Postion{" "}
           </label>
-          <input className="input_form" id="password" name="position" />
+          <select  className="select-custom-addstaff" style={{backgroundColor:"white"}} name='position'  onChange={(e) => searchDepartment(e.target.value)}>
+  <option  name="position"  value="">Select Department</option>
+  {department.map((post, index) => (
+    <option name="position" style={{fontSize:"18px" ,textAlign:"start"}} key={index} value={post.title}>
+      {post.title}
+    </option>
+  ))}
+</select>
         </div>
       </div>
       <div class="footer">
@@ -141,7 +178,7 @@ function CreateStaff() {
       </div>
     </form>
   </div>
-  )
+  );
 }
 
-export default CreateStaff
+export default CreateStaff;

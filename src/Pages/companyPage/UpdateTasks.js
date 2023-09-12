@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Row } from 'react-bootstrap';
 
 function UpdateTasks() {
+  const navigate = useNavigate()
   const { staffId, taskId } = useParams();
  
   const [task, setTask] = useState({
@@ -77,7 +78,7 @@ try{
     </Row>
     <Row className="mb-3">
         <Form.Group controlId="formGridCheckbox" className="col col-sm-5" style={{marginLeft:"10.5rem"}}>
-            <button type="submit" className="btn-task me-4  btn-lg btn-block">Submit</button>
+            <button type="submit" className="btn-task me-4  btn-lg btn-block" onClick={()=>navigate("/company/task")}>Submit</button>
            
          </Form.Group>  
     </Row>

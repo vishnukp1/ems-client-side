@@ -18,7 +18,7 @@ function Task() {
   };
   const [task, setTasks] = useState([]);
   
-
+  const [department, setDepartment] = useState([]); 
   const getStaffTasks = async () => {
     try {
       const response = await axios.get(
@@ -47,6 +47,7 @@ function Task() {
   }, []);
 
   const searchHandle = async (e) =>{
+    console.log(e);
     let key = e.target.value
     const response = await axios.get(`http://localhost:4444/company/searchTask?name=${key}`);
     const responseData = response.data.tasks;
@@ -55,6 +56,36 @@ function Task() {
       setTasks(responseData)
     }
   }
+
+  
+  const searchDepartment = async (key) => {
+    console.log(key);
+    const response = await axios.get(
+      `http://localhost:4444/company/searchdepartment?department=${key}`
+    );
+    const responseData = response.data;
+    if (responseData) {
+      setDepartment(responseData);
+    }
+  };
+
+  const getDepartment = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4444/company/department`
+      );
+      const responseData = response.data;
+      setDepartment(responseData); 
+  
+    } catch (error) {
+      console.error("Error fetching department data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getDepartment();
+  
+  },);
 
   return (
     <>
@@ -69,18 +100,17 @@ function Task() {
           borderRadius: "15px",
         }}
       >
-        <div style={{display:'flex',gap:".5rem"}}> <Dropdown>
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{height:"2rem",width:"7rem",fontSize:".5rem",background:"#DDD6FF"}}>
-       All Department
-      </Dropdown.Toggle>
-      
-
-      <Dropdown.Menu style={{background:"#D8E5FB"}}> 
-        <Dropdown.Item href="#/action-1">Design</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Front-developer</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+        <div style={{display:'flex',gap:".5rem"}}> 
+        {" "}
+          
+          <select  className="select-custom"   onChange={(e) => searchDepartment(e.target.value)}>
+<option>Select Department</option>
+{department.map((post, index) => (
+  <option  style={{fontSize:"18px" ,textAlign:"start"}} key={index} value={post.title}>
+    {post.title}
+  </option>
+))}
+</select>
   
         </div>
         <div>

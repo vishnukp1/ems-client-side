@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 function Updatestaff() {
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const [department, setDepartment] = useState([]);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -55,6 +56,29 @@ function Updatestaff() {
     }
   };
 
+  
+  const searchDepartment = async (key) => {
+    console.log(key);
+   
+    
+  };
+
+  const getDepartment = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4444/company/department`
+      );
+      const responseData = response.data;
+      setDepartment(responseData);
+      console.log("department:", responseData);
+    } catch (error) {
+      console.error("Error fetching department data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getDepartment();
+  }, []); 
   return (
     <div className="form-upadate">
       <form onSubmit={handleSubmit}>
@@ -103,20 +127,20 @@ function Updatestaff() {
       onChange={handleChange}
     />
   </div>
-  <div className="email">
-    <label className="form__label" htmlFor="imagepath">
-      Image Path
-    </label>
-    <input
-      id="imagepath"
-      className="input_form"
-      type="text"
-      placeholder="Image Path"
-      value={data.imagepath}
-      name="imagepath"
-      onChange={handleChange}
-    />
-  </div>
+  <div className="username" style={{display:"flex"}}>
+          <label className="form__label" for="firstName">
+            Image{" "}
+          </label>
+          <input
+          style={{marginLeft:"48px"}}
+           className="input_form"
+           type="file"
+           id="lastName"
+          
+           placeholder="image"
+           name="image" 
+          />
+        </div>
   <div className="email">
     <label className="form__label" htmlFor="imagepath">
     Salary
@@ -125,40 +149,39 @@ function Updatestaff() {
       id="imagepath"
       className="input_form"
       type="text"
-      placeholder="Image Path"
+     
       value={data.salary}
       name="salary"
       onChange={handleChange}
     />
   </div>
-  <div className="email">
-    <label className="form__label" htmlFor="imagepath">
-     Position
-    </label>
-    <input
-      id="imagepath"
-      className="input_form"
-      type="text"
-      placeholder="Image Path"
-      value={data.position}
-      name="position"
-      onChange={handleChange}
-    />
-  </div>
-  <div className="email">
-    <label className="form__label" htmlFor="imagepath">
-  Gender
-    </label>
-    <input
-      id="imagepath"
-      className="input_form"
-      type="text"
-      placeholder="Image Path"
-      value={data.gender}
-      name="gender"
-      onChange={handleChange}
-    />
-  </div>
+  <div className="password">
+          <label className="form__label" for="password">
+            Postion{" "}
+          </label>
+          <select  className="select-custom-addstaff" style={{backgroundColor:"white"}} name='position'  onChange={(e) => searchDepartment(e.target.value)}>
+  <option  name="position"  value="">Select Department</option>
+  {department.map((post, index) => (
+    <option name="position" style={{fontSize:"18px" ,textAlign:"start"}} key={index} value={post.title}>
+      {post.title}
+    </option>
+  ))}
+</select>
+        </div>
+  <div className="password">
+          <label className="form__label" for="password">
+            Gender{" "}
+          </label>
+          <select   name="gender" className="select-custom-addstaff">
+          <option>male
+          
+          </option>
+          <option>female
+          
+          </option>
+          </select>
+         
+        </div>
   <div className="password">
     <label className="form__label" htmlFor="address">
       Address

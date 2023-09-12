@@ -32,7 +32,7 @@ function Navbars() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" style={{background:"red"}}>
+    <Navbar expand="lg" className='nabar-nav' >
       <Container>
       <img style={{width:"6rem",height:"2rem" }} src={logo} alt='' onClick={()=>navigate("/")}></img>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

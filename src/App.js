@@ -36,6 +36,7 @@ import MarkAttendance from './Pages/companyPage/MarkAttendance';
 import UploadFile from './Pages/companyPage/UploadFile';
 import Login from './component/Login';
 import Home from './component/Home';
+import Department from './Pages/companyPage/Department';
 
 
 function App() {
@@ -71,6 +72,8 @@ function App() {
 <Route exact path="/admin/allusers" element={<Allusers/>} />
 
 <Route exact path="/admin/updateuser" element={<UpdateUser/>} />
+
+<Route exact path="/company/department" element={<Department/>} />
 
 <Route exact path="/admin/user" element={<User />} />
 

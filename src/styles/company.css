@@ -140,3 +140,30 @@ margin-top: 6rem;
 margin-bottom: 10rem;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.nabar-nav {
+   background-color: rgb(228, 230, 248);
+
+}
+
+
+
+.select-custom {
+   height: 2rem;
+   width: 7rem;
+   font-size: .8rem !important ;
+   background: #DDD6FF;
+   border-color: #DDD6FF;
+   border-radius: 5px;
+   text-align: center;
+ }
+ .select-custom-addstaff {
+   height: 1.6rem;
+   width: 11.6rem;
+   font-size: .8rem !important ;
+   background: #DDD6FF;
+   border-color: #09090b;
+   text-align: center;
+ }
+ 
+
+ 
