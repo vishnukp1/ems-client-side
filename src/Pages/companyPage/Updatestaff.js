@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import "../../styles/company.css"
 import { useDispatch } from 'react-redux';
+import Sidebars from '../../component/Sidebars';
 
 
 function Updatestaff() {
@@ -21,6 +22,8 @@ function Updatestaff() {
     gender: "",
 
   });
+
+  console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,6 +83,8 @@ function Updatestaff() {
     getDepartment();
   }, []); 
   return (
+    <>
+    <Sidebars />
     <div className="form-upadate">
       <form onSubmit={handleSubmit}>
         <h2 style={{ textAlign: "center" }}>Edit Staff</h2>
@@ -207,6 +212,7 @@ function Updatestaff() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

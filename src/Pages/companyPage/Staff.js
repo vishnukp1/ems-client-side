@@ -91,7 +91,7 @@ function Staff() {
       <Sidebars />
       <div
         className="col-sm mt-1 me-2"
-        style={{ width: "100%", height: "100vh", marginLeft: "1rem" }}
+        style={{ width: "100%", height: "100vh", marginLeft: "1rem",backgroundColor:" rgb(233, 238, 247)" }}
       >
         <h4
           style={{

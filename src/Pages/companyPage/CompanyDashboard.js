@@ -3,6 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import Sidebars from '../../component/Sidebars';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {PersonSimpleBike, UsersThree,UserSwitch,HandWaving} from '@phosphor-icons/react'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
 
 function CompanyMain() {
    const navigate = useNavigate()
@@ -15,7 +19,8 @@ function CompanyMain() {
         <Card style={{ width: '23%',height:"10rem",background: "#27293D" ,color:"white"}}>
         <Card.Img variant="top" src="" />
         <Card.Body>
-          <Card.Title>All employees</Card.Title>
+        <UsersThree size={32} />
+          <Card.Title>EMPLOYEES</Card.Title>
           <Card.Text>
          
           </Card.Text>
@@ -25,14 +30,15 @@ function CompanyMain() {
       <Card style={{ width: '23%' ,height:"10rem",background:"#27293D",color:"white"}}>
         
         <Card.Body>
-          <Card.Title>All Tasks</Card.Title>
+        <PersonSimpleBike size={32} />
+          <Card.Title>TASKS</Card.Title>
           <Card.Text>
             
           </Card.Text>
           <Button style={{backgroundColor:"#1E1E2E"}} onClick={()=>navigate("/company/task")}>More Info</Button>
         </Card.Body>
       </Card>
-      <Card style={{ width: '23%',height:"10rem",background:"#27293D",color:"white"}}>
+      {/* <Card style={{ width: '23%',height:"10rem",background:"#27293D",color:"white"}}>
         
         <Card.Body>
           <Card.Title>Performance</Card.Title>
@@ -41,11 +47,12 @@ function CompanyMain() {
           </Card.Text>
           <Button style={{backgroundColor:"#1E1E2E"}} onClick={()=>navigate("/company/performance")}>More Info</Button>
         </Card.Body>
-      </Card>
+      </Card> */}
       <Card style={{ width: '23%',height:"10rem" ,background:"#27293D",color:"white"}}>
         
         <Card.Body>
-          <Card.Title>Attendance</Card.Title>
+        <HandWaving size={32} />
+          <Card.Title>ATTENDANCE</Card.Title>
           <Card.Text>
             
           </Card.Text>
@@ -56,14 +63,15 @@ function CompanyMain() {
       <Card style={{ width: '25%',height:"10rem" ,background:"#27293D",color:"white"}}>
         
         <Card.Body>
-          <Card.Title>Leave</Card.Title>
+        <UserSwitch size={32} />
+          <Card.Title>LEAVE</Card.Title>
           <Card.Text>
             
           </Card.Text>
           <Button style={{backgroundColor:"#1E1E2E"}} onClick={()=>navigate("/company/leave")}>More Info</Button>
         </Card.Body>
       </Card>
-      <Card style={{ width: '25%' ,height:"10rem",background:"#27293D" ,color:"white"}}>
+      {/* <Card style={{ width: '25%' ,height:"10rem",background:"#27293D" ,color:"white"}}>
        
         <Card.Body>
           <Card.Title>Salary Paid</Card.Title>
@@ -72,7 +80,7 @@ function CompanyMain() {
           </Card.Text>
           <Button style={{backgroundColor:"#1E1E2E"}}onClick={()=>navigate("/company/salary")}>More Info</Button>
         </Card.Body>
-      </Card>
+      </Card> */}
       
      
       <Card style={{ width: '25%',height:"10rem" ,background:"#27293D" ,color:"white"}}>
