@@ -50,13 +50,40 @@
 
 }
 
+.button-style {
+   font-size: 6px;
+   padding: 2px 5px;
+   margin-left: 2px;
+   border: 1px solid #343a40;
+   
+ }
+ 
+.department-table-text{
+   font-size: 16px;
+   font-family: 'Montserrat', sans-serif;
+   color: black;
+   border: 1px solid black;
+   background-color: #d3ecfc;
+   width: 35rem !important;
+  
+
+}
+
+
+.department-div{
+   display: flex;
+   flex-direction: column;
+   margin-left: 162px;
+}
+
 .main-container {
 
    display: flex;
-   height: 100vh;
+  
    flex-wrap: wrap;
    justify-content: space-around;
    align-content: space-around;
+   width: 100%;
 }
 
 .table-head {
@@ -135,14 +162,14 @@
 .add-task-section {
  
    background-color: rgb(212, 210, 244);
-margin-left: 21rem;
+margin-left: 18rem;
 margin-top: 6rem;
 margin-bottom: 10rem;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .nabar-nav {
    background-color: rgb(228, 230, 248);
-
+width: 100% !important
 }
 
 
@@ -163,6 +190,50 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    background: #DDD6FF;
    border-color: #09090b;
    text-align: center;
+ }
+
+
+ @media all and (max-width:412px) {
+   .home-main{
+      flex-direction: column;
+      
+
+   }
+   .dashboard-div{
+     flex-direction: column;
+     flex-wrap: wrap;
+     align-content: flex-start;
+   align-items:center; 
+   margin-left: 22px;
+   
+   };
+
+   .home-text {
+      width: 60px;
+   }
+  
+   
+ }
+
+ /* Add this to your CSS stylesheet */
+@media (max-width: 768px) {
+   .table-responsive {
+     overflow-x: auto;
+   }
+   .table {
+     width: 100%;
+     margin-bottom: 0;
+   }
+   .table th,
+   .table td {
+     white-space: nowrap;
+   }
+   .table thead {
+     display: none;
+   }
+   .table-bordered {
+     border: 0;
+   }
  }
  
 

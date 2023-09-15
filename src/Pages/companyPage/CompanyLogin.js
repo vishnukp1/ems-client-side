@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../Reducers/useReducer";
 import {
   MDBBtn,
@@ -17,15 +17,13 @@ import {
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 
-
 function CompanyLogin() {
   const navigate = useNavigate();
   const inputref = useRef();
   const dispatch = useDispatch();
- 
 
   const loginPass = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const setPassword = inputref.current.upassword.value;
     const setUsername = inputref.current.username.value;
     const items = {
@@ -49,7 +47,6 @@ function CompanyLogin() {
           const token = localStorage.getItem("token");
           dispatch(setToken(data.token));
           console.log(token);
-       
         } catch (error) {
           console.error("Error in token:", error);
         }
@@ -57,7 +54,7 @@ function CompanyLogin() {
         alert("Email and Password did not match");
         localStorage.clear("token");
         dispatch(setToken(data.token));
-        navigate("/company/login")
+        navigate("/company/login");
       }
     } catch (error) {
       console.error("Error getting customer data:", error);
@@ -66,7 +63,7 @@ function CompanyLogin() {
 
   return (
     <>
-       {/* <form ref={inputref} onSubmit={loginPass}>
+      {/* <form ref={inputref} onSubmit={loginPass}>
       <input name="username"></input>
       <input name="upassword"></input>
       <button>sigin</button>
@@ -93,7 +90,6 @@ function CompanyLogin() {
                   />
                   <span className="h1 fw-bold mb-0">Logo</span>
                 </div>
-
                 <h5
                   className="fw-normal my-4 pb-3"
                   style={{ letterSpacing: "1px" }}
@@ -123,17 +119,18 @@ function CompanyLogin() {
                   </MDBBtn>
                 </form>
                 <GoogleOAuthProvider clientId="323449366596-pi4nerf06act4c6bcp9f2n1iedmkstnn.apps.googleusercontent.com">
-         <GoogleLogin
-    onSuccess={credentialResponse => {
-        var decoded = jwt_decode(credentialResponse.credential);
-    console.log(decoded);
-    }}
-    onError={() => {
-    console.log('Login Failed');
-    }}
-    />;
-            
-            </GoogleOAuthProvider>;
+                  <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                      var decoded = jwt_decode(credentialResponse.credential);
+                      console.log(decoded);
+                    }}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}
+                  />
+                  ;
+                </GoogleOAuthProvider>
+                ;
                 <a className="small text-muted" href="#!">
                   Forgot password?
                 </a>
@@ -143,8 +140,6 @@ function CompanyLogin() {
                     Register here
                   </a>
                 </p>
-  
-
                 <div className="d-flex flex-row justify-content-start">
                   <a href="#!" className="small text-muted me-1">
                     Terms of use.
@@ -157,8 +152,7 @@ function CompanyLogin() {
             </MDBCol>
           </MDBRow>
         </MDBCard>
-      </MDBContainer> 
-     
+      </MDBContainer>
     </>
   );
 }

@@ -1,36 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import axios from 'axios';
 
 function MarkAttendance() {
   const [staffList, setStaffList] = useState([]);
   const [attendanceMarked, setAttendanceMarked] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState([]);
 
-  useEffect(() => {
-    // Simulate fetching staff data from your backend API
-    // Replace this with your actual API endpoint
-    // In this example, we're using a mock staff list
-    const mockStaffList = [
-      { id: 1, name: 'John Doe', department: 'HR' },
-      { id: 2, name: 'Jane Smith', department: 'Finance' },
-      { id: 3, name: 'Bob Johnson', department: 'IT' },
-      // Add more staff members as needed
-    ];
+  const getStaffData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4444/company/staff`);
+      const responseData = response.data.data;
+      
+      setStaffList(responseData);
+    } catch (error) {
+      console.error("Error fetching staff data:", error);
+    }
+  };
 
-    setStaffList(mockStaffList);
+  useEffect(() => {
+    getStaffData();
   }, []);
 
-  const markAttendance = () => {
-    // Implement your attendance marking logic here for selected staff
-    // You can make an API request to mark attendance for selected staff members
-    // After marking attendance, you can update the state or show a success message
-    console.log('Attendance marked for selected staff:', selectedStaff);
-    // Reset the selected staff array
+  const markAttendance = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = {
+        selectedStaff: selectedStaff,
+        status: "Present"
+      };
+
+      await axios.post(`http://localhost:4444/company/mark`, data)
+        .then((response) => {
+          console.log(response.data);
+          setAttendanceMarked(true); // Set attendanceMarked to true on success
+        });
+    } catch (error) {
+      console.error("Error marking attendance:", error);
+    }
+
+    // Reset selectedStaff after marking attendance
     setSelectedStaff([]);
   };
 
   const handleCheckboxChange = (staffId) => {
-    // Toggle the selected staff based on checkbox state
     setSelectedStaff((prevSelectedStaff) =>
       prevSelectedStaff.includes(staffId)
         ? prevSelectedStaff.filter((id) => id !== staffId)
@@ -40,13 +54,14 @@ function MarkAttendance() {
 
   return (
     <div className="App">
-      <h1>Staff Attendance Management</h1>
+      <h1>Staff Attendance</h1>
       <MDBTable bordered borderColor="primary">
         <MDBTableHead>
           <tr>
             <th scope='col'>ID</th>
             <th scope='col'>Name</th>
             <th scope='col'>Department</th>
+            <th scope='col'>Status</th>
             <th scope='col'>Select</th>
           </tr>
         </MDBTableHead>
@@ -56,11 +71,12 @@ function MarkAttendance() {
               <td>{staff.id}</td>
               <td>{staff.name}</td>
               <td>{staff.department}</td>
+              <td>{staff.attendance.length > 0 ? staff.attendance[0].status : '-'}</td>
               <td>
                 <input
                   type="checkbox"
-                  checked={selectedStaff.includes(staff.id)}
-                  onChange={() => handleCheckboxChange(staff.id)}
+                  checked={selectedStaff.includes(staff._id)}
+                  onChange={() => handleCheckboxChange(staff._id)}
                 />
               </td>
             </tr>
@@ -73,7 +89,6 @@ function MarkAttendance() {
         <p>Select staff members to add attendance.</p>
       )}
       {attendanceMarked && <p>Attendance has been marked for selected staff.</p>}
-      <input type='file' name='image'></input>
     </div>
   );
 }

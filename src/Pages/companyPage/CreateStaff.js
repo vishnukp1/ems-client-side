@@ -1,10 +1,8 @@
-
-
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import '../../styles/company.css';
-import { useDispatch } from 'react-redux';
-import { setremove } from '../../Reducers/addstaffReducer';
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import "../../styles/company.css";
+import { useDispatch } from "react-redux";
+import { setremove } from "../../Reducers/addstaffReducer";
 
 function CreateStaff() {
   const formRef = useRef(null);
@@ -25,11 +23,12 @@ function CreateStaff() {
       address: formRef.current.address.value,
     };
 
-    await axios.post(`http://localhost:4444/company/createstaff`, items, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    await axios
+      .post(`http://localhost:4444/company/createstaff`, items, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => console.log(response.data))
       .catch((error) => {
         console.error("Error fetching customer data:", error);
@@ -40,8 +39,6 @@ function CreateStaff() {
 
   const searchDepartment = async (key) => {
     console.log(key);
-   
-    
   };
 
   const getDepartment = async () => {
@@ -49,7 +46,7 @@ function CreateStaff() {
       const response = await axios.get(
         `http://localhost:4444/company/department`
       );
-      const responseData = response.data;
+      const responseData = response.data.data;
       setDepartment(responseData);
       console.log("department:", responseData);
     } catch (error) {
@@ -59,125 +56,120 @@ function CreateStaff() {
 
   useEffect(() => {
     getDepartment();
-  }, []); 
+  }, []);
 
   return (
-   
     <div className="form-taskadd">
-    <form ref={formRef} onSubmit={submitButton}>
-      <h2 style={{ textAlign: "center" }}>Add Staff</h2>
-      <div className="form-body">
-        <div className="username">
-          <label className="form__label" for="firstName">
-            Name{" "}
-          </label>
-          <input
-            className="input_form"
-            type="text"
-            id="firstName"
-          
-            name="name"
-          />
-        </div>
-        <div className="username">
-          <label className="form__label" for="firstName">
-            Password{" "}
-          </label>
-          <input
-            className="input_form"
-         
-            id="lastName"
-        
-            name="password"
-          />
-        </div>
-        <div className="username" style={{display:"flex"}}>
-          <label className="form__label" for="firstName">
-            Image{" "}
-          </label>
-          <input
-          style={{marginLeft:"48px"}}
-           className="input_form"
-           type="file"
-           id="lastName"
-           placeholder="image"
-           name="image" 
-          />
-        </div>
-        <div className="username">
-          <label className="form__label" for="firstName">
-            Phone{" "}
-          </label>
-          <input
-            className="input_form"
-            type="text"
-            id="lastName"
-          
-            name="phone"
-          />
-        </div>
+      <form ref={formRef} onSubmit={submitButton}>
+        <h2 style={{ textAlign: "center" }}>Add Staff</h2>
+        <div className="form-body">
+          <div className="username">
+            <label className="form__label" for="firstName">
+              Name{" "}
+            </label>
+            <input
+              className="input_form"
+              type="text"
+              id="firstName"
+              name="name"
+            />
+          </div>
+          <div className="username">
+            <label className="form__label" for="firstName">
+              Password{" "}
+            </label>
+            <input className="input_form" id="lastName" name="password" />
+          </div>
+          <div className="username" style={{ display: "flex" }}>
+            <label className="form__label" for="firstName">
+              Image{" "}
+            </label>
+            <input
+              style={{ marginLeft: "48px" }}
+              className="input_form"
+              type="file"
+              id="lastName"
+              placeholder="image"
+              name="image"
+            />
+          </div>
+          <div className="username">
+            <label className="form__label" for="firstName">
+              Phone{" "}
+            </label>
+            <input
+              className="input_form"
+              type="text"
+              id="lastName"
+              name="phone"
+            />
+          </div>
 
-        <div className="username">
-          <label className="form__label" for="firstName">
-            Email{" "}
-          </label>
-          <input
-            className="input_form"
-          
-            id="lastName"
-           
-            name="email"
-          />
-        </div>
+          <div className="username">
+            <label className="form__label" for="firstName">
+              Email{" "}
+            </label>
+            <input className="input_form" id="lastName" name="email" />
+          </div>
 
-        <div className="email">
-          <label className="form__label" for="email">
-            Address{" "}
-          </label>
-          <input  className="input_form" name="address" />
+          <div className="email">
+            <label className="form__label" for="email">
+              Address{" "}
+            </label>
+            <input className="input_form" name="address" />
+          </div>
+          <div className="password">
+            <label className="form__label" for="password">
+              Gender{" "}
+            </label>
+            <select name="gender" className="select-custom-addstaff">
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div className="password">
+            <label className="form__label" for="password">
+              Salary{" "}
+            </label>
+            <input className="input_form" id="password" name="salary" />
+          </div>
+          <div className="password">
+            <label className="form__label" for="password">
+              Postion{" "}
+            </label>
+            <select
+              className="select-custom-addstaff"
+              style={{ backgroundColor: "white" }}
+              name="position"
+              onChange={(e) => searchDepartment(e.target.value)}
+            >
+              <option name="position" value="">
+                Select Department
+              </option>
+              {department.map((post, index) => (
+                <option
+                  name="position"
+                  style={{ fontSize: "18px", textAlign: "start" }}
+                  key={index}
+                  value={post.title}
+                >
+                  {post.title}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div className="password">
-          <label className="form__label" for="password">
-            Gender{" "}
-          </label>
-          <select   name="gender" className="select-custom-addstaff">
-          <option>male
-          
-          </option>
-          <option>female
-          
-          </option>
-          </select>
-         
+        <div class="footer">
+          <button className="btn-task" type="submit">
+            Add Staff
+          </button>
+          <button className="btn-task" onClick={() => dispatch(setremove())}>
+            cancel
+          </button>
         </div>
-        <div className="password">
-          <label className="form__label" for="password">
-            Salary{" "}
-          </label>
-          <input className="input_form" id="password" name="salary" />
-        </div>
-        <div className="password">
-          <label className="form__label" for="password">
-            Postion{" "}
-          </label>
-          <select  className="select-custom-addstaff" style={{backgroundColor:"white"}} name='position'  onChange={(e) => searchDepartment(e.target.value)}>
-  <option  name="position"  value="">Select Department</option>
-  {department.map((post, index) => (
-    <option name="position" style={{fontSize:"18px" ,textAlign:"start"}} key={index} value={post.title}>
-      {post.title}
-    </option>
-  ))}
-</select>
-        </div>
-      </div>
-      <div class="footer">
-        <button className='btn-task' type="submit" >
-          Add Staff
-        </button>
-        <button className='btn-task' onClick={()=>dispatch(setremove())}>cancel</button>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
   );
 }
 

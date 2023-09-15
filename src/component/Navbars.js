@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/esm/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from '../Reducers/useReducer';
@@ -32,7 +30,7 @@ function Navbars() {
   }
 
   return (
-    <Navbar expand="lg" className='nabar-nav' >
+    <Navbar className='nabar-nav' >
       <Container>
       <img style={{width:"6rem",height:"2rem" }} src={logo} alt='' onClick={()=>navigate("/")}></img>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

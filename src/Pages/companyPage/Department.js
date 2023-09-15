@@ -1,13 +1,12 @@
-import { MDBCol } from 'mdb-react-ui-kit';
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Dropdown, Table } from 'react-bootstrap';
+import { Button,  Table } from 'react-bootstrap';
 import Sidebars from '../../component/Sidebars';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 import "../../styles/company.css"
 
 function Department() {
-    const navigate = useNavigate();
+  
     const formRef = useRef()
     const buttonStyle = {
       fontSize: "8px",
@@ -15,18 +14,20 @@ function Department() {
       marginLeft: "2px",
       border: "1px solid #343a40",
     };
-    const [task, setTasks] = useState([]);
+    const [department, setDepartment] = useState([]);
 
  const addDepartment = async (e) =>{
     e.preventDefault();
     try{
     const dprtment = formRef.current.department.value
-    const department ={
+    const deprtment ={
         title:dprtment
     }
     console.log(dprtment);
-    const response=await axios.post(`http://localhost:4444/company/createdprt`,department)
+    
+    const response=await axios.post(`http://localhost:4444/company/createdprt`,deprtment)
     console.log(response.data);
+    getDepartment()
   
 }
   catch(error) {
@@ -42,9 +43,9 @@ function Department() {
         const response = await axios.get(
           `http://localhost:4444/company/department`
         );
-        const responseData = response.data;
+        const responseData = response.data.data;
   
-        setTasks(responseData)
+        setDepartment(responseData)
         console.log(responseData.de);
       } catch (error) {
         console.error("Error fetching customer data:", error);
@@ -70,8 +71,9 @@ function Department() {
       <>
         <Sidebars />
       <div className="form" style={{ width: "100%", height: "100vh" ,marginTop:"0px"}}>
-      <h4 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>STAFF TASK </h4>
+      <h4 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>DEPARTMENTS</h4>
         <div
+        className='department-div'
           style={{
             width: "100%",
             display: "flex",
@@ -79,29 +81,34 @@ function Department() {
             borderRadius: "15px",
           }}
         >
-          <div style={{display:'flex',gap:".5rem"}}> 
+          <div >
+          <div  style={{display:'flex',gap:".5rem"}}> 
           <form ref={formRef} onSubmit={addDepartment}>
-      
+          <div  style={{display:'flex',gap:".5rem"}}> 
+      <div>
           <input className="form-control" type="text"  name='department'/>
-
-<Button type="submit">Add</Button>
+          </div>
+          <div>
+<Button style={{height:"32px",marginBottom:"22px",background:"#14539A",paddingTop:"8px"}} type="submit">Add</Button>
+</div>
+</div>
           </form>
           </div>
          
         </div>
-        <Table className="table-text" striped bordered hover size="sm" >
+        <Table className="department-table-text" striped bordered hover size="sm" >
           <thead className='table-head'>
             <tr>
-              <th style={{ width: "5%" }}>#</th>
-              <th style={{ width: "14%" }}>Departments</th>
+              <th style={{ width: "10%" }}>#</th>
+              <th style={{ width: "55%" }}>Departments</th>
             
               <th style={{ width: "10%" }}>Actions</th>
               
             </tr>
           </thead>
-          {task.length > 0 ? (
+          {department.length > 0 ? (
             <tbody>
-              {task.map((post, index) => (
+              {department.map((post, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{post.title}</td>
@@ -127,6 +134,7 @@ function Department() {
             </tbody>
           )}
         </Table>
+        </div>
       </div>
       </>
   )

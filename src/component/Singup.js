@@ -1,15 +1,17 @@
-import React, { Component, useRef, useState } from 'react'
+import React, {  useRef} from 'react'
 import "../styles/Login.css"
 import { useDispatch } from 'react-redux';
 import { setLogin, setSignup } from '../Reducers/loginReducer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { setToken } from "../Reducers/useReducer";
 
 function SignUp () {
   
   const navigate = useNavigate();
   const inputref = useRef(null);
   const submithandle = async () => {
+    try{
     const userFirstName = inputref.current.name.value;
     const company = inputref.current.company.value;
     const userPassword = inputref.current.password.value;
@@ -19,7 +21,7 @@ function SignUp () {
     //   ...email,
     //   { userFirstName, userLastName, userEmail, userPassword },
     // ]);
-    navigate("/");
+  
     const item = {
      name: userFirstName,
      company:company,
@@ -29,15 +31,22 @@ function SignUp () {
    
     };
 
-    await axios
+    const response =await axios
       .post(`http://localhost:4444/company/register`, item)
-      .then((response) => console.log(response.data))
-      .catch((error) => {
+      const data = response.data;
+      console.log(response.data);
+     
+     
+      localStorage.setItem("token", data.token);
+      const token = localStorage.getItem("token");
+      dispatch(setToken(data.token));
+      console.log(token)
+  }catch(error)  {
         console.error("Error fetching customer data:", error);
         // Handle the error, show an error message, etc.
-      });
+      };
    
-
+navigate("/company/dashboard")
 
   };
 

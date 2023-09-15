@@ -1,13 +1,11 @@
 import './App.css';
-import {  Route, Routes, useLocation}
+import {  Route, Routes }
     from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Attendance from './Pages/companyPage/Attendance';
 import Leave from './Pages/companyPage/Leave';
 import Performance from './Pages/companyPage/Performance';
 import StaffLogin from './Pages/staffPage/StaffLogin';
-import Sidebars from './component/Sidebars';
-import { useEffect, useState } from 'react';
 import Navbars from './component/Navbars';
 import CompanyLogin from './Pages/companyPage/CompanyLogin';
 import CreateStaff from './Pages/companyPage/CreateStaff';
@@ -33,7 +31,6 @@ import CompanyDashboard from './Pages/companyPage/CompanyDashboard';
 import UpdateTasks from './Pages/companyPage/UpdateTasks';
 import GoogleOauth from './component/GoogleOauth';
 import MarkAttendance from './Pages/companyPage/MarkAttendance';
-import UploadFile from './Pages/companyPage/UploadFile';
 import Login from './component/Login';
 import Home from './component/Home';
 import Department from './Pages/companyPage/Department';
@@ -51,14 +48,16 @@ function App() {
   // },[location])
   return (
     <div className="App " style={{background:"#f0f9ff",height:"100%"}}>
+      <Routes>
+      <Route exact path="/" element={<Home />} />
+      </Routes>
      <div style={{position:'sticky',top:'0',zIndex:'999'}}>
 
 
 </div >
 {/* <Sample /> */}
-<Routes>
-      <Route exact path="/" element={<Home />} />
-      </Routes>
+
+
       <Navbars />
       <div style={{ display:"flex" }}>
    
@@ -91,7 +90,7 @@ function App() {
       
       <Route exact path="/company/performance" element={<Performance />} />
 
-      <Route exact path="/upload" element={<UploadFile />} />
+   
      
       <Route exact path="/company/task" element={<Task />} />
    

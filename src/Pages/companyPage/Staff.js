@@ -1,7 +1,7 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import { MDBCol, MDBIcon } from "mdb-react-ui-kit";
+
+import { MDBCol } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table"; 
+import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,26 +12,28 @@ import CreateStaff from "./CreateStaff";
 import { addStaff } from "../../Reducers/addstaffReducer";
 
 function Staff() {
-  const addstaf = useSelector((state) => state.addstaff);
-
-  const dispatch = useDispatch([]);
-
-  const [department, setDepartment] = useState([]); 
- 
-  const navigate = useNavigate();
-  const [staff, setStaff] = useState([]);
   const buttonStyle = {
     fontSize: "8px",
     padding: "2px 5px",
     marginLeft: "2px",
     border: "1px solid #343a40",
   };
+  const addstaf = useSelector((state) => state.addstaff);
+
+  const dispatch = useDispatch([]);
+
+  const [department, setDepartment] = useState([]);
+
+  const navigate = useNavigate();
+  const [staff, setStaff] = useState([]);
 
   const getStaffData = async () => {
     try {
       const response = await axios.get(`http://localhost:4444/company/staff`);
-      const responseData = response.data;
+      const responseData = response.data.data;
+
       setStaff(responseData);
+      console.log(responseData);
     } catch (error) {
       console.error("Error fetching staff data:", error);
     }
@@ -78,9 +80,8 @@ function Staff() {
       const response = await axios.get(
         `http://localhost:4444/company/department`
       );
-      const responseData = response.data;
-      setDepartment(responseData); 
-  
+      const responseData = response.data.data;
+      setDepartment(responseData);
     } catch (error) {
       console.error("Error fetching department data:", error);
     }
@@ -91,7 +92,12 @@ function Staff() {
       <Sidebars />
       <div
         className="col-sm mt-1 me-2"
-        style={{ width: "100%", height: "100vh", marginLeft: "1rem",backgroundColor:" rgb(233, 238, 247)" }}
+        style={{
+          width: "100%",
+          height: "100vh",
+          marginLeft: "1rem",
+          backgroundColor: " rgb(233, 238, 247)",
+        }}
       >
         <h4
           style={{
@@ -113,16 +119,21 @@ function Staff() {
         >
           <div style={{ display: "flex", gap: ".5rem" }}>
             {" "}
-          
-            <select  className="select-custom"   onChange={(e) => searchDepartment(e.target.value)}>
-  <option>Select Department</option>
-  {department.map((post, index) => (
-    <option  style={{fontSize:"18px" ,textAlign:"start"}} key={index} value={post.title}>
-      {post.title}
-    </option>
-  ))}
-</select>
-
+            <select
+              className="select-custom"
+              onChange={(e) => searchDepartment(e.target.value)}
+            >
+              <option>Select Department</option>
+              {department.map((post, index) => (
+                <option
+                  style={{ fontSize: "18px", textAlign: "start" }}
+                  key={index}
+                  value={post.title}
+                >
+                  {post.title}
+                </option>
+              ))}
+            </select>
             <Button
               style={{
                 height: "2rem",
@@ -151,71 +162,82 @@ function Staff() {
             </MDBCol>
           </div>
         </div>
-        <Table className="table-text" striped bordered hover size="sm">
-          <thead>
-            <tr className="table-head">
-              <th style={{ width: "3%" }}>#</th>
-              <th style={{ width: "14%" }}>Name</th>
-              <th style={{ width: "8%" }}>Photo</th>
-              <th style={{ width: "12%" }}>Department</th>
-              <th style={{ width: "6%" }}>Gender</th>
-              <th style={{ width: "14%" }}>Phone</th>
-              <th style={{ width: "14%" }}>Email</th>
-              <th style={{ width: "8%" }}>Salary</th>
-              <th style={{ width: "18%" }}>Address</th>
-              <th style={{ width: "18%" }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody> {/* Removed extra tbody elements */}
-            {staff.map((post, index) => (
-              <tr key={post._id}>
-                <td>{index + 1}</td>
-                <td>{post.name}</td>
-                <td>
-                  <img
-                    style={{ height: "55px", width: "55px" }}
-                    src={post.imagepath}
-                    alt="User"
-                  />
-                </td>
-                <td>{post.department}</td>
-                <td>{post.gender}</td>
-                <td>{post.phone}</td>
-                <td>{post.email}</td>
-                <td>{post.salary}</td>
-                <td>{post.address}</td>
-                <td>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <Button
-                      variant="outline-dark"
-                      style={buttonStyle}
-                      onClick={() => navigate(`/company/addtask/${post._id}`)}
-                    >
-                      addtask
-                    </Button>
-                    <Button
-                      className="delete-button"
-                      variant="outline-dark"
-                      style={buttonStyle}
-                      onClick={() => handleDeleteStaff(post._id)}
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      variant="outline-dark"
-                      style={buttonStyle}
-                      onClick={() =>
-                        navigate(`/company/updatestaff/${post._id}`)
-                      }
-                    >
-                      Update
-                    </Button>
-                  </div>
-                </td>
+        <div className="table-responsive">
+          <Table className="table-text" striped bordered hover size="sm">
+            <thead>
+              <tr className="table-head">
+                <th style={{ width: "3%" }}>#</th>
+                <th style={{ width: "14%" }}>Name</th>
+                <th style={{ width: "8%" }}>Photo</th>
+                <th style={{ width: "12%" }}>Department</th>
+                <th style={{ width: "6%" }}>Gender</th>
+                <th style={{ width: "14%" }}>Phone</th>
+                <th style={{ width: "14%" }}>Email</th>
+                <th style={{ width: "8%" }}>Salary</th>
+                <th style={{ width: "18%" }}>Address</th>
+                <th style={{ width: "18%" }}>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            {staff.length > 0 ? (
+              <tbody>
+                {staff.map((post, index) => (
+                  <tr key={post._id}>
+                    <td>{index + 1}</td>
+                    <td>{post.name}</td>
+                    <td>
+                      <img
+                        style={{ height: "55px", width: "55px" }}
+                        src={post.imagepath}
+                        alt="User"
+                      />
+                    </td>
+                    <td>{post.department}</td>
+                    <td>{post.gender}</td>
+                    <td>{post.phone}</td>
+                    <td>{post.email}</td>
+                    <td>{post.salary}</td>
+                    <td>{post.address}</td>
+                    <td>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <Button
+                          variant="outline-dark"
+                          style={buttonStyle}
+                          onClick={() =>
+                            navigate(`/company/addtask/${post._id}`)
+                          }
+                        >
+                          addtask
+                        </Button>
+                        <Button
+                          style={buttonStyle}
+                          variant="outline-dark"
+                          onClick={() => handleDeleteStaff(post._id)}
+                        >
+                          Delete
+                        </Button>
+                        <Button
+                          variant="outline-dark"
+                          style={buttonStyle}
+                          onClick={() =>
+                            navigate(`/company/updatestaff/${post._id}`)
+                          }
+                        >
+                          Update
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            ) : (
+              <tbody>
+                <tr>
+                  <td colSpan="7">No staffs available</td>
+                </tr>
+              </tbody>
+            )}
+          </Table>
+        </div>
         {addstaf ? (
           <div className="overlay">
             <CreateStaff />
@@ -227,5 +249,3 @@ function Staff() {
 }
 
 export default Staff;
-
-
