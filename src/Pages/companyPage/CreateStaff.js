@@ -9,11 +9,31 @@ function CreateStaff() {
   const dispatch = useDispatch();
   const [department, setDepartment] = useState([]);
 
+  
+  let menuRef = useRef();
+
+  useEffect(() => {
+    let handler = (e)=>{
+      if (menuRef.current && !menuRef.current.contains(e.target)){
+  dispatch(setremove())
+      }      
+    };
+
+    document.addEventListener("mousedown", handler);
+    
+
+    return() =>{
+      document.removeEventListener("mousedown", handler);
+    }
+
+  });
+
+
   const submitButton = async (e) => {
     e.preventDefault();
     const items = {
       name: formRef.current.name.value,
-      password: formRef.current.password.value,
+  
       phone: formRef.current.phone.value,
       email: formRef.current.email.value,
       imagepath: formRef.current.image.files[0],
@@ -59,7 +79,7 @@ function CreateStaff() {
   }, []);
 
   return (
-    <div className="form-taskadd">
+    <div className="form-taskadd" ref={menuRef}>
       <form ref={formRef} onSubmit={submitButton}>
         <h2 style={{ textAlign: "center" }}>Add Staff</h2>
         <div className="form-body">
@@ -74,12 +94,7 @@ function CreateStaff() {
               name="name"
             />
           </div>
-          <div className="username">
-            <label className="form__label" for="firstName">
-              Password{" "}
-            </label>
-            <input className="input_form" id="lastName" name="password" />
-          </div>
+          
           <div className="username" style={{ display: "flex" }}>
             <label className="form__label" for="firstName">
               Image{" "}

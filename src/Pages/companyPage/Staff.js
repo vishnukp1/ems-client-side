@@ -1,6 +1,6 @@
 
 import { MDBCol } from "mdb-react-ui-kit";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
 import { useDispatch, useSelector } from "react-redux";
 import CreateStaff from "./CreateStaff";
-import { addStaff } from "../../Reducers/addstaffReducer";
+import { addStaff, setremove } from "../../Reducers/addstaffReducer";
 
 function Staff() {
   const buttonStyle = {
@@ -26,6 +26,8 @@ function Staff() {
 
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
+
+
 
   const getStaffData = async () => {
     try {
@@ -91,6 +93,8 @@ function Staff() {
     <>
       <Sidebars />
       <div
+
+   
         className="col-sm mt-1 me-2"
         style={{
           width: "100%",
@@ -239,7 +243,7 @@ function Staff() {
           </Table>
         </div>
         {addstaf ? (
-          <div className="overlay">
+          <div className="overlay"  >
             <CreateStaff />
           </div>
         ) : null}

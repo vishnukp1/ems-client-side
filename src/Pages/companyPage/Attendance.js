@@ -7,23 +7,36 @@ import "../../styles/company.css";
 import { Button } from "react-bootstrap";
 
 function Attendance() {
-  const [staffList, setStaffList] = useState([]);
+  const [staff, setStaff] = useState([]);
   const [attendanceMarked, setAttendanceMarked] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState([]);
+  const [department, setDepartment] = useState([]);
+  console.log(selectedStaff);
 
   const getStaffData = async () => {
     try {
       const response = await axios.get(`http://localhost:4444/company/staff`);
       const responseData = response.data.data;
-
-      setStaffList(responseData);
+      setStaff(responseData);
+     
     } catch (error) {
       console.error("Error fetching staff data:", error);
+    }
+  };
+  const searchHandle = async (e) => {
+    let key = e.target.value;
+    const response = await axios.get(
+      `http://localhost:4444/company/search?name=${key}`
+    );
+    const responseData = response.data;
+    if (responseData) {
+      setStaff(responseData);
     }
   };
 
   useEffect(() => {
     getStaffData();
+    getDepartment()
   }, []);
 
   const markAttendance = async (e) => {
@@ -39,22 +52,63 @@ function Attendance() {
         .post(`http://localhost:4444/company/mark`, data)
         .then((response) => {
           console.log(response.data);
-          setAttendanceMarked(true); // Set attendanceMarked to true on success
+          setAttendanceMarked(true); 
+          getStaffData()
         });
     } catch (error) {
       console.error("Error marking attendance:", error);
+    
+
+    
+  
     }
 
-    // Reset selectedStaff after marking attendance
+  
     setSelectedStaff([]);
   };
-
+  const deleteAttendance = async (staffId, date) => {
+    console.log(date);
+    try {
+   
+      await axios.delete(`http://localhost:4444/deleteAttendance/${staffId}`, {
+        data: { date: date },
+      });
+  
+      getStaffData();
+    } catch (error) {
+      console.error("Error deleting staff:", error);
+    }
+  };
+  
   const handleCheckboxChange = (staffId) => {
     setSelectedStaff((prevSelectedStaff) =>
       prevSelectedStaff.includes(staffId)
         ? prevSelectedStaff.filter((id) => id !== staffId)
         : [...prevSelectedStaff, staffId]
     );
+  };
+
+  const searchDepartment = async (key) => {
+    console.log(key);
+    const response = await axios.get(
+      `http://localhost:4444/company/searchdepartment?department=${key}`
+    );
+    const responseData = response.data;
+    if (responseData) {
+      setStaff(responseData);
+    }
+  };
+
+  const getDepartment = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4444/company/department`
+      );
+      const responseData = response.data.data;
+      setDepartment(responseData);
+    } catch (error) {
+      console.error("Error fetching department data:", error);
+    }
   };
   return (
     <>
@@ -66,7 +120,7 @@ function Attendance() {
           marginLeft: "1rem",
           backgroundColor: " rgb(233, 238, 247)",
         }}>
-        <h2>Attendance Management</h2>
+        <h2>ATTENDANCE</h2>
         <div
           style={{
             width: "100%",
@@ -83,24 +137,37 @@ function Attendance() {
           >
             <div style={{ display: "flex", gap: ".5rem" }}>
               {" "}
-              <select className="select-custom">
-                <option>Select Department</option>
-              </select>
+              <select
+              className="select-custom"
+              onChange={(e) => searchDepartment(e.target.value)}
+            >
+              <option>Select Department</option>
+              {department.map((post, index) => (
+                <option
+                  style={{ fontSize: "18px", textAlign: "start" }}
+                  key={index}
+                  value={post.title}
+                >
+                  {post.title}
+                </option>
+              ))}
+            </select>
             </div>
 
             <div>
-              {" "}
-              <MDBCol md="14">
-                <div className="active-pink-3 active-pink-4 mb-4 ">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </div>
-              </MDBCol>
-            </div>
+            {" "}
+            <MDBCol md="14">
+              <div className="active-pink-3 active-pink-4 mb-4 ">
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Search name"
+                  aria-label="Search"
+                  onChange={searchHandle}
+                />
+              </div>
+            </MDBCol>
+          </div>
           </div>
         </div>
         <Table className="table-text" striped bordered hover size="sm">
@@ -111,10 +178,11 @@ function Attendance() {
               <th scope="col">Department</th>
               <th scope="col">Status</th>
               <th scope="col">Select</th>
+              <th scope="col">action</th>
             </tr>
           </thead>
           <tbody>
-            {staffList.map((staff) => (
+            {staff.map((staff) => (
               <tr key={staff.id}>
                 <td>{staff._id}</td>
                 <td>{staff.name}</td>
@@ -131,17 +199,25 @@ function Attendance() {
                     onChange={() => handleCheckboxChange(staff._id)}
                   />
                 </td>
+                <td>
+                      <Button variant="outline-dark" onClick={()=>deleteAttendance(staff._id,staff.attendance[0].date)} >
+                        Delete
+                      </Button>
+                     
+                  
+                  </td>
               </tr>
             ))}
-            {/* Repeat rows for more data */}
+         
           </tbody>
         </Table>
         {selectedStaff.length > 0 ? (
         <Button     style={{
           height: "2rem",
           width: "6rem",
-          fontSize: ".5rem",
+          fontSize: ".6rem",
           background: "#14539A",
+          paddingTop:"2px"
         }}  onClick={markAttendance}>Add Attendance</Button>
       ) : (
         <p>Select staff members to add attendance.</p>

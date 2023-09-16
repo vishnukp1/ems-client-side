@@ -88,7 +88,7 @@ function StaffDashboard() {
               <Card.Text></Card.Text>
               <Button
                 variant="primary"
-                onClick={() => navigate("/company/attendance")}
+                onClick={() => navigate("/employees/viewattendance")}
               >
                 More Info
               </Button>

@@ -12,6 +12,15 @@ function Leave() {
   const navigate = useNavigate();
   const [leave, setLeave] = useState([]);
   const { staffId, leaveId } = useParams();
+  const daysInMonth = 30; // Change this to 31 or adjust for different months
+  const tableHeaders = ['Number', 'Name', ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
+
+  // Sample data (you can replace this with your own data)
+  const data = [
+    { number: 1, name: 'Person 1', days: Array.from({ length: daysInMonth }, (_, i) => i + 1) },
+    { number: 2, name: 'Person 2', days: Array.from({ length: daysInMonth }, (_, i) => i + 1) },
+    // Add more data rows as needed
+  ];
   useEffect(() => {
     const fetchleaveDetails = async () => {
       try {
@@ -90,35 +99,27 @@ function Leave() {
         
       </div>
       <Table className="table-text" striped bordered hover size="sm">
-        <thead>
-          <tr className="table-head">
-            <th style={{ width: "5%" }}>#</th>
-            <th style={{ width: "15%" }}>Staff</th>
-            <th style={{ width: "10%" }}>Photo</th>
-            <th style={{ width: "10%" }}>Department</th>
-            <th style={{ width: "10%" }}>Reason</th>
-            <th style={{ width: "10%" }}>From</th>
-            <th style={{ width: "10%" }}>To</th>
-            <th style={{ width: "10%" }}>Status</th>
-            <th style={{ width: "30%" }}>Description</th>
-            <th style={{ width: "10%" }}>Applied On</th>
+     
+      <thead>
+        <tr>
+          {tableHeaders.map((header, index) => (
+            <th key={index}>{header}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            <td>{row.number}</td>
+            <td>{row.name}</td>
+            {row.days.map((day, dayIndex) => (
+              <td key={dayIndex}>{day}</td>
+            ))}
           </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          {/* Repeat rows for more data */}
-        </tbody>
+        ))}
+      </tbody>
+   
+
       </Table>
     </div>
     </>

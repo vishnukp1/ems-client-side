@@ -30,10 +30,10 @@ import Staff from './Pages/companyPage/Staff';
 import CompanyDashboard from './Pages/companyPage/CompanyDashboard';
 import UpdateTasks from './Pages/companyPage/UpdateTasks';
 import GoogleOauth from './component/GoogleOauth';
-import MarkAttendance from './Pages/companyPage/MarkAttendance';
 import Login from './component/Login';
 import Home from './component/Home';
 import Department from './Pages/companyPage/Department';
+import UpdateAttendance from './Pages/companyPage/UpdateAttendance';
 
 
 function App() {
@@ -124,7 +124,7 @@ function App() {
 
 <Route exact path="/new" element={<GoogleOauth />} />
 
-<Route exact path="/mark" element={<MarkAttendance/>} />
+<Route exact path="/mark" element={<UpdateAttendance/>} />
 
 <Route exact path="/login1" element={<Login/>} />
 

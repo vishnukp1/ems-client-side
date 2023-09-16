@@ -34,6 +34,7 @@ function Department() {
     console.error("Error fetching customer data:", error);
   
   };
+  formRef.current.reset()
 }
     
   

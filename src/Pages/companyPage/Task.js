@@ -46,7 +46,6 @@ function Task() {
   }, []);
 
   const searchHandle = async (e) => {
-    console.log(e);
     let key = e.target.value;
     const response = await axios.get(
       `http://localhost:4444/company/searchTask?name=${key}`
