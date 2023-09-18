@@ -32,12 +32,12 @@ function Home() {
         }}
       >
         <div className='home-text' style={{width: "24rem", marginLeft: "4rem", marginTop: "6rem"}}>
-          <h2 style={{color: "white", fontSize: "2.5rem"}}>WorkWale Software is the #1 staff development tool used by companies</h2>
+          <h2 className='home-h4-text' style={{color: "white", fontSize: "2.5rem"}}>WorkWale Software is the #1 staff development tool used by companies</h2>
           <br></br>
-          <h4 className='home-text' style={{color: "white"}}>Trusted by 100K+ teams, they can plan tasks, manage performance, attendance, and salaries.</h4>
+          <h4 className='home-h4-text' style={{color: "white"}}>Trusted by 100K+ teams, they can plan tasks, manage performance, attendance, and salaries.</h4>
         </div>
     
-        <div style={{marginRight: "8rem"}}> 
+        <div className='home-login' style={{marginRight: "8rem"}}> 
           {signup ? <Login /> : <SignUp/> }
         </div> 
       </div>

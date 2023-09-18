@@ -22,6 +22,7 @@ function CompanyMain() {
         <div className="dashboard-div" style={{display:"flex",justifyContent:"space-around",width:"100%",flexWrap: "wrap"}}>
        
         <Card 
+        className="card-dashboard"
           style={{
          width:"14rem",
             height: "10rem",
@@ -46,6 +47,7 @@ function CompanyMain() {
         </Card>
         
         <Card
+         className="card-dashboard"
           style={{
             width:"14rem",
             height: "10rem",
@@ -66,6 +68,7 @@ function CompanyMain() {
             </Button>
           </Card.Body>
         </Card>
+        
         {/* <Card style={{ width: '23%',height:"10rem",background:"#27293D",color:"white"}}>
         
         <Card.Body>
@@ -77,6 +80,7 @@ function CompanyMain() {
         </Card.Body>
       </Card> */}
         <Card
+         className="card-dashboard"
           style={{
             width:"14rem",
             height: "10rem",
@@ -100,6 +104,7 @@ function CompanyMain() {
        
 
         <Card
+         className="card-dashboard"
           style={{
             width:"14rem",
             height: "10rem",
@@ -133,6 +138,7 @@ function CompanyMain() {
 </div>
 
         <Card
+  
           style={{
             width:"14rem",
             height: "10rem",

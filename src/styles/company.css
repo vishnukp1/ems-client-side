@@ -192,6 +192,27 @@ width: 100% !important
    text-align: center;
  }
 
+ @media all and (max-width:588px) {
+   .home-main{
+      flex-direction: column;
+      
+
+   }
+   .home-h4-text {
+      width: 488px;
+   }
+
+   .home-text{
+  
+   margin-left: 2rem !important
+ }
+ .home-login{
+   margin-left:8.5rem;
+   width: 12rem;
+ }
+
+
+ }
 
  @media all and (max-width:412px) {
    .home-main{
@@ -206,14 +227,56 @@ width: 100% !important
    align-items:center; 
    margin-left: 22px;
    
-   };
-
-   .home-text {
-      width: 60px;
    }
+
+   .card-dashboard{
+      margin-bottom: 12px;
+   }
+   .home-h4-text {
+      width: 288px;
+   }
+
+   .home-text{
   
-   
+   margin-left: 39px !important
  }
+ .home-login{
+   margin-left: 49px;
+ }
+}
+
+
+@media all and (max-width:385px) {
+   .home-main{
+      flex-direction: column;
+      
+
+   }
+   .dashboard-div{
+     flex-direction: column;
+     flex-wrap: wrap;
+     align-content: flex-start;
+   align-items:center; 
+   padding: 22px;
+   margin-left: 2px;
+   
+   }
+   .card-dashboard{
+      margin-bottom: 12px;
+   }
+
+   .home-h4-text {
+      width: 288px;
+   }
+
+   .home-text{
+  
+   margin-left: 39px !important
+ }
+ .home-login{
+   margin-left: 49px;
+ }
+}
 
  /* Add this to your CSS stylesheet */
 @media (max-width: 768px) {

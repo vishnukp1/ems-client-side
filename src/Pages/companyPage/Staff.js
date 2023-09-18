@@ -195,7 +195,7 @@ function Staff() {
                         alt="User"
                       />
                     </td>
-                    <td>{post.department}</td>
+                    <td>{post.department[0].title}</td>
                     <td>{post.gender}</td>
                     <td>{post.phone}</td>
                     <td>{post.email}</td>

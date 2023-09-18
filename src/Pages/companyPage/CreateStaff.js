@@ -151,7 +151,7 @@ function CreateStaff() {
           </div>
           <div className="password">
             <label className="form__label" for="password">
-              Postion{" "}
+              Department{" "}
             </label>
             <select
               className="select-custom-addstaff"
