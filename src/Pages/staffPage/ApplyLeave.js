@@ -10,9 +10,9 @@ function Addemployee() {
    const submitButton= async (e) => {
       e.preventDefault();
 
-      const response = await axios.get(`http://localhost:4444/company/users/${id}`);
+      const response = await axios.get(`http://localhost:4444/company/staff/${id}`);
       const responseData = response.data;
-      console.log(responseData.name);
+      console.log(responseData);
   
       const items = {
       
@@ -20,11 +20,12 @@ function Addemployee() {
         fromDate: formRef.current.from.value,
         toDate: formRef.current.to.value,
         description: formRef.current.description.value,
-        applyOn: formRef.current.apply.value,
+ 
         
       };
+
   
-       await axios.post( `http://localhost:4444/company/leave/${id}`,items)
+       await axios.post( `http://localhost:4444/applyleave/${id}`,items)
       .then(response => console.log(response.data))
       .catch(error => {
         console.error("Error fetching customer data:", error);
@@ -62,12 +63,7 @@ function Addemployee() {
         
     </Row>
 
-    <Row className="mb-3">
-        <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-            <Form.Label>Applied On</Form.Label>
-            <Form.Control type="status" name="apply" className="form-control" />
-        </Form.Group>
-    </Row>
+ 
     <Row className="mb-3">
         <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
             <button type="submit" className="me-4 btn btn-success btn-lg btn-block">Submit</button>

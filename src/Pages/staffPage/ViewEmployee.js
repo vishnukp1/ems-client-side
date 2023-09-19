@@ -180,7 +180,7 @@ function ViewEmployee() {
                         alt="User"
                       />
                     </td>
-                    <td>{post.department}</td>
+               <td>{post.department[0]?.title || ''}</td>
                     <td>{post.gender}</td>
                     <td>{post.phone}</td>
                     <td>{post.email}</td>
@@ -188,30 +188,14 @@ function ViewEmployee() {
                     <td>{post.address}</td>
                     <td>
                       <div style={{ display: "flex", alignItems: "center" }}>
+                      
                         <Button
                           variant="outline-dark"
                           style={buttonStyle}
                           onClick={() =>
-                            navigate(`/company/addtask/${post._id}`)
+                            navigate(`/employees/addleave/${post._id}`)
                           }
-                        >
-                          addtask
-                        </Button>
-                        <Button
-                          style={buttonStyle}
-                          variant="outline-dark"
-                          onClick={() => handleDeleteStaff(post._id)}
-                        >
-                          Delete
-                        </Button>
-                        <Button
-                          variant="outline-dark"
-                          style={buttonStyle}
-                          onClick={() =>
-                            navigate(`/company/updatestaff/${post._id}`)
-                          }
-                        >
-                          Update
+                        >applyleave
                         </Button>
                       </div>
                     </td>

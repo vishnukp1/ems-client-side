@@ -94,6 +94,27 @@ function StaffDashboard() {
               </Button>
             </Card.Body>
           </Card>
+          <Card
+            style={{
+              width: "14rem",
+              height: "10rem",
+              background: "#27293D",
+              color: "white",
+              //  flexWrap:'wrap'
+            }}
+          >
+            <Card.Body>
+              <HandWaving size={32} />
+              <Card.Title>Apply Leave</Card.Title>
+              <Card.Text></Card.Text>
+              <Button
+                variant="primary"
+                onClick={() => navigate("/employees/addleave")}
+              >
+                More Info
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       </div>
     </>

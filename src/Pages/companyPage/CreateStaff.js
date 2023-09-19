@@ -53,8 +53,9 @@ function CreateStaff() {
       .catch((error) => {
         console.error("Error fetching customer data:", error);
       });
+    
+      formRef.current.reset();
 
-    formRef.current.reset();
   };
 
   const searchDepartment = async (key) => {

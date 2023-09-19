@@ -119,7 +119,7 @@ function CompanyMain() {
             <Card.Text></Card.Text>
             <Button
               style={{ backgroundColor: "#1E1E2E" }}
-              onClick={() => navigate("/company/leave")}
+              onClick={() => navigate("/company/viewleave")}
             >
               More Info
             </Button>

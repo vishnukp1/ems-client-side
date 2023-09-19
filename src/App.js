@@ -3,7 +3,6 @@ import {  Route, Routes }
     from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Attendance from './Pages/companyPage/Attendance';
-import Leave from './Pages/companyPage/Leave';
 import Performance from './Pages/companyPage/Performance';
 import StaffLogin from './Pages/staffPage/StaffLogin';
 import Navbars from './component/Navbars';
@@ -34,6 +33,9 @@ import Login from './component/Login';
 import Home from './component/Home';
 import Department from './Pages/companyPage/Department';
 import UpdateAttendance from './Pages/companyPage/UpdateAttendance';
+import ViewLeave from './Pages/companyPage/ViewLeave';
+
+
 
 
 function App() {
@@ -86,7 +88,12 @@ function App() {
 
       <Route exact path="/company/login" element={<CompanyLogin />} />
       
-      <Route exact path="/company/leave" element={<Leave />} />
+    
+
+      
+      
+      <Route exact path="/company/viewleave" element={<ViewLeave />} />
+
       
       <Route exact path="/company/performance" element={<Performance />} />
 
@@ -116,7 +123,9 @@ function App() {
 
 <Route exact path="/employees/performance" element={<ViewPerformance/>} />
 
-<Route exact path="/employees/addleave" element={<ApplyLeave />} />
+<Route exact path="/employees/addleave/:id" element={<ApplyLeave />} />
+
+
 
 <Route exact path="/employees/viewtask" element={<ViewTask/>} />
 

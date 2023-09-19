@@ -156,13 +156,20 @@ function Task() {
           </thead>
           {task.length > 0 ? (
             <tbody>
-              {task.map((post, index) => (
+              {task.map((post, index) =>{
+      const fromDate = new Date(post.startTime);
+      const toDate = new Date(post.endTime);
+      
+      const formattedStartTime = fromDate.toLocaleDateString('en-GB'); // Format: "dd/mm/yyyy"
+      const formattedEndTime = toDate.toLocaleDateString('en-GB');     // Format: "dd/mm/yyyy"
+      
+               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{post.taskTitle}</td>
                   <td>{post.name}</td>
-                  <td>{post.startTime}</td>
-                  <td>{post.endTime}</td>
+                  <td>{formattedStartTime}</td>
+                  <td>{formattedEndTime}</td>
                   <td>{post.status}</td>
                   <td>
                     <div style={{ display: "flex", alignItems: "center" }}>
@@ -187,7 +194,8 @@ function Task() {
                     </div>
                   </td>
                 </tr>
-              ))}
+               );
+              })}
             </tbody>
           ) : (
             <tbody>
