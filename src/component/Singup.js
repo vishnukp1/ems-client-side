@@ -38,6 +38,8 @@ function SignUp () {
      
      
       localStorage.setItem("token", data.token);
+      localStorage.setItem("companyId", data.companyId);
+      
       const token = localStorage.getItem("token");
       dispatch(setToken(data.token));
       console.log(token)

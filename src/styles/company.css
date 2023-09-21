@@ -192,29 +192,9 @@ width: 100% !important
    text-align: center;
  }
 
- @media all and (max-width:588px) {
-   .home-main{
-      flex-direction: column;
-      
-
-   }
-   .home-h4-text {
-      width: 488px;
-   }
-
-   .home-text{
-  
-   margin-left: 2rem !important
- }
- .home-login{
-   margin-left:8.5rem;
-   width: 12rem;
- }
 
 
- }
-
- @media all and (max-width:412px) {
+ @media (max-width: 576px){
    .home-main{
       flex-direction: column;
       
@@ -226,15 +206,18 @@ width: 100% !important
      align-content: flex-start;
    align-items:center; 
    margin-left: 22px;
+   margin-top: 35rem !important
+  
+  
    
    }
+
+
 
    .card-dashboard{
       margin-bottom: 12px;
    }
-   .home-h4-text {
-      width: 288px;
-   }
+ 
 
    .home-text{
   
@@ -278,8 +261,55 @@ width: 100% !important
  }
 }
 
- /* Add this to your CSS stylesheet */
-@media (max-width: 768px) {
+@media (min-width: 715px) and (max-width: 768px) {
+.home-h4-text {
+   width: 41rem;
+}
+}
+
+@media (min-width: 450px) and (max-width: 576px) {
+   .home-h4-text {
+      width: 29rem;
+    
+   }
+   }
+
+@media (min-width: 577px) and (max-width: 768px) {
+   .home-main{
+      flex-direction: column;
+      
+
+   }
+   .dashboard-div{
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+    align-items:center; 
+    margin-left: 9rem;
+    margin-top: 35rem !important
+   
+   
+    
+    }
+   .home-h4-text {
+      width: 41rem;
+   }
+
+   .home-text{
+  
+   margin-left: 2rem !important
+ }
+ .home-login{
+   margin-left:8.5rem;
+   width: 12rem;
+ }
+
+
+ }
+
+
+ 
+ @media (min-width: 769px) and (max-width: 992px){
    .table-responsive {
      overflow-x: auto;
    }
@@ -287,6 +317,17 @@ width: 100% !important
      width: 100%;
      margin-bottom: 0;
    }
+   .dashboard-div{
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+    align-items:center; 
+    margin-left: 4rem;
+    margin-top: 35rem !important
+   
+   
+    
+    }
    .table th,
    .table td {
      white-space: nowrap;
@@ -299,5 +340,64 @@ width: 100% !important
    }
  }
  
+  
+ @media (min-width: 1051px) and (max-width: 1200px) {
+   .table-responsive {
+     overflow-x: auto;
+   }
+   .table {
+     width: 100%;
+     margin-bottom: 0;
+   }
+   .dashboard-div{
+      
+      flex-wrap: wrap;
+      align-content: flex-start;
+    align-items:center; 
+    margin-left: 4rem;
+    margin-top: 3rem !important
+   
+   
+    
+    }
+   .table th,
+   .table td {
+     white-space: nowrap;
+   }
+  
+   .table-bordered {
+     border: 0;
+   }
+ }
+
+   
+ @media (min-width: 993px) and (max-width: 1050px) {
+   .table-responsive {
+     overflow-x: auto;
+   }
+   .table {
+     width: 100%;
+     margin-bottom: 0;
+   }
+   .dashboard-div{
+      
+      flex-wrap: wrap;
+      align-content: flex-start;
+    align-items:center; 
+    margin-left: 4rem;
+    margin-top: 3rem !important
+   
+   
+    
+    }
+   .table th,
+   .table td {
+     white-space: nowrap;
+   }
+  
+   .table-bordered {
+     border: 0;
+   }
+ }
 
  

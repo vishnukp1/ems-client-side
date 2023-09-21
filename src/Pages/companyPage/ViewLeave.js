@@ -5,6 +5,7 @@ import axios from "axios";
 import Sidebars from "../../component/Sidebars";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Navbars from "../../component/Navbars";
 
 function ViewLeave() {
   const [startDate, setStartDate] = useState(new Date());
@@ -61,8 +62,10 @@ console.log(formattedDate)
     getLeaveData(startDate); 
   }, [startDate]);
   return (
-    <>
-    <Sidebars />
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw"}}>
+      <Sidebars />
     <div
       className="form"
       style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
@@ -141,7 +144,8 @@ const formattedApplyON = ApplyOn.toLocaleDateString('en-GB');
         )}
       </Table>
     </div>
-  </>
+</div>
+</div>
   );
 }
 

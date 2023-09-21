@@ -5,20 +5,29 @@ import axios from "axios";
 import Sidebars from "../../component/Sidebars";
 import "../../styles/company.css";
 import { Button } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import StaffNav from "../../component/StaffNav";
+import StaffSidebar from "../../component/StaffSidebar";
 
-function Attendance() {
+function ViewAttendance() {
   const [staff, setStaff] = useState([]);
-  const [attendanceMarked, setAttendanceMarked] = useState(false);
-  const [selectedStaff, setSelectedStaff] = useState([]);
-  const [department, setDepartment] = useState([]);
-  console.log(selectedStaff);
 
-  const getStaffData = async () => {
+  const [department, setDepartment] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  console.log(staff);
+
+  const getStaffData = async (date) => {
     try {
-      const response = await axios.get(`http://localhost:4444/company/staff`);
+      const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+
+      const response = await axios.get(
+        `http://localhost:4444/company/attendance/${formattedDate}`
+      );
       const responseData = response.data.data;
       setStaff(responseData);
-     
     } catch (error) {
       console.error("Error fetching staff data:", error);
     }
@@ -35,40 +44,13 @@ function Attendance() {
   };
 
   useEffect(() => {
+    getStaffData(startDate);
+  }, [startDate]);
+
+  useEffect(() => {
     getStaffData();
-    getDepartment()
+    getDepartment();
   }, []);
-
-  const markAttendance = async (e) => {
-    e.preventDefault();
-
-    try {
-      const data = {
-        selectedStaff: selectedStaff,
-        status: "Present",
-      };
-
-      await axios
-        .post(`http://localhost:4444/company/mark`, data)
-        .then((response) => {
-          console.log(response.data);
-          setAttendanceMarked(true); 
-          getStaffData()
-        });
-    } catch (error) {
-      console.error("Error marking attendance:", error);
-    
-
-    
-  
-    }
-
-  
-    setSelectedStaff([]);
-  };
-
-  
- 
 
   const searchDepartment = async (key) => {
     console.log(key);
@@ -93,16 +75,25 @@ function Attendance() {
     }
   };
   return (
-    <>
-      <Sidebars />
-      <div className="col-sm mt-1 me-2"
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <StaffNav />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
+      <StaffSidebar/>
+      <div
+        className="col-sm mt-1 me-2"
         style={{
           width: "100%",
           height: "100vh",
           marginLeft: "1rem",
           backgroundColor: " rgb(233, 238, 247)",
-        }}>
+        }}
+      >
         <h2>ATTENDANCE</h2>
+
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+        />
         <div
           style={{
             width: "100%",
@@ -120,36 +111,36 @@ function Attendance() {
             <div style={{ display: "flex", gap: ".5rem" }}>
               {" "}
               <select
-              className="select-custom"
-              onChange={(e) => searchDepartment(e.target.value)}
-            >
-              <option>Select Department</option>
-              {department.map((post, index) => (
-                <option
-                  style={{ fontSize: "18px", textAlign: "start" }}
-                  key={index}
-                  value={post.title}
-                >
-                  {post.title}
-                </option>
-              ))}
-            </select>
+                className="select-custom"
+                onChange={(e) => searchDepartment(e.target.value)}
+              >
+                <option>Select Department</option>
+                {department.map((post, index) => (
+                  <option
+                    style={{ fontSize: "18px", textAlign: "start" }}
+                    key={index}
+                    value={post.title}
+                  >
+                    {post.title}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
-            {" "}
-            <MDBCol md="14">
-              <div className="active-pink-3 active-pink-4 mb-4 ">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Search name"
-                  aria-label="Search"
-                  onChange={searchHandle}
-                />
-              </div>
-            </MDBCol>
-          </div>
+              {" "}
+              <MDBCol md="14">
+                <div className="active-pink-3 active-pink-4 mb-4 ">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Search name"
+                    aria-label="Search"
+                    onChange={searchHandle}
+                  />
+                </div>
+              </MDBCol>
+            </div>
           </div>
         </div>
         <Table className="table-text" striped bordered hover size="sm">
@@ -159,41 +150,23 @@ function Attendance() {
               <th scope="col">Name</th>
               <th scope="col">Department</th>
               <th scope="col">Status</th>
-           
             </tr>
           </thead>
           <tbody>
             {staff.map((staff) => (
-              <tr key={staff.id}>
-                <td>{staff._id}</td>
-                <td>{staff.name}</td>
+              <tr key={staff._id}>
+                <td>{staff.staffId}</td>
+                <td>{staff.staffName}</td>
+
                 <td>{staff.department}</td>
-                <td>
-                  {staff.attendance.length > 0
-                    ? staff.attendance[0].status
-                    : "-"}
-                </td>
-              
+                <td>{staff.attendance ? staff.attendance.status : "N/A"}</td>
               </tr>
             ))}
-         
           </tbody>
         </Table>
-        {selectedStaff.length > 0 ? (
-        <Button     style={{
-          height: "2rem",
-          width: "6rem",
-          fontSize: ".6rem",
-          background: "#14539A",
-          paddingTop:"2px"
-        }}  onClick={markAttendance}>Add Attendance</Button>
-      ) : (
-        <p>Select staff members to add attendance.</p>
-      )}
-      {attendanceMarked && <p>Attendance has been marked for selected staff.</p>}
       </div>
-    </>
+   </div></div>
   );
 }
 
-export default Attendance;
+export default ViewAttendance;

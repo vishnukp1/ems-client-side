@@ -1,90 +1,95 @@
+import React, { Component, useRef } from "react";
+import "../../styles/Login.css";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
-      import React from 'react';
-import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+function Login() {
+  const navigate = useNavigate();
+  const inputref = useRef();
 
-function StaffLogin() {
+  const loginPass = async (e) => {
+    e.preventDefault();
+    const setPassword = inputref.current.upassword.value;
+    const setUsername = inputref.current.username.value;
+    console.log(setUsername);
+    console.log(setPassword);
+    const items = {
+      email: setUsername,
+      password: setPassword,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4444/staff/login",
+        items
+      );
+      const data = response.data;
+      console.log(response.data);
+
+      if (data.token) {
+        try {
+          alert("Login Successfully!");
+          navigate("/employees/Dashboard");
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userid", data.id);
+          const token = localStorage.getItem("token");
+
+          console.log(token);
+        } catch (error) {
+          console.error("Error in token:", error);
+        }
+      } else {
+        alert("Email and Password did not match");
+        localStorage.clear("token");
+
+        navigate("/company/login");
+      }
+    } catch (error) {
+      console.error("Error getting customer data:", error);
+    }
+  };
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom">
-
-      <MDBRow>
-
-        <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image" />
-        </MDBCol>
-
-        <MDBCol col='4' md='6'>
-
-          <div className="d-flex flex-row align-items-center justify-content-center">
-
-            <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-
-            <MDBBtn floating size='md' tag='a' className='me-2'>
-              <MDBIcon fab icon='facebook-f' />
-            </MDBBtn>
-
-            <MDBBtn floating size='md' tag='a'  className='me-2'>
-              <MDBIcon fab icon='twitter' />
-            </MDBBtn>
-
-            <MDBBtn floating size='md' tag='a'  className='me-2'>
-              <MDBIcon fab icon='linkedin-in' />
-            </MDBBtn>
-
+ 
+    <div className="form-login">
+      <form ref={inputref} onSubmit={loginPass}>
+        <h3 style={{ marginTop: "1rem" }}>Sign In</h3>
+        <div className="form-text" style={{ marginTop: "3rem" }}>
+          <div className="mb-3 ">
+            <label>Email address</label>
+            <input type="email" className="form-control" name="username" />
           </div>
-
-          <div className="divider d-flex align-items-center my-4">
-            <p className="text-center fw-bold mx-3 mb-0">Or</p>
+          <div className="mb-3">
+            <label>Password</label>
+            <input type="password" className="form-control" name="upassword" />
           </div>
-
-          <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
-
-          <div className="d-flex justify-content-between mb-4">
-            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-            <a href="!#">Forgot password?</a>
-          </div>
-
-          <div className='text-center text-md-start mt-4 pt-2'>
-            <MDBBtn className="mb-0 px-5" size='lg'>Login</MDBBtn>
-            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="#!" className="link-danger">Register</a></p>
-          </div>
-
-        </MDBCol>
-
-      </MDBRow>
-
-      <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-
-        <div className="text-white mb-3 mb-md-0">
-          Copyright © 2020. All rights reserved.
         </div>
-
-        <div>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white' }}>
-            <MDBIcon fab icon='facebook-f' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='twitter' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='google' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='linkedin-in' size="md"/>
-          </MDBBtn>
-
+        <div className="mb-3">
+          <div className="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customCheck1"
+            />
+            <label className="custom-control-label" htmlFor="customCheck1">
+              Remember me
+            </label>
+          </div>
         </div>
-
-      </div>
-
-    </MDBContainer>
+        <div className="d-grid">
+          <button type="submit" className="form-btn">
+            Submit
+          </button>
+        </div>
+       
+        <p className="forgot-password text-right">
+          Forgot <a href="#">password?</a>
+        </p>
+      </form>
+    </div>
   );
 }
 
-
-export default StaffLogin
+export default Login;

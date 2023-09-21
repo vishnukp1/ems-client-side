@@ -4,6 +4,7 @@ import Sidebars from '../../component/Sidebars';
 import axios from 'axios';
 
 import "../../styles/company.css"
+import Navbars from '../../component/Navbars';
 
 function Department() {
   
@@ -69,7 +70,9 @@ function Department() {
  
   
     return (
-      <>
+      <div style={{display:'flex', flexDirection:'column'}}>
+      <Navbars />
+      <div style={{display:"flex", width:"100vw",height:"100vh"}}>
         <Sidebars />
       <div className="form" style={{ width: "100%", height: "100vh" ,marginTop:"0px"}}>
       <h4 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>DEPARTMENTS</h4>
@@ -137,7 +140,7 @@ function Department() {
         </Table>
         </div>
       </div>
-      </>
+      </div> </div>
   )
 }
 

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/company.css";
 
 import Sidebars from "../../component/Sidebars";
+import Navbars from "../../component/Navbars";
 
 function Updatestaff() {
   const navigate = useNavigate();
@@ -76,7 +77,9 @@ function Updatestaff() {
     getDepartment();
   }, []);
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <Sidebars />
       <div className="form-upadate">
         <form onSubmit={handleSubmit}>
@@ -209,7 +212,7 @@ function Updatestaff() {
           </div>
         </form>
       </div>
-    </>
+ </div> </div>
   );
 }
 

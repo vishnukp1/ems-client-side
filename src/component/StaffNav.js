@@ -8,7 +8,7 @@ import { setToken } from '../Reducers/useReducer';
 import logo from '../assets/work-removebg-preview12.png'
 import "../styles/company.css"
 
-function Navbars() {
+function StaffNav() {
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -26,13 +26,13 @@ function Navbars() {
 
   const logout = () => {
     localStorage.removeItem("token");
-  navigate("/")
+  navigate("/employees/home")
   }
 
   return (
     <Navbar className='nabar-nav' >
       <Container>
-      <img style={{width:"6rem",height:"2rem" ,marginLeft:"-3rem"}} src={logo} alt='' onClick={()=>navigate("/")}></img>
+      <img style={{width:"6rem",height:"2rem" ,marginLeft:"-3"}} src={logo} alt='' onClick={()=>navigate("/")}></img>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -58,4 +58,4 @@ function Navbars() {
   );
 }
 
-export default Navbars;
+export default StaffNav;

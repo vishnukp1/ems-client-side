@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/esm/Table";
-import { Button } from "react-bootstrap";
-import { MDBCol } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import "../../styles/company.css";
-import Sidebars from "../../component/Sidebars";
+
+import StaffNav from "../../component/StaffNav";
+import StaffSidebar from "../../component/StaffSidebar";
 
 function ViewTask() {
-  const navigate = useNavigate();
-  const buttonStyle = {
-    fontSize: "8px",
-    padding: "2px 5px",
-    marginLeft: "2px",
-    border: "1px solid #343a40",
-  };
+
   const [task, setTasks] = useState([]);
 
-  const [department, setDepartment] = useState([]);
+
   const getStaffTasks = async () => {
     try {
+
+      const staffId = localStorage.getItem("userid");
       const response = await axios.get(
-        `http://localhost:4444/company/alltasks`
+        `http://localhost:4444/employee/task/${staffId}`
       );
       const responseData = response.data;
 
@@ -31,63 +27,25 @@ function ViewTask() {
       console.error("Error fetching customer data:", error);
     }
   };
-  const deleteTask = async (staffId, taskId) => {
-    try {
-      await axios.delete(`http://localhost:4444/${staffId}/tasks/${taskId}`);
 
-      getStaffTasks();
-    } catch (error) {
-      console.error("Error deleting staff:", error);
-    }
-  };
 
   useEffect(() => {
     getStaffTasks();
   }, []);
 
-  const searchHandle = async (e) => {
-    console.log(e);
-    let key = e.target.value;
-    const response = await axios.get(
-      `http://localhost:4444/company/searchTask?name=${key}`
-    );
-    const responseData = response.data.tasks;
-    console.log(responseData.tasks);
-    if (responseData) {
-      setTasks(responseData);
-    }
-  };
 
-  const searchDepartment = async (key) => {
-    console.log(key);
-    const response = await axios.get(
-      `http://localhost:4444/company/searchdepartment?department=${key}`
-    );
-    const responseData = response.data;
-    if (responseData) {
-      setDepartment(responseData);
-    }
-  };
 
-  const getDepartment = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:4444/company/department`
-      );
-      const responseData = response.data.data;
-      setDepartment(responseData);
-    } catch (error) {
-      console.error("Error fetching department data:", error);
-    }
-  };
 
-  useEffect(() => {
-    getDepartment();
-  }, []);
+  
+
+
+
 
   return (
-    <>
-      <Sidebars />
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <StaffNav />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
+      <StaffSidebar/>
       <div
         className="form"
         style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
@@ -110,37 +68,10 @@ function ViewTask() {
             borderRadius: "15px",
           }}
         >
-          <div style={{ display: "flex", gap: ".5rem" }}>
-            {" "}
-            <select
-              className="select-custom"
-              onChange={(e) => searchDepartment(e.target.value)}
-            >
-              <option>Select Department</option>
-              {department.map((post, index) => (
-                <option
-                  style={{ fontSize: "18px", textAlign: "start" }}
-                  key={index}
-                  value={post.title}
-                >
-                  {post.title}
-                </option>
-              ))}
-            </select>
-          </div>
+         
           <div>
             {" "}
-            <MDBCol md="12">
-              <div className="active-pink-3 active-pink-4 mb-4 ">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Search"
-                  aria-label="Search"
-                  onChange={searchHandle}
-                />
-              </div>
-            </MDBCol>
+           
           </div>
         </div>
         <Table className="table-text" striped bordered hover size="sm">
@@ -179,7 +110,8 @@ function ViewTask() {
           )}
         </Table>
       </div>
-    </>
+    </div>
+    </div>
   );
 }
 

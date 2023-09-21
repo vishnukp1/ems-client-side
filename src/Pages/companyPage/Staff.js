@@ -10,6 +10,7 @@ import Sidebars from "../../component/Sidebars";
 import { useDispatch, useSelector } from "react-redux";
 import CreateStaff from "./CreateStaff";
 import { addStaff, setremove } from "../../Reducers/addstaffReducer";
+import Navbars from "../../component/Navbars";
 
 function Staff() {
   const buttonStyle = {
@@ -90,10 +91,11 @@ function Staff() {
   };
 
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw"}}>
       <Sidebars />
-      <div
-
+<div
    
         className="col-sm mt-1 me-2"
         style={{
@@ -248,7 +250,8 @@ function Staff() {
           </div>
         ) : null}
       </div>
-    </>
+  </div> 
+  </div>
   );
 }
 

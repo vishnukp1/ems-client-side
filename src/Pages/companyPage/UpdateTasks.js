@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Button, Form, Row } from "react-bootstrap";
 import Sidebars from "../../component/Sidebars";
+import Navbars from "../../component/Navbars";
 
 function UpdateTasks() {
   const navigate = useNavigate();
@@ -54,7 +55,9 @@ function UpdateTasks() {
   };
 
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <Sidebars />
       <div class="add-task-section">
         <form className="container mt-3 mb-3" onSubmit={handleSubmit}>
@@ -118,7 +121,8 @@ function UpdateTasks() {
           </Row>
         </form>
       </div>
-    </>
+  </div>
+  </div>
   );
 }
 

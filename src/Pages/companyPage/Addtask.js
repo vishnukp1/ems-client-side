@@ -4,6 +4,7 @@ import { Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
+import Navbars from "../../component/Navbars";
 
 function Addemployee() {
   const formRef = useRef(null);
@@ -35,7 +36,9 @@ function Addemployee() {
   };
 
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <Sidebars />
       <div class="add-task-section">
         <form
@@ -102,7 +105,8 @@ function Addemployee() {
           </Row>
         </form>
       </div>
-    </>
+ </div> 
+ </div>
   );
 }
 

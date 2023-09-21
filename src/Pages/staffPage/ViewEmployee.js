@@ -9,6 +9,8 @@ import Sidebars from "../../component/Sidebars";
 import { useDispatch, useSelector } from "react-redux";
 import CreateStaff from "./../companyPage/CreateStaff";
 import { addStaff } from "../../Reducers/addstaffReducer";
+import StaffSidebar from "../../component/StaffSidebar";
+import StaffNav from "../../component/StaffNav";
 
 function ViewEmployee() {
   const buttonStyle = {
@@ -87,8 +89,10 @@ function ViewEmployee() {
   };
 
   return (
-    <>
-      <Sidebars />
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <StaffNav />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
+      <StaffSidebar/>
       <div
         className="col-sm mt-1 me-2"
         style={{
@@ -164,7 +168,7 @@ function ViewEmployee() {
                 <th style={{ width: "14%" }}>Email</th>
                 <th style={{ width: "8%" }}>Salary</th>
                 <th style={{ width: "18%" }}>Address</th>
-                <th style={{ width: "18%" }}>Actions</th>
+              
               </tr>
             </thead>
             {staff.length > 0 ? (
@@ -187,17 +191,7 @@ function ViewEmployee() {
                     <td>{post.salary}</td>
                     <td>{post.address}</td>
                     <td>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                      
-                        <Button
-                          variant="outline-dark"
-                          style={buttonStyle}
-                          onClick={() =>
-                            navigate(`/employees/addleave/${post._id}`)
-                          }
-                        >applyleave
-                        </Button>
-                      </div>
+                     
                     </td>
                   </tr>
                 ))}
@@ -217,7 +211,7 @@ function ViewEmployee() {
           </div>
         ) : null}
       </div>
-    </>
+    </div></div>
   );
 }
 

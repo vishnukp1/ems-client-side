@@ -4,11 +4,12 @@
     margin-right: 0rem;
     margin-top: 4rem;
     background: white;
-    width: 17rem;
+    width: 20rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    padding-top: 0.5rem;
-    height: 31rem;
+    padding-top: 0.2rem;
+   
+    height: 33rem;
     box-shadow: 4px 4px 4px 4px rgba(233, 235, 236, 0.2);
     border-radius: 6px;
 
@@ -19,11 +20,11 @@
     margin-right: 0rem;
     margin-top: 4rem;
     background: white;
-    width: 17rem;
+    width: 20rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    padding-top: 0.5rem;
-    height: 26rem;
+    padding-top: 1.5rem;
+    height: 30rem;
     box-shadow: 4px 4px 4px 4px rgba(233, 235, 236, 0.2);
     border-radius: 6px;
 
@@ -31,7 +32,8 @@
 
   .form-text {
     text-align: left;
-
+    font-size: 18px !important;
+    padding-left: 3px;
   }
   
   /* .form-box  {
@@ -41,6 +43,8 @@
 
   .form-control{
     height: 1.8rem;
+    width: 18.6rem !important
+  
   }
   
   .form-btn {

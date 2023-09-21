@@ -40,6 +40,8 @@ function Login () {
           alert("Login Successfully!");
           navigate("/company/dashboard");
           localStorage.setItem("token", data.token);
+          localStorage.setItem("companyId", data.companyId);
+        
           const token = localStorage.getItem("token");
           dispatch(setToken(data.token));
           console.log(token);
@@ -97,20 +99,7 @@ function Login () {
             Submit
           </button>
         </div>
-        <div style={{width:"2px",height:"5px"}}>
-        <GoogleOAuthProvider clientId="323449366596-pi4nerf06act4c6bcp9f2n1iedmkstnn.apps.googleusercontent.com">
-         <GoogleLogin
-    onSuccess={credentialResponse => {
-        var decoded = jwt_decode(credentialResponse.credential);
-    console.log(decoded);
-    }}
-    onError={() => {
-    console.log('Login Failed');
-    }}
-    />;
-           
-            </GoogleOAuthProvider>;
-            </div>
+   
         <p className="forgot-password text-right">
           Forgot <a href="#">password?</a>
         </p>

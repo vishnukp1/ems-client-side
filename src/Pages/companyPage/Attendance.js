@@ -5,17 +5,26 @@ import axios from "axios";
 import Sidebars from "../../component/Sidebars";
 import "../../styles/company.css";
 import { Button } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Navbars from "../../component/Navbars";
+
 
 function Attendance() {
   const [staff, setStaff] = useState([]);
   const [attendanceMarked, setAttendanceMarked] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState([]);
   const [department, setDepartment] = useState([]);
-  console.log(selectedStaff);
+  const [startDate, setStartDate] = useState(new Date());
+  console.log(staff);
 
-  const getStaffData = async () => {
+  const getAttendanceData = async (date) => {
     try {
-      const response = await axios.get(`http://localhost:4444/company/staff`);
+   const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+
+     
+  
+      const response = await axios.get(`http://localhost:4444/company/attendance/${formattedDate}`);
       const responseData = response.data.data;
       setStaff(responseData);
      
@@ -34,10 +43,18 @@ function Attendance() {
     }
   };
 
+ 
+
+
   useEffect(() => {
-    getStaffData();
+    getAttendanceData(startDate);
+   
+  }, [startDate]);
+
+  useEffect(() => {
+    getAttendanceData();
     getDepartment()
-  }, []);
+  },[]);
 
   const markAttendance = async (e) => {
     e.preventDefault();
@@ -53,7 +70,7 @@ function Attendance() {
         .then((response) => {
           console.log(response.data);
           setAttendanceMarked(true); 
-          getStaffData()
+          getAttendanceData(startDate)
         });
     } catch (error) {
       console.error("Error marking attendance:", error);
@@ -74,7 +91,7 @@ function Attendance() {
         data: { date: date },
       });
   
-      getStaffData();
+    
     } catch (error) {
       console.error("Error deleting staff:", error);
     }
@@ -111,7 +128,9 @@ function Attendance() {
     }
   };
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw"}}>
       <Sidebars />
       <div className="col-sm mt-1 me-2"
         style={{
@@ -121,6 +140,8 @@ function Attendance() {
           backgroundColor: " rgb(233, 238, 247)",
         }}>
         <h2>ATTENDANCE</h2>
+
+        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <div
           style={{
             width: "100%",
@@ -178,34 +199,27 @@ function Attendance() {
               <th scope="col">Department</th>
               <th scope="col">Status</th>
               <th scope="col">Select</th>
-              <th scope="col">action</th>
+            
             </tr>
           </thead>
           <tbody>
             {staff.map((staff) => (
-              <tr key={staff.id}>
-                <td>{staff._id}</td>
-                <td>{staff.name}</td>
+              <tr key={staff._id}>
+                <td>{staff.staffId}</td>
+                <td>{staff.staffName}</td>
+                
                 <td>{staff.department}</td>
                 <td>
-                  {staff.attendance.length > 0
-                    ? staff.attendance[0].status
-                    : "-"}
+                  {staff.attendance ? staff.attendance.status : "N/A"}
                 </td>
                 <td>
                   <input
                     type="checkbox"
-                    checked={selectedStaff.includes(staff._id)}
-                    onChange={() => handleCheckboxChange(staff._id)}
+                    checked={selectedStaff.includes(staff.staffId)}
+                    onChange={() => handleCheckboxChange(staff.staffId)}
                   />
                 </td>
-                <td>
-                      <Button variant="outline-dark" onClick={()=>deleteAttendance(staff._id,staff.attendance[0].date)} >
-                        Delete
-                      </Button>
-                     
-                  
-                  </td>
+            
               </tr>
             ))}
          
@@ -224,7 +238,7 @@ function Attendance() {
       )}
       {attendanceMarked && <p>Attendance has been marked for selected staff.</p>}
       </div>
-    </>
+  </div> </div>
   );
 }
 

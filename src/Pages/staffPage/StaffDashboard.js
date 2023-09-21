@@ -7,16 +7,19 @@ import "../../styles/company.css";
 import {
   PersonSimpleBike,
   UsersThree,
-  UserSwitch,
   HandWaving,
 } from "@phosphor-icons/react";
+import StaffNav from "../../component/StaffNav";
+import StaffSidebar from "../../component/StaffSidebar";
 
 function StaffDashboard() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Sidebars />
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <StaffNav />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
+      <StaffSidebar/>
       <div
         className="main-container"
         style={{ backgroundColor: "#1E1E2E", display: "flex" }}
@@ -30,22 +33,49 @@ function StaffDashboard() {
             flexWrap: "wrap",
           }}
         >
-          <Card
+  <Card
             style={{
-              width: "14rem",
-              height: "10rem",
+              width: "20rem",
+              height: "13rem",
               background: "#27293D",
               color: "white",
               //  flexWrap:'wrap'
+              marginTop:"2rem"
             }}
           >
             <Card.Body>
-              <UsersThree size={32} />
+              <UsersThree  style={{marginTop:".1rem",height:"4rem",width:"4rem"}} size={32} />
+              <Card.Title>Profile</Card.Title>
+              <Card.Text></Card.Text>
+              <Button
+                variant="primary"
+                onClick={() => navigate(`/employees/staffprofile`)}
+                style={{marginTop:".2rem"}}
+              >
+                More Info
+              </Button>
+            </Card.Body>
+          </Card>
+
+
+          <Card
+            style={{
+              width: "20rem",
+              height: "13rem",
+              background: "#27293D",
+              color: "white",
+              //  flexWrap:'wrap'
+              marginTop:"2rem"
+            }}
+          >
+            <Card.Body>
+              <UsersThree style={{marginTop:".1rem",height:"4rem",width:"4rem"}} size={32} />
               <Card.Title>All Employee</Card.Title>
               <Card.Text></Card.Text>
               <Button
                 variant="primary"
                 onClick={() => navigate("/employees/viewstaff")}
+                style={{marginTop:".2rem"}}
               >
                 More Info
               </Button>
@@ -54,20 +84,22 @@ function StaffDashboard() {
 
           <Card
             style={{
-              width: "14rem",
-              height: "10rem",
+              width: "20rem",
+              height: "13rem",
               background: "#27293D",
               color: "white",
               //  flexWrap:'wrap'
+              marginTop:"2rem"
             }}
           >
             <Card.Body>
-              <PersonSimpleBike size={32} />
+              <PersonSimpleBike style={{marginTop:".1rem",height:"4rem",width:"4rem"}} size={32} />
               <Card.Title>View Task</Card.Title>
               <Card.Text></Card.Text>
               <Button
                 variant="primary"
                 onClick={() => navigate("/employees/viewtask")}
+                style={{marginTop:".2rem"}}
               >
                 More Info
               </Button>
@@ -75,20 +107,22 @@ function StaffDashboard() {
           </Card>
           <Card
             style={{
-              width: "14rem",
-              height: "10rem",
+              width: "20rem",
+              height: "13rem",
               background: "#27293D",
               color: "white",
               //  flexWrap:'wrap'
+              marginTop:"2rem"
             }}
           >
             <Card.Body>
-              <HandWaving size={32} />
+              <HandWaving style={{marginTop:".1rem",height:"4rem",width:"4rem"}} size={32} />
               <Card.Title>Attendance</Card.Title>
               <Card.Text></Card.Text>
               <Button
                 variant="primary"
                 onClick={() => navigate("/employees/viewattendance")}
+                style={{marginTop:".2rem"}}
               >
                 More Info
               </Button>
@@ -96,20 +130,22 @@ function StaffDashboard() {
           </Card>
           <Card
             style={{
-              width: "14rem",
-              height: "10rem",
+              width: "20rem",
+              height: "13rem",
               background: "#27293D",
               color: "white",
               //  flexWrap:'wrap'
+              marginTop:"2rem"
             }}
           >
             <Card.Body>
-              <HandWaving size={32} />
+              <HandWaving style={{marginTop:".1rem",height:"4rem",width:"4rem"}} size={32} />
               <Card.Title>Apply Leave</Card.Title>
               <Card.Text></Card.Text>
               <Button
                 variant="primary"
                 onClick={() => navigate("/employees/addleave")}
+                style={{marginTop:".2rem"}}
               >
                 More Info
               </Button>
@@ -117,7 +153,7 @@ function StaffDashboard() {
           </Card>
         </div>
       </div>
-    </>
+  </div></div>
   );
 }
 

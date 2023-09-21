@@ -1,19 +1,18 @@
 import axios from 'axios'
 import React, { useRef } from 'react'
 import { Form,  Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom';
 
 function Addemployee() {
     const formRef = useRef(null)
-    const { id } = useParams();
+   
                                                                         
    const submitButton= async (e) => {
       e.preventDefault();
 
-      const response = await axios.get(`http://localhost:4444/company/staff/${id}`);
-      const responseData = response.data;
-      console.log(responseData);
-  
+      const id = localStorage.getItem("userid");
+
+     
+
       const items = {
       
         reason: formRef.current.reason.value,
@@ -24,6 +23,7 @@ function Addemployee() {
         
       };
 
+      
   
        await axios.post( `http://localhost:4444/applyleave/${id}`,items)
       .then(response => console.log(response.data))

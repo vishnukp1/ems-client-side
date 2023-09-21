@@ -11,35 +11,40 @@ import {
   UserSwitch,
   HandWaving,
 } from "@phosphor-icons/react";
+import Navbars from "../../component/Navbars";
 
 function CompanyMain() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <Sidebars />
-      <div className="main-container" style={{ backgroundColor: "#1E1E2E",display:"flex" }}>
-        <div className="dashboard-div" style={{display:"flex",justifyContent:"space-around",width:"100%",flexWrap: "wrap"}}>
+      <div className="main-container" style={{ backgroundColor: "#1E1E2E",display:"flex", }}>
+        <div className="dashboard-div" style={{display:"flex",justifyContent:"space-around",width:"100%",flexWrap: "wrap" ,marginTop:"-55px"}}>
        
         <Card 
         className="card-dashboard"
           style={{
-         width:"14rem",
-            height: "10rem",
+            width: "20rem",
+            height: "13rem",
             background: "#27293D",
             color: "white",
             // flexWrap:'wrap'
+            marginTop:"2rem"
 
           }}
         >
           <Card.Img variant="top" src="" />
           <Card.Body >
-            <UsersThree size={32} />
+            <UsersThree style={{marginTop:".1rem",height:"4rem",width:"4rem"}} size={32} />
             <Card.Title>EMPLOYEES</Card.Title>
             <Card.Text></Card.Text>
             <Button
-              style={{ backgroundColor: "#1E1E2E" }}
+              style={{ backgroundColor: "#1E1E2E",marginTop:".2rem" }}
               onClick={() => navigate("/company/staff")}
+             
             >
               More Info
             </Button>
@@ -49,19 +54,20 @@ function CompanyMain() {
         <Card
          className="card-dashboard"
           style={{
-            width:"14rem",
-            height: "10rem",
+            width: "20rem",
+              height: "13rem",
             background: "#27293D",
             color: "white",
           //  flexWrap:'wrap'
+          marginTop:"2rem"
           }}
         >
           <Card.Body>
-            <PersonSimpleBike size={32} />
+            <PersonSimpleBike style={{marginTop:".1rem",height:"4rem",width:"4rem"}}  size={32} />
             <Card.Title>TASKS</Card.Title>
             <Card.Text></Card.Text>
             <Button
-              style={{ backgroundColor: "#1E1E2E" }}
+               style={{ backgroundColor: "#1E1E2E",marginTop:".2rem" }}
               onClick={() => navigate("/company/task")}
             >
               More Info
@@ -82,19 +88,20 @@ function CompanyMain() {
         <Card
          className="card-dashboard"
           style={{
-            width:"14rem",
-            height: "10rem",
+            width: "20rem",
+              height: "13rem",
             background: "#27293D",
             color: "white",
             // flexWrap:'wrap'
+            marginTop:"2rem"
           }}
         >
           <Card.Body>
-            <HandWaving size={32} />
+            <HandWaving style={{marginTop:".1rem",height:"4rem",width:"4rem"}}  size={32} />
             <Card.Title>ATTENDANCE</Card.Title>
             <Card.Text></Card.Text>
             <Button
-              style={{ backgroundColor: "#1E1E2E" }}
+               style={{ backgroundColor: "#1E1E2E",marginTop:".2rem" }}
               onClick={() => navigate("/company/attendance")}
             >
               More Info
@@ -106,19 +113,20 @@ function CompanyMain() {
         <Card
          className="card-dashboard"
           style={{
-            width:"14rem",
-            height: "10rem",
+            width: "20rem",
+            height: "13rem",
             background: "#27293D",
             color: "white",
             // flexWrap:'wrap'
+            marginTop:"2rem"
           }}
         >
           <Card.Body>
-            <UserSwitch size={32} />
+            <UserSwitch style={{marginTop:".1rem",height:"4rem",width:"4rem"}}  size={32} />
             <Card.Title>LEAVE</Card.Title>
             <Card.Text></Card.Text>
             <Button
-              style={{ backgroundColor: "#1E1E2E" }}
+               style={{ backgroundColor: "#1E1E2E",marginTop:".2rem" }}
               onClick={() => navigate("/company/viewleave")}
             >
               More Info
@@ -135,33 +143,35 @@ function CompanyMain() {
           <Button style={{backgroundColor:"#1E1E2E"}}onClick={()=>navigate("/company/salary")}>More Info</Button>
         </Card.Body>
       </Card> */}
-</div>
+
 
         <Card
   
           style={{
-            width:"14rem",
-            height: "10rem",
+            width: "20rem",
+              height: "13rem",
             background: "#27293D",
             color: "white",
             // flexWrap:'wrap'
+            marginTop:"2rem"
           }}
         >
           <Card.Body>
+          <UserSwitch style={{marginTop:".1rem",height:"4rem",width:"4rem"}}  size={32} />
             <Card.Title>Employee Dashboard</Card.Title>
             <Card.Text></Card.Text>
             <Button
-              style={{ backgroundColor: "#1E1E2E" }}
-              onClick={() => navigate("/employees/Dashboard")}
+               style={{ backgroundColor: "#1E1E2E",marginTop:".2rem" }}
+              onClick={() => navigate("/employees/home")}
             >
               More Info
             </Button>
           </Card.Body>
         </Card>
-        
+        </div>
 
       </div>
-    </>
+  </div> </div>
   );
 }
 

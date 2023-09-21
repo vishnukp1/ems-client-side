@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
+import Navbars from "../../component/Navbars";
 
 function Task() {
   const navigate = useNavigate();
@@ -85,11 +86,13 @@ function Task() {
   }, []);
 
   return (
-    <>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <Navbars />
+    <div style={{display:"flex", width:"100vw"}}>
       <Sidebars />
       <div
         className="form"
-        style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
+        style={{ width: "100%", height: "100vh", marginTop: "0px" }}
       >
         <h4
           style={{
@@ -205,9 +208,10 @@ function Task() {
             </tbody>
           )}
         </Table>
+        </div>
       </div>
-    </>
-  );
+    </div>
+  )
 }
 
 export default Task;
