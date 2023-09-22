@@ -97,7 +97,7 @@
 }
 
 .form-control {
-   width: 16rem !important;
+   width: 16rem ;
    color: #334868 !important;
   height: 2rem !important;
 }
@@ -169,7 +169,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .nabar-nav {
    background-color: rgb(228, 230, 248);
-width: 100% !important
+
 }
 
 
@@ -212,7 +212,12 @@ width: 100% !important
    
    }
 
-
+   .form-control {
+      width: 8rem ;
+      color: #334868 !important;
+     height: 2rem !important;
+   }
+   
 
    .card-dashboard{
       margin-bottom: 12px;

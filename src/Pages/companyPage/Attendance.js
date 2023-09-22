@@ -130,18 +130,24 @@ function Attendance() {
   return (
     <div style={{display:'flex', flexDirection:'column'}}>
     <Navbars />
-    <div style={{display:"flex", width:"100vw"}}>
+    <div  style={{display:"flex", width:"100vw"}}>
       <Sidebars />
-      <div className="col-sm mt-1 me-2"
+      <div className="form col-sm mt-1 me-2"
         style={{
-          width: "100%",
-          height: "100vh",
-          marginLeft: "1rem",
-          backgroundColor: " rgb(233, 238, 247)",
+          textAlign: "left",
+            marginTop: "2rem",
+            marginBottom: "1.2rem",
+            fontFamily: "Arial, sans-serif",
+          
+            height:"100vh"
         }}>
-        <h2>ATTENDANCE</h2>
+        <h3    style={{
+            textAlign: "left",
+            marginTop: "1.3rem",
+            marginBottom: "1.2rem",
+            fontFamily: "Arial, sans-serif",
+          }}>ATTENDANCE</h3>
 
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <div
           style={{
             width: "100%",
@@ -149,6 +155,9 @@ function Attendance() {
             justifyContent: "space-between",
           }}
         >
+          <div style={{marginRight:"2rem"}}>
+           <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} />
+           </div>
           <div
             style={{
               width: "100%",
@@ -156,7 +165,7 @@ function Attendance() {
               justifyContent: "space-between",
             }}
           >
-            <div style={{ display: "flex", gap: ".5rem" }}>
+            <div style={{ display: "flex", gap: ".1rem" }}>
               {" "}
               <select
               className="select-custom"

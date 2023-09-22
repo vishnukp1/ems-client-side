@@ -48,7 +48,7 @@ function Department() {
         const responseData = response.data.data;
   
         setDepartment(responseData)
-        console.log(responseData.de);
+        console.log(responseData);
       } catch (error) {
         console.error("Error fetching customer data:", error);
       }
@@ -75,7 +75,7 @@ function Department() {
       <div style={{display:"flex", width:"100vw",height:"100vh"}}>
         <Sidebars />
       <div className="form" style={{ width: "100%", height: "100vh" ,marginTop:"0px"}}>
-      <h4 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>DEPARTMENTS</h4>
+      <h3 style={{textAlign:"left",marginTop:"1.3rem",marginBottom:"1.2rem",fontFamily:"Arial, sans-serif"}}>DEPARTMENTS</h3>
         <div
         className='department-div'
           style={{

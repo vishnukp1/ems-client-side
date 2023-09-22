@@ -70,7 +70,7 @@ console.log(formattedDate)
       className="form"
       style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
     >
-      <h4
+      <h3
         style={{
           textAlign: "left",
           marginTop: "1.3rem",
@@ -78,8 +78,8 @@ console.log(formattedDate)
           fontFamily: "Arial, sans-serif",
         }}
       >
-        STAFF TASK{" "}
-      </h4>
+        VIEW LEAVE{" "}
+      </h3>
 
   <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
  

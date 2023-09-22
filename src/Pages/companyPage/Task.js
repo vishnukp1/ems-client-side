@@ -63,7 +63,7 @@ function Task() {
     const response = await axios.get(
       `http://localhost:4444/company/searchdepartment?department=${key}`
     );
-    const responseData = response.data;
+    const responseData = response.data.data;
     if (responseData) {
       setDepartment(responseData);
     }
@@ -92,18 +92,18 @@ function Task() {
       <Sidebars />
       <div
         className="form"
-        style={{ width: "100%", height: "100vh", marginTop: "0px" }}
+        style={{ width: "100%", height: "100vh" }}
       >
-        <h4
+        <h3
           style={{
             textAlign: "left",
-            marginTop: "1.3rem",
+          
             marginBottom: "1.2rem",
             fontFamily: "Arial, sans-serif",
           }}
         >
           STAFF TASK{" "}
-        </h4>
+        </h3>
         <div
           style={{
             width: "100%",

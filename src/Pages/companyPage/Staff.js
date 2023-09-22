@@ -72,7 +72,8 @@ function Staff() {
     const response = await axios.get(
       `http://localhost:4444/company/searchdepartment?department=${key}`
     );
-    const responseData = response.data;
+    const responseData = response.data.data;
+    console.log(responseData);
     if (responseData) {
       setStaff(responseData);
     }
@@ -85,6 +86,7 @@ function Staff() {
       );
       const responseData = response.data.data;
       setDepartment(responseData);
+      console.log(responseData);
     } catch (error) {
       console.error("Error fetching department data:", error);
     }
@@ -101,11 +103,12 @@ function Staff() {
         style={{
           width: "100%",
           height: "100vh",
-          marginLeft: "1rem",
+          paddingLeft:"1rem",
           backgroundColor: " rgb(233, 238, 247)",
+          paddingRight:"1rem",
         }}
       >
-        <h4
+        <h3
           style={{
             textAlign: "left",
             marginTop: "1.3rem",
@@ -114,7 +117,7 @@ function Staff() {
           }}
         >
           EMPLOYEES
-        </h4>
+        </h3>
 
         <div
           style={{
@@ -124,20 +127,20 @@ function Staff() {
           }}
         >
           <div style={{ display: "flex", gap: ".5rem" }}>
-            {" "}
+            
             <select
               className="select-custom"
               onChange={(e) => searchDepartment(e.target.value)}
             >
               <option>Select Department</option>
               {department.map((post, index) => (
+                
                 <option
-                  style={{ fontSize: "18px", textAlign: "start" }}
+                  style={{ fontSize: "18px" }}
                   key={index}
-                  value={post.title}
-                >
-                  {post.title}
-                </option>
+                  value={post._id}
+               
+                >{post.title}</option>
               ))}
             </select>
             <Button
@@ -185,7 +188,7 @@ function Staff() {
               </tr>
             </thead>
             {staff.length > 0 ? (
-              <tbody>
+              <tbody style={{fontSize:"17px"}}>
                 {staff.map((post, index) => (
                   <tr key={post._id}>
                     <td>{index + 1}</td>
@@ -197,14 +200,14 @@ function Staff() {
                         alt="User"
                       />
                     </td>
-                    <td>{post.department[0]?.title || ''}</td>
+                    <td>{post.department[0]?.title}</td>
                     <td>{post.gender}</td>
                     <td>{post.phone}</td>
                     <td>{post.email}</td>
                     <td>{post.salary}</td>
                     <td>{post.address}</td>
-                    <td>
-                      <div style={{ display: "flex", alignItems: "center" }}>
+                    <td style={{ display: "flex", alignItems: "center" ,fontSize:"17px" }}> 
+                      <div >
                         <Button
                           variant="outline-dark"
                           style={buttonStyle}
