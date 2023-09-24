@@ -1,12 +1,13 @@
-import { MDBCol } from "mdb-react-ui-kit";
+
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import Sidebars from "../../component/Sidebars";
 import "../../styles/company.css";
 import { Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { MDBCol } from "mdb-react-ui-kit";
 import Navbars from "../../component/Navbars";
 
 
@@ -18,15 +19,46 @@ function Attendance() {
   const [startDate, setStartDate] = useState(new Date());
   console.log(staff);
 
-  const getAttendanceData = async (date) => {
+  
+
+  const getAttendance = async (date) => {
     try {
-   const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
 
      
   
-      const response = await axios.get(`http://localhost:4444/company/attendance/${formattedDate}`);
+      const response = await axios.get(`/company/attendance/${formattedDate}`);
       const responseData = response.data.data;
       setStaff(responseData);
+      console.log("data",responseData);
+     
+    } catch (error) {
+      console.error("Error fetching staff data:", error);
+    }
+  };
+  const searchDepartment = async (key) => {
+    console.log(key);
+    const response = await axios.get(
+      `/company/searchdepartments?department=${key}`
+    );
+    const responseData = response.data.data;
+    console.log(responseData);
+    if (responseData) {
+      setStaff(responseData);
+    }
+  };
+
+
+  const getAttendanceDay = async (date) => {
+    try {
+    
+      const response = await axios.get(`/company/attendance`);
+      const responseData = response.data.data;
+      setStaff(responseData);
+      console.log("today attendance",responseData);
      
     } catch (error) {
       console.error("Error fetching staff data:", error);
@@ -35,7 +67,7 @@ function Attendance() {
   const searchHandle = async (e) => {
     let key = e.target.value;
     const response = await axios.get(
-      `http://localhost:4444/company/search?name=${key}`
+      `/company/search?name=${key}`
     );
     const responseData = response.data;
     if (responseData) {
@@ -43,18 +75,24 @@ function Attendance() {
     }
   };
 
- 
+
 
 
   useEffect(() => {
-    getAttendanceData(startDate);
-   
+    getAttendance(startDate);
+    getDepartment()
   }, [startDate]);
 
   useEffect(() => {
-    getAttendanceData();
-    getDepartment()
-  },[]);
+    getAttendance();
+
+  }, [staff]);
+
+  useEffect(() => {
+
+getAttendanceDay()
+  }, []);
+
 
   const markAttendance = async (e) => {
     e.preventDefault();
@@ -66,11 +104,11 @@ function Attendance() {
       };
 
       await axios
-        .post(`http://localhost:4444/company/mark`, data)
+        .post(`/company/mark`, data)
         .then((response) => {
           console.log(response.data);
           setAttendanceMarked(true); 
-          getAttendanceData(startDate)
+          getAttendance(startDate);
         });
     } catch (error) {
       console.error("Error marking attendance:", error);
@@ -87,7 +125,7 @@ function Attendance() {
     console.log(date);
     try {
    
-      await axios.delete(`http://localhost:4444/deleteAttendance/${staffId}`, {
+      await axios.delete(`/deleteAttendance/${staffId}`, {
         data: { date: date },
       });
   
@@ -105,21 +143,11 @@ function Attendance() {
     );
   };
 
-  const searchDepartment = async (key) => {
-    console.log(key);
-    const response = await axios.get(
-      `http://localhost:4444/company/searchdepartment?department=${key}`
-    );
-    const responseData = response.data;
-    if (responseData) {
-      setStaff(responseData);
-    }
-  };
 
   const getDepartment = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/department`
+        `/company/department`
       );
       const responseData = response.data.data;
       setDepartment(responseData);
@@ -130,24 +158,24 @@ function Attendance() {
   return (
     <div style={{display:'flex', flexDirection:'column'}}>
     <Navbars />
-    <div  style={{display:"flex", width:"100vw"}}>
+    <div style={{display:"flex", width:"100vw"}}>
       <Sidebars />
-      <div className="form col-sm mt-1 me-2"
+      <div className="col-sm mt-1 me-2"
         style={{
-          textAlign: "left",
-            marginTop: "2rem",
-            marginBottom: "1.2rem",
-            fontFamily: "Arial, sans-serif",
-          
-            height:"100vh"
+          width: "100%",
+          height: "100vh",
+          marginLeft: "0rem",
+          paddingLeft:"1.3rem",
+          backgroundColor: " rgb(233, 238, 247)",
         }}>
-        <h3    style={{
+        <h2      style={{
             textAlign: "left",
             marginTop: "1.3rem",
             marginBottom: "1.2rem",
             fontFamily: "Arial, sans-serif",
-          }}>ATTENDANCE</h3>
+          }}>ATTENDANCE</h2>
 
+        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <div
           style={{
             width: "100%",
@@ -155,9 +183,6 @@ function Attendance() {
             justifyContent: "space-between",
           }}
         >
-          <div style={{marginRight:"2rem"}}>
-           <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} />
-           </div>
           <div
             style={{
               width: "100%",
@@ -165,7 +190,7 @@ function Attendance() {
               justifyContent: "space-between",
             }}
           >
-            <div style={{ display: "flex", gap: ".1rem" }}>
+            <div style={{ display: "flex", gap: ".5rem" }}>
               {" "}
               <select
               className="select-custom"
@@ -173,13 +198,12 @@ function Attendance() {
             >
               <option>Select Department</option>
               {department.map((post, index) => (
+                
                 <option
-                  style={{ fontSize: "18px", textAlign: "start" }}
+                  style={{ fontSize: "18px" }}
                   key={index}
                   value={post.title}
-                >
-                  {post.title}
-                </option>
+                >{post.title}</option>
               ))}
             </select>
             </div>
@@ -247,7 +271,7 @@ function Attendance() {
       )}
       {attendanceMarked && <p>Attendance has been marked for selected staff.</p>}
       </div>
-  </div> </div>
+   </div></div>
   );
 }
 

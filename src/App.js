@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Attendance from "./Pages/companyPage/Attendance";
-import Performance from "./Pages/companyPage/Performance";
+
 import StaffLogin from "./Pages/staffPage/StaffLogin";
 import Navbars from "./component/Navbars";
 import CompanyLogin from "./Pages/companyPage/CompanyLogin";
@@ -21,7 +21,6 @@ import Addleave from "./Pages/companyPage/AddLeave";
 import ViewEmployee from "./Pages/staffPage/ViewEmployee";
 import StaffDashboard from "./Pages/staffPage/StaffDashboard";
 import ApplyLeave from "./Pages/staffPage/ApplyLeave";
-import AddPerformance from "./Pages/companyPage/AddPerformance";
 import Task from "./Pages/companyPage/Task";
 import Staff from "./Pages/companyPage/Staff";
 import CompanyDashboard from "./Pages/companyPage/CompanyDashboard";
@@ -48,106 +47,64 @@ function App() {
   // },[location])
   return (
     <div className="App " style={{ background: "#f0f9ff", height: "100%" }}>
-      
- 
-
-     
       <div style={{ display: "flex" }}>
         <Routes>
           {/* {admin ? null : <Sidebars />} */}
           <Route exact path="/" element={<Home />} />
-
           <Route exact path="/admin" element={<AdminLogin />} />
-
           <Route exact path="/admin/allusers" element={<Allusers />} />
-
           <Route exact path="/admin/updateuser/:id" element={<UpdateUser />} />
-
           <Route exact path="/company/department" element={<Department />} />
-
           <Route exact path="/admin/user" element={<Users />} />
-
-          
           <Route exact path="/admin/adduser" element={<AddUsers />} />
-
           <Route
             exact
             path="/company/dashboard"
             element={<CompanyDashboard />}
           />
-
           <Route exact path="/company/attendance" element={<Attendance />} />
-
           <Route
             exact
             path="/employees/Dashboard"
             element={<StaffDashboard />}
           />
-
           <Route exact path="/company/createstaff" element={<CreateStaff />} />
-
           <Route exact path="/company/login" element={<CompanyLogin />} />
-
           <Route exact path="/company/viewleave" element={<ViewLeave />} />
-
-          <Route exact path="/company/performance" element={<Performance />} />
-
           <Route exact path="/company/task" element={<Task />} />
-
           <Route exact path="/company/staff" element={<Staff />} />
-
           <Route exact path="/company/salary" element={<Salary />} />
-
           <Route
             exact
             path="/company/updatestaff/:id"
             element={<Updatestaff />}
           />
-
           <Route exact path="/company/addtask/:id" element={<Addtask />} />
-
-          <Route
-            exact
-            path="/company/addperformance/:id"
-            element={<AddPerformance />}
-          />
-
+          a
           <Route exact path="/company/addleave/:id" element={<Addleave />} />
-
           <Route
             exact
             path="/company/updatetask/:staffId/:taskId"
             element={<UpdateTasks />}
           />
-
           <Route exact path="/employees/staffprofile" element={<Profile />} />
-
           <Route exact path="/employees/home" element={<StaffHome />} />
-
           <Route
             exact
             path="/employees/viewattendance"
             element={<ViewAttendance />}
           />
-
           <Route exact path="/employees/viewstaff" element={<ViewEmployee />} />
-
           <Route
             exact
             path="/employees/performance"
             element={<ViewPerformance />}
           />
-
           <Route exact path="/employees/addleave" element={<ApplyLeave />} />
-
           <Route exact path="/employees/viewtask" element={<ViewTask />} />
-
           <Route exact path="/employees/stafflogin" element={<StaffLogin />} />
-
           <Route exact path="/new" element={<GoogleOauth />} />
-
           <Route exact path="/mark" element={<UpdateAttendance />} />
-
           <Route exact path="/login1" element={<Login />} />
         </Routes>
       </div>

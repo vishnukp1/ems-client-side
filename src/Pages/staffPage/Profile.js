@@ -46,7 +46,7 @@ setDepartment(departmenttitle);
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol lg="6" className="mb-4 mb-lg-0">
-            <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
+            <MDBCard className="mb-3" style={{ borderRadius: '.5rem',width:"40rem" }}>
               <MDBRow className="g-0">
                 <MDBCol md="4" className="gradient-custom text-center text-white"
                   style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
@@ -84,8 +84,7 @@ setDepartment(departmenttitle);
                       </MDBCol>
                     </MDBRow>
                     
-                    <button type="submit" className="me-4 btn btn-success btn-lg btn-block"   onClick={() =>navigate(`/employees/addleave`)
-                          }>Apply Leave</button>
+
                     <div className="d-flex justify-content-start">
                       <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
                       <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>

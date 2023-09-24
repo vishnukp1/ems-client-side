@@ -3,7 +3,7 @@ import Table from "react-bootstrap/esm/Table";
 import { Button } from "react-bootstrap";
 import { MDBCol } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
 import Navbars from "../../component/Navbars";
@@ -19,14 +19,16 @@ function Task() {
   const [task, setTasks] = useState([]);
 
   const [department, setDepartment] = useState([]);
+
+  console.log("fhjfdfd",task)
   const getStaffTasks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/alltasks`
+        `http://localhost:4444/company/staff`
       );
-      const responseData = response.data;
+      const responseData = response.data.data;
 
-      setTasks(responseData.tasks);
+      setTasks(responseData);
       console.log(responseData);
     } catch (error) {
       console.error("Error fetching customer data:", error);
@@ -51,7 +53,7 @@ function Task() {
     const response = await axios.get(
       `http://localhost:4444/company/searchTask?name=${key}`
     );
-    const responseData = response.data.tasks;
+    const responseData = response.data;
     console.log(responseData.tasks);
     if (responseData) {
       setTasks(responseData);
@@ -61,11 +63,12 @@ function Task() {
   const searchDepartment = async (key) => {
     console.log(key);
     const response = await axios.get(
-      `http://localhost:4444/company/searchdepartment?department=${key}`
+      `/company/searchdepartment?department=${key}`
     );
     const responseData = response.data.data;
+    console.log(responseData);
     if (responseData) {
-      setDepartment(responseData);
+      setTasks(responseData);
     }
   };
 
@@ -92,7 +95,7 @@ function Task() {
       <Sidebars />
       <div
         className="form"
-        style={{ width: "100%", height: "100vh" }}
+        style={{ width: "100%", height: "100vh",marginTop:"0rem" }}
       >
         <h3
           style={{
@@ -120,13 +123,13 @@ function Task() {
             >
               <option>Select Department</option>
               {department.map((post, index) => (
+                
                 <option
-                  style={{ fontSize: "18px", textAlign: "start" }}
+                  style={{ fontSize: "18px" }}
                   key={index}
-                  value={post.title}
-                >
-                  {post.title}
-                </option>
+                  value={post._id}
+               
+                >{post.title}</option>
               ))}
             </select>
           </div>
@@ -145,7 +148,7 @@ function Task() {
             </MDBCol>
           </div>
         </div>
-        <Table className="table-text" striped bordered hover size="sm">
+        <Table className="table-text"  striped bordered hover size="sm">
           <thead className="table-head">
             <tr>
               <th style={{ width: "5%" }}>#</th>
@@ -160,20 +163,22 @@ function Task() {
           {task.length > 0 ? (
             <tbody>
               {task.map((post, index) =>{
-      const fromDate = new Date(post.startTime);
-      const toDate = new Date(post.endTime);
+                 if (post.tasks.length > 0) {
+      const fromDate = new Date(post.tasks[0]?.startTime);
+      const toDate = new Date(post.tasks[0]?.endTime);
       
       const formattedStartTime = fromDate.toLocaleDateString('en-GB'); // Format: "dd/mm/yyyy"
       const formattedEndTime = toDate.toLocaleDateString('en-GB');     // Format: "dd/mm/yyyy"
       
                return (
-                <tr key={index}>
+                
+                <tr key={index} >
                   <td>{index + 1}</td>
-                  <td>{post.taskTitle}</td>
+                  <td>{post.tasks[0]?.title}</td>
                   <td>{post.name}</td>
                   <td>{formattedStartTime}</td>
                   <td>{formattedEndTime}</td>
-                  <td>{post.status}</td>
+                  <td>{post.tasks[0]?.status}</td>
                   <td>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <Button
@@ -198,6 +203,8 @@ function Task() {
                   </td>
                 </tr>
                );
+              }
+              <td colSpan="7">No tasks available</td>
               })}
             </tbody>
           ) : (

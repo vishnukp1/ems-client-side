@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Button,  Table } from 'react-bootstrap';
 import Sidebars from '../../component/Sidebars';
-import axios from 'axios';
+import axios from '../../Autherization/Autherization';
 
 import "../../styles/company.css"
 import Navbars from '../../component/Navbars';
@@ -26,7 +26,7 @@ function Department() {
     }
     console.log(dprtment);
     
-    const response=await axios.post(`http://localhost:4444/company/createdprt`,deprtment)
+    const response=await axios.post(`/company/createdprt`,deprtment)
     console.log(response.data);
     getDepartment()
   
@@ -43,7 +43,7 @@ function Department() {
        
       try {
         const response = await axios.get(
-          `http://localhost:4444/company/department`
+          `/company/department`
         );
         const responseData = response.data.data;
   
@@ -55,7 +55,7 @@ function Department() {
     };
     const deleteTask = async (taskId) => {
       try {
-        await axios.delete(`http://localhost:4444/company/department/${taskId}`);
+        await axios.delete(`/company/department/${taskId}`);
         
         getDepartment();
       } catch (error) {

@@ -4,13 +4,14 @@ import React, { useEffect, useRef, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
 import { useDispatch, useSelector } from "react-redux";
 import CreateStaff from "./CreateStaff";
 import { addStaff, setremove } from "../../Reducers/addstaffReducer";
 import Navbars from "../../component/Navbars";
+import axios from "../../Autherization/Autherization";
 
 function Staff() {
   const buttonStyle = {
@@ -28,7 +29,7 @@ function Staff() {
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
 
-
+  // http://localhost:4444
 
   const getStaffData = async () => {
     try {
@@ -44,7 +45,7 @@ function Staff() {
 
   const handleDeleteStaff = async (staffId) => {
     try {
-      await axios.delete(`http://localhost:4444/company/staff/${staffId}`);
+      await axios.delete(`/company/staff/${staffId}`);
       getStaffData();
     } catch (error) {
       console.error("Error deleting staff:", error);
@@ -59,7 +60,7 @@ function Staff() {
   const searchHandle = async (e) => {
     let key = e.target.value;
     const response = await axios.get(
-      `http://localhost:4444/company/search?name=${key}`
+      `/company/search?name=${key}`
     );
     const responseData = response.data;
     if (responseData) {
@@ -70,7 +71,7 @@ function Staff() {
   const searchDepartment = async (key) => {
     console.log(key);
     const response = await axios.get(
-      `http://localhost:4444/company/searchdepartment?department=${key}`
+      `/company/searchdepartment?department=${key}`
     );
     const responseData = response.data.data;
     console.log(responseData);
@@ -82,7 +83,7 @@ function Staff() {
   const getDepartment = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/department`
+        `/company/department`
       );
       const responseData = response.data.data;
       setDepartment(responseData);
@@ -119,7 +120,7 @@ function Staff() {
           EMPLOYEES
         </h3>
 
-        <div
+        <div className="sub-container"
           style={{
             width: "100%",
             display: "flex",
@@ -127,7 +128,7 @@ function Staff() {
           }}
         >
           <div style={{ display: "flex", gap: ".5rem" }}>
-            
+        
             <select
               className="select-custom"
               onChange={(e) => searchDepartment(e.target.value)}
@@ -184,7 +185,7 @@ function Staff() {
                 <th style={{ width: "14%" }}>Email</th>
                 <th style={{ width: "8%" }}>Salary</th>
                 <th style={{ width: "18%" }}>Address</th>
-                <th style={{ width: "18%" }}>Actions</th>
+                <th style={{ width: "28%" }}>Actions</th>
               </tr>
             </thead>
             {staff.length > 0 ? (
@@ -206,8 +207,8 @@ function Staff() {
                     <td>{post.email}</td>
                     <td>{post.salary}</td>
                     <td>{post.address}</td>
-                    <td style={{ display: "flex", alignItems: "center" ,fontSize:"17px" }}> 
-                      <div >
+                    <td style={{ fontSize:"17px"}}> 
+                      <div style={{display:"flex"}}>
                         <Button
                           variant="outline-dark"
                           style={buttonStyle}

@@ -6,7 +6,7 @@ function HomeNav() {
 
   return (
 
-      <div className='nav-shadow' style={{display:"flex", justifyContent:"space-between",height:"1.8rem"}}>
+      <div className='nav-shadow' style={{display:"flex", justifyContent:"space-between",height:"1.8rem",marginTop:"1rem"}}>
         <div style={{marginTop:"-.8rem",marginLeft:"1rem"}}>
         <img style={{width:"6rem",height:"2rem" }} src={logo} alt=''></img>
         </div>

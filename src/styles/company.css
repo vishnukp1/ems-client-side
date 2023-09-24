@@ -36,13 +36,17 @@
    
  }
 
+ .apply-btn{
+   background-color: #a5b6ff !important;
+   color: rgb(0, 0, 0) !important;
+ }
  .sidebar-text {
    font-size: 16px;
    font-family: 'Montserrat', sans-serif;
  }
 
 .table-text {
-   font-size: 16px;
+   font-size: 17px !important;
    font-family: 'Montserrat', sans-serif;
    color: black;
    border: 1px solid black;
@@ -65,21 +69,17 @@
    border: 1px solid black;
    background-color: #d3ecfc;
    width: 35rem !important;
-  
-
 }
 
 
 .department-div{
    display: flex;
    flex-direction: column;
-   margin-left: 162px;
+   margin-left: 18rem;
 }
 
 .main-container {
-
    display: flex;
-  
    flex-wrap: wrap;
    justify-content: space-around;
    align-content: space-around;
@@ -200,6 +200,10 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       
 
    }
+
+   .form-login{
+      margin-left: 3.5rem !important;
+   }
    .dashboard-div{
      flex-direction: column;
      flex-wrap: wrap;
@@ -265,10 +269,25 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    margin-left: 49px;
  }
 }
+@media (min-width: 350px) and (max-width: 449px) {
+.sub-container{
+   flex-direction: column;
+ }
+ .department-div{
+
+   margin-left: -8px;
+}
+}
 
 @media (min-width: 715px) and (max-width: 768px) {
 .home-h4-text {
    width: 41rem;
+}
+.form-login{
+   margin-left: 3.5rem !important;
+}
+.sub-container{
+   display: none;
 }
 }
 
@@ -277,13 +296,18 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       width: 29rem;
     
    }
+   .department-div{
+
+      margin-left: -4px;
+   }
+   .sub-container{
+      flex-direction: column;
+    }
    }
 
 @media (min-width: 577px) and (max-width: 768px) {
    .home-main{
       flex-direction: column;
-      
-
    }
    .dashboard-div{
       flex-direction: column;
@@ -292,12 +316,17 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     align-items:center; 
     margin-left: 9rem;
     margin-top: 35rem !important
-   
-   
-    
     }
+    .form-login{
+      margin-left: 3.5rem !important;
+   }
    .home-h4-text {
-      width: 41rem;
+      width: 36rem;
+   }
+
+   .department-div{
+
+      margin-left: 1rem;
    }
 
    .home-text{
@@ -322,17 +351,19 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
      width: 100%;
      margin-bottom: 0;
    }
+   .department-div{
+
+      margin-left: 3rem;
+   }
    .dashboard-div{
       flex-direction: column;
       flex-wrap: wrap;
       align-content: flex-start;
     align-items:center; 
-    margin-left: 4rem;
+    margin-left: 9rem;
     margin-top: 35rem !important
-   
-   
-    
     }
+ 
    .table th,
    .table td {
      white-space: nowrap;
@@ -344,7 +375,43 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
      border: 0;
    }
  }
- 
+
+
+   
+ @media (min-width: 990px) and (max-width: 1050px) {
+   .table-responsive {
+     overflow-x: auto;
+   }
+   .table {
+     width: 100%;
+     margin-bottom: 0;
+   }
+   .department-div{
+
+      margin-left: 50px;
+   }
+   .dashboard-div{
+      
+      flex-wrap: wrap;
+      align-content: flex-start;
+    align-items:center; 
+    margin-left: 4rem;
+    margin-top: 3rem !important
+   
+   
+    
+    }
+   .table th,
+   .table td {
+     white-space: nowrap;
+   }
+  
+   .table-bordered {
+     border: 0;
+   }
+ }
+
+  
   
  @media (min-width: 1051px) and (max-width: 1200px) {
    .table-responsive {
@@ -354,6 +421,11 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
      width: 100%;
      margin-bottom: 0;
    }
+   
+.department-div{
+
+   margin-left: 6.2rem;
+}
    .dashboard-div{
       
       flex-wrap: wrap;
@@ -375,15 +447,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    }
  }
 
-   
- @media (min-width: 993px) and (max-width: 1050px) {
-   .table-responsive {
-     overflow-x: auto;
-   }
-   .table {
-     width: 100%;
-     margin-bottom: 0;
-   }
+ @media (min-width: 1201px) and (max-width: 1300px) {
    .dashboard-div{
       
       flex-wrap: wrap;
@@ -395,14 +459,5 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    
     
     }
-   .table th,
-   .table td {
-     white-space: nowrap;
-   }
-  
-   .table-bordered {
-     border: 0;
-   }
- }
 
- 
+ }

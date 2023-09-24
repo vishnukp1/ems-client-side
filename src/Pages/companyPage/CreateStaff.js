@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/company.css";
 import { useDispatch } from "react-redux";
@@ -44,7 +44,7 @@ function CreateStaff() {
     };
 
     await axios
-      .post(`http://localhost:4444/company/createstaff`, items, {
+      .post(`/company/createstaff`, items, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -65,7 +65,7 @@ function CreateStaff() {
   const getDepartment = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/department`
+        `/company/department`
       );
       const responseData = response.data.data;
       setDepartment(responseData);
