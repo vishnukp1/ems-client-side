@@ -1,7 +1,7 @@
 import { MDBCol } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import Sidebars from "../../component/Sidebars";
 import "../../styles/company.css";
 import { Button } from "react-bootstrap";

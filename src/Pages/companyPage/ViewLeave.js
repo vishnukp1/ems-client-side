@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import Sidebars from "../../component/Sidebars";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,40 +18,34 @@ function ViewLeave() {
     padding: "2px 5px",
     marginLeft: "2px",
     border: "1px solid #343a40",
+    textAlign:"center"
   };
 
   const getLeaveData = async (date) => {
 
     try {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-
-      
-console.log(formattedDate)
-      
-
-     
-      await axios.get(`http://localhost:4444/leaves/${formattedDate}`)
-      .then((response) => setLeave(response.data.data))
-     
-      .catch((error) => {
-        console.error("Error fetching customer data:", error);
-        setLeave([])
-      });
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
+    
+      console.log(formattedDate);
+    
+      const response = await axios.get(`/leaves/${formattedDate}`);
+      setLeave(response.data.data );
     } catch (error) {
       console.error("Error fetching leave data:", error);
+      setLeave([]); 
     }
-  };
-
+  }
+    
   const approveLeave = async (leaveid) => {
     try {
       const approved = {
         status: "approved",
       };
-      const response = await axios.put(`http://localhost:4444/leave/approve/${leaveid}`, approved);
-      console.log("Leave application submitted:", response.data);
+      const response = await axios.put(`/leave/approve/${leaveid}`, approved);
+      console.log( response.data.data);
       getLeaveData(startDate); 
     } catch (error) {
       console.error("Error submitting leave application:", error);
@@ -97,6 +91,7 @@ console.log(formattedDate)
             <th>Status</th>
             <th>Description</th>
             <th>Apply On</th>
+            <th>Actions</th>
           </tr>
         </thead>
         {leave.length > 0 ?(

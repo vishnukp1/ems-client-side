@@ -32,7 +32,7 @@ function Navbars() {
   return (
     <Navbar className='nabar-nav' >
       <Container>
-      <img style={{width:"6rem",height:"2rem" ,marginLeft:"-3rem"}} src={logo} alt='' onClick={()=>navigate("/")}></img>
+      <img className='navbar-img' style={{width:"6rem",height:"2rem" ,marginLeft:"-3rem"}} src={logo} alt='' onClick={()=>navigate("/")}></img>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

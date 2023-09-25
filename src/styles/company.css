@@ -253,6 +253,9 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    margin-left: 2px;
    
    }
+   .navbar-img{
+      margin-left: 15px;
+         }
    .card-dashboard{
       margin-bottom: 12px;
    }
@@ -300,6 +303,10 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
       margin-left: -4px;
    }
+
+   .navbar-img{
+      margin-left:  15px;
+         }
    .sub-container{
       flex-direction: column;
     }
@@ -323,6 +330,9 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    .home-h4-text {
       width: 36rem;
    }
+   .navbar-img{
+      margin-left:  15px;
+         }
 
    .department-div{
 
@@ -350,10 +360,14 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    .table {
      width: 100%;
      margin-bottom: 0;
+     overflow-x: auto;
    }
    .department-div{
 
       margin-left: 3rem;
+   }
+   .navbar-img{
+margin-left: 1rem;
    }
    .dashboard-div{
       flex-direction: column;
@@ -390,6 +404,9 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
       margin-left: 50px;
    }
+   .navbar-img{
+      margin-left: 1rem;
+         }
    .dashboard-div{
       
       flex-wrap: wrap;
@@ -426,6 +443,10 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
    margin-left: 6.2rem;
 }
+
+.navbar-img{
+   margin-left: 1rem;
+      }
    .dashboard-div{
       
       flex-wrap: wrap;

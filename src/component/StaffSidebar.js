@@ -15,7 +15,7 @@ function StaffSidebar() {
     <div style={{ display: 'flex', overflow: 'scroll initial'}}>
       <CDBSidebar className='sidebar-text' textColor="white" backgroundColor="#040e3d" style={{height:"100%" }}>
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
+          <a href="/employees/home" className="text-decoration-none" style={{ color: 'inherit' }}>
         WORKWALE
           </a>
         </CDBSidebarHeader>
@@ -41,11 +41,11 @@ function StaffSidebar() {
             <NavLink exact to="/employees/addleave" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Apply Leave</CDBSidebarMenuItem>
             </NavLink>
-            
-
-            <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="exclamation-circle">404 page</CDBSidebarMenuItem>
+            <NavLink exact to="/notification" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">Notification</CDBSidebarMenuItem>
             </NavLink>
+
+           
           </CDBSidebarMenu>
         </CDBSidebarContent>
 

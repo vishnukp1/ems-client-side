@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,7 @@ function ViewEmployee() {
 
   const getStaffData = async () => {
     try {
-      const response = await axios.get(`http://localhost:4444/company/staff`);
+      const response = await axios.get(`/company/staff`);
       const responseData = response.data.data;
 
       setStaff(responseData);
@@ -42,7 +42,7 @@ function ViewEmployee() {
 
   const handleDeleteStaff = async (staffId) => {
     try {
-      await axios.delete(`http://localhost:4444/company/staff/${staffId}`);
+      await axios.delete(`/company/staff/${staffId}`);
       getStaffData();
     } catch (error) {
       console.error("Error deleting staff:", error);
@@ -57,7 +57,7 @@ function ViewEmployee() {
   const searchHandle = async (e) => {
     let key = e.target.value;
     const response = await axios.get(
-      `http://localhost:4444/company/search?name=${key}`
+      `/company/search?name=${key}`
     );
     const responseData = response.data;
     if (responseData) {
@@ -68,7 +68,7 @@ function ViewEmployee() {
   const searchDepartment = async (key) => {
     console.log(key);
     const response = await axios.get(
-      `http://localhost:4444/company/searchdepartment?department=${key}`
+      `/company/searchdepartment?department=${key}`
     );
     const responseData = response.data;
     if (responseData) {
@@ -79,7 +79,7 @@ function ViewEmployee() {
   const getDepartment = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/department`
+        `/company/department`
       );
       const responseData = response.data.data;
       setDepartment(responseData);

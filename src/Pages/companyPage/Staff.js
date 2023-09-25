@@ -9,7 +9,7 @@ import "../../styles/company.css";
 import Sidebars from "../../component/Sidebars";
 import { useDispatch, useSelector } from "react-redux";
 import CreateStaff from "./CreateStaff";
-import { addStaff, setremove } from "../../Reducers/addstaffReducer";
+import { addStaff } from "../../Reducers/addstaffReducer";
 import Navbars from "../../component/Navbars";
 import axios from "../../Autherization/Autherization";
 
@@ -21,6 +21,8 @@ function Staff() {
     border: "1px solid #343a40",
   };
   const addstaf = useSelector((state) => state.addstaff);
+
+  console.log(addstaf);
 
   const dispatch = useDispatch([]);
 
@@ -63,6 +65,7 @@ function Staff() {
       `/company/search?name=${key}`
     );
     const responseData = response.data;
+    console.log(responseData);
     if (responseData) {
       setStaff(responseData);
     }

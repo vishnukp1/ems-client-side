@@ -34,6 +34,7 @@ import ViewLeave from "./Pages/companyPage/ViewLeave";
 import StaffHome from "./Pages/staffPage/StaffHome";
 import Users from "./Pages/adminPage/Users";
 import AddUsers from "./Pages/adminPage/AddUsers";
+import Notification from "./Pages/staffPage/Notification";
 
 function App() {
   // const location = useLocation()
@@ -103,9 +104,11 @@ function App() {
           <Route exact path="/employees/addleave" element={<ApplyLeave />} />
           <Route exact path="/employees/viewtask" element={<ViewTask />} />
           <Route exact path="/employees/stafflogin" element={<StaffLogin />} />
+          <Route exact path="/notification" element={<Notification />} />
           <Route exact path="/new" element={<GoogleOauth />} />
           <Route exact path="/mark" element={<UpdateAttendance />} />
           <Route exact path="/login1" element={<Login />} />
+
         </Routes>
       </div>
     </div>

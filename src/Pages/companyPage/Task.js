@@ -24,7 +24,7 @@ function Task() {
   const getStaffTasks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/staff`
+        `/company/staff`
       );
       const responseData = response.data.data;
 
@@ -36,7 +36,7 @@ function Task() {
   };
   const deleteTask = async (staffId, taskId) => {
     try {
-      await axios.delete(`http://localhost:4444/${staffId}/tasks/${taskId}`);
+      await axios.delete(`/${staffId}/tasks/${taskId}`);
 
       getStaffTasks();
     } catch (error) {
@@ -51,10 +51,10 @@ function Task() {
   const searchHandle = async (e) => {
     let key = e.target.value;
     const response = await axios.get(
-      `http://localhost:4444/company/searchTask?name=${key}`
+      `/company/search?name=${key}`
     );
     const responseData = response.data;
-    console.log(responseData.tasks);
+    console.log(responseData);
     if (responseData) {
       setTasks(responseData);
     }
@@ -75,7 +75,7 @@ function Task() {
   const getDepartment = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4444/company/department`
+        `/company/department`
       );
       const responseData = response.data.data;
       setDepartment(responseData);

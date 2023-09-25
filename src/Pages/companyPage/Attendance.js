@@ -70,6 +70,8 @@ function Attendance() {
       `/company/search?name=${key}`
     );
     const responseData = response.data;
+
+    
     if (responseData) {
       setStaff(responseData);
     }

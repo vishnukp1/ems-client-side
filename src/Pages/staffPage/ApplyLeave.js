@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../Autherization/Autherization'
 import React, { useRef } from 'react'
 import { Form,  Row } from 'react-bootstrap'
 import StaffNav from '../../component/StaffNav'
@@ -28,7 +28,7 @@ function Addemployee() {
 
       
   
-       await axios.post( `http://localhost:4444/applyleave/${id}`,items)
+       await axios.post( `/applyleave/${id}`,items)
       .then(response => console.log(response.data))
       .catch(error => {
         console.error("Error fetching customer data:", error);
@@ -69,9 +69,9 @@ function Addemployee() {
             <Form.Label>To</Form.Label>
             <Form.Control type="endtime" name="to"className="form-control" />
         </Form.Group>
-        <Form.Group controlId="formBasicEmail" className="col col-sm-6">
+        <Form.Group controlId="formBasicEmail" name="description" className="col col-sm-6">
             <Form.Label>Description</Form.Label><br></br>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+            <textarea class="form-control"  name="description" id="exampleFormControlTextarea1" rows="3" ></textarea>
         </Form.Group>
         
     </Row>

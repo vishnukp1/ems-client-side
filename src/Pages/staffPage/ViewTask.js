@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 
-import axios from "axios";
+import axios from "../../Autherization/Autherization";
 import "../../styles/company.css";
 
 import StaffNav from "../../component/StaffNav";
@@ -17,7 +17,7 @@ function ViewTask() {
 
       const staffId = localStorage.getItem("userid");
       const response = await axios.get(
-        `http://localhost:4444/employee/task/${staffId}`
+        `/employee/task/${staffId}`
       );
       const responseData = response.data;
 
@@ -79,7 +79,7 @@ function ViewTask() {
             <tr>
               <th style={{ width: "5%" }}>#</th>
               <th style={{ width: "14%" }}>Task Title</th>
-              <th style={{ width: "14%" }}>Assigned to</th>
+           
               <th style={{ width: "10%" }}>Start time</th>
               <th style={{ width: "10%" }}>End time</th>
               <th style={{ width: "14%" }}>Status</th>
@@ -91,8 +91,8 @@ function ViewTask() {
               {task.map((post, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{post.taskTitle}</td>
-                  <td>{post.name}</td>
+                  <td>{post.title}</td>
+               
                   <td>{post.startTime}</td>
                   <td>{post.endTime}</td>
                   <td>{post.status}</td>

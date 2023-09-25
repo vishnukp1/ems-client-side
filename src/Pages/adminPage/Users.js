@@ -55,7 +55,7 @@ function Users() {
   const searchHandle = async (e) => {
     let key = e.target.value;
     const response = await axios.get(
-      `http://localhost:4444/admin/searchdepartment?name=${key}`
+      `http://localhost:4444/admin/searchcompany?name=${key}`
     );
     const responseData = response.data;
     if (responseData) {
@@ -85,7 +85,7 @@ function Users() {
               fontFamily: "Arial, sans-serif",
             }}
           >
-            EMPLOYEES
+           COMPANIES LIST
           </h4>
 
           <div
@@ -98,7 +98,7 @@ function Users() {
             <div style={{ display: "flex", gap: ".5rem" }}>
               {" "}
               
-              <Button
+              <button
                 style={{
                   height: "2rem",
                   width: "6rem",
@@ -109,7 +109,7 @@ function Users() {
                 onClick={() => dispatch(addStaff())}
               >
                 Add Company
-              </Button>
+              </button>
              
             </div>
 
@@ -134,7 +134,7 @@ function Users() {
                 <tr className="table-head">
                   <th style={{ width: "5%" }}>#</th>
                   <th style={{ width: "14%" }}>Name</th>
-
+                  <th style={{ width: "22%" }}>Company Name</th>
                   <th style={{ width: "14%" }}>Phone</th>
                   <th style={{ width: "22%" }}>Email</th>
 
@@ -147,7 +147,7 @@ function Users() {
                     <tr key={post._id}>
                       <td>{index + 1}</td>
                       <td>{post.name}</td>
-                    
+                      <td>{post.company}</td>
            
                       <td>{post.phone}</td>
                       <td>{post.email}</td>

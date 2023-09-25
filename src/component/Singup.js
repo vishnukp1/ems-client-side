@@ -92,7 +92,7 @@ navigate("/company/dashboard")
           />
           </div>
           <div className="mb-3">
-          <label>Company</label>
+          <label>Company Name</label>
           <input
             type="company"
             className="form-control"
