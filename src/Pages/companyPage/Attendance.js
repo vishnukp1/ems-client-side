@@ -5,18 +5,30 @@ import axios from "../../Autherization/Autherization";
 import Sidebars from "../../component/Sidebars";
 import "../../styles/company.css";
 import { Button } from "react-bootstrap";
-import DatePicker from "react-datepicker";
+
+
 import "react-datepicker/dist/react-datepicker.css";
 import { MDBCol } from "mdb-react-ui-kit";
 import Navbars from "../../component/Navbars";
+import { TimePicker } from '@mui/x-date-pickers'
+import DatePicker from "react-datepicker";
+import ReactSelect from "react-select";
+const options = [
+  { value: 'Present', label: 'Present' },
+  { value: 'Absent', label: 'Absent' },
+  { value: 'Late', label: 'Late' },
+ 
+]
 
 
 function Attendance() {
   const [staff, setStaff] = useState([]);
+  const [Newdata, setnewData] = useState({});
   const [attendanceMarked, setAttendanceMarked] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState([]);
   const [department, setDepartment] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
+  const [selectedDate, handleDateChange] = useState(null);
   console.log(staff);
 
   
@@ -45,84 +57,60 @@ function Attendance() {
       `/company/searchdepartments?department=${key}`
     );
     const responseData = response.data.data;
-    console.log(responseData);
+  
     if (responseData) {
       setStaff(responseData);
     }
   };
 
 
-  const getAttendanceDay = async (date) => {
-    try {
-    
-      const response = await axios.get(`/company/attendance`);
-      const responseData = response.data.data;
-      setStaff(responseData);
-      console.log("today attendance",responseData);
-     
-    } catch (error) {
-      console.error("Error fetching staff data:", error);
-    }
-  };
+  
+  
   const searchHandle = async (e) => {
     let key = e.target.value;
     const response = await axios.get(
-      `/company/search?name=${key}`
+      `/attendance/name?name=${key}`
     );
     const responseData = response.data;
-
+console.log(responseData);
     
     if (responseData) {
       setStaff(responseData);
     }
   };
 
-
-
-
-  useEffect(() => {
-    getAttendance(startDate);
-    getDepartment()
-  }, [startDate]);
-
-  useEffect(() => {
-    getAttendance();
-
-  }, [staff]);
-
-  useEffect(() => {
-
-getAttendanceDay()
-  }, []);
-
-
-  const markAttendance = async (e) => {
-    e.preventDefault();
-
-    try {
-      const data = {
-        selectedStaff: selectedStaff,
-        status: "Present",
-      };
-
-      await axios
-        .post(`/company/mark`, data)
+  const handleInputChange = async (staffId, field, value) => {
+ 
+    // Find the staff member in the state based on the staffId
+  try{
+    // Prepare the data to send to the backend
+    const attendanceData = {
+      staffId,
+      TimeIn: field === 'TimeIn' ? new Date(value) : new Date("2023-09-28T09:15:00Z"),
+      TimeOut: field === 'TimeOut' ? new Date(value) : new Date("2023-09-28T09:15:00Z"),
+      status: field === 'status' ? value.value : "present", // Assuming 'value' is an object with a 'value' property
+    };
+  
+    console.log(attendanceData);
+    await axios
+        .post(`/company/mark`, attendanceData)
         .then((response) => {
           console.log(response.data);
-          setAttendanceMarked(true); 
-          getAttendance(startDate);
+      
         });
+        getAttendance(startDate);
     } catch (error) {
       console.error("Error marking attendance:", error);
-    
-
-    
-  
     }
+  };
+  
+
+
+
+
+
 
   
-    setSelectedStaff([]);
-  };
   const deleteAttendance = async (staffId, date) => {
     console.log(date);
     try {
@@ -137,13 +125,7 @@ getAttendanceDay()
     }
   };
   
-  const handleCheckboxChange = (staffId) => {
-    setSelectedStaff((prevSelectedStaff) =>
-      prevSelectedStaff.includes(staffId)
-        ? prevSelectedStaff.filter((id) => id !== staffId)
-        : [...prevSelectedStaff, staffId]
-    );
-  };
+
 
 
   const getDepartment = async () => {
@@ -157,6 +139,12 @@ getAttendanceDay()
       console.error("Error fetching department data:", error);
     }
   };
+
+  useEffect(() => {
+    getDepartment();
+    getAttendance(startDate) 
+  }, []);
+  
   return (
     <div style={{display:'flex', flexDirection:'column'}}>
     <Navbars />
@@ -171,12 +159,12 @@ getAttendanceDay()
           backgroundColor: " rgb(233, 238, 247)",
         }}>
         <h2      style={{
-            textAlign: "left",
-            marginTop: "1.3rem",
-            marginBottom: "1.2rem",
-            fontFamily: "Arial, sans-serif",
+           textAlign: "left",
+           marginTop: "1.3rem",
+           marginBottom: "1.2rem",
+           fontFamily: "Arial, sans-serif",
           }}>ATTENDANCE</h2>
-
+ <div style={{flex: 1, height: '2.9px', backgroundColor: '#1B1E36',marginBottom: "21px" ,marginTop:"-14px"}} />
         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <div
           style={{
@@ -185,7 +173,7 @@ getAttendanceDay()
             justifyContent: "space-between",
           }}
         >
-          <div
+          <div  className="sub-container"
             style={{
               width: "100%",
               display: "flex",
@@ -215,7 +203,7 @@ getAttendanceDay()
             <MDBCol md="14">
               <div className="active-pink-3 active-pink-4 mb-4 ">
                 <input
-                  className="form-control"
+                className="form-control-pages"
                   type="text"
                   placeholder="Search name"
                   aria-label="Search"
@@ -226,52 +214,53 @@ getAttendanceDay()
           </div>
           </div>
         </div>
+        <div className="table-responsive">
         <Table className="table-text" striped bordered hover size="sm">
           <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Department</th>
-              <th scope="col">Status</th>
-              <th scope="col">Select</th>
+            <tr className="table-head">
+              <th scope="col" style={{color:"white" }}>No</th>
+              <th scope="col" style={{color:"white" }}>Name</th>
+              <th scope="col" style={{color:"white" }}>Department</th>
+              <th scope="col" style={{color:"white" }}>Time In</th>
+              <th scope="col" style={{color:"white" }}>Time Out</th>
+              <th scope="col" style={{color:"white" }}>Select</th>
             
             </tr>
           </thead>
           <tbody>
-            {staff.map((staff) => (
-              <tr key={staff._id}>
-                <td>{staff.staffId}</td>
-                <td>{staff.staffName}</td>
-                
-                <td>{staff.department}</td>
-                <td>
-                  {staff.attendance ? staff.attendance.status : "N/A"}
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedStaff.includes(staff.staffId)}
-                    onChange={() => handleCheckboxChange(staff.staffId)}
-                  />
-                </td>
-            
-              </tr>
-            ))}
-         
+          {staff.map((staff,index) => (
+ <tr key={staff._id} className="table-body">
+    <td>{index+1}</td>
+    <td>{staff.staffName}</td>
+    <td>{staff.department}</td> 
+    <td style={{ width: "180px" }}>
+    <TimePicker
+  value={new Date(staff.attendance.TimeIn) || null}
+  onChange={(value) => handleInputChange(staff.staffId, 'TimeIn', value)}
+  animateYearScrolling
+/>
+</td>
+
+   <td style={{width:"180px"}}>   <TimePicker
+  value={new Date(staff.attendance.TimeOut) || null}
+  onChange={(value) => handleInputChange(staff.staffId, 'TimeOut', value)}
+  animateYearScrolling
+/> </td>
+    <td> <ReactSelect
+  name="status"
+  options={options}
+  value={options.find(option => option.value === staff.attendance.status)}
+  onChange={(value) => handleInputChange(staff.staffId, 'status', value)}
+/></td>
+   
+  </tr>
+))}
+
           </tbody>
         </Table>
-        {selectedStaff.length > 0 ? (
-        <Button     style={{
-          height: "2rem",
-          width: "6rem",
-          fontSize: ".6rem",
-          background: "#14539A",
-          paddingTop:"2px"
-        }}  onClick={markAttendance}>Add Attendance</Button>
-      ) : (
-        <p>Select staff members to add attendance.</p>
-      )}
-      {attendanceMarked && <p>Attendance has been marked for selected staff.</p>}
+        </div>
+        
+   
       </div>
    </div></div>
   );

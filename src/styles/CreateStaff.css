@@ -1,0 +1,73 @@
+/* Add custom styles to your form elements */
+.form-taskadd {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    height: auto;
+  }
+  
+  .input-field {
+    margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+
+width: 100%;
+flex-direction: row;
+
+  }
+ 
+
+  .form__label {
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .input_form {
+    width: 15rem!important;
+    margin-left: 1rem !important;
+  }
+  
+  .select-custom-addstaff {
+    width: 15rem;
+    padding: 10px;
+  }
+  
+  .footer {
+    display: flex;
+  
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 3rem;
+  }
+  
+  .btn-task {
+    
+   
+    padding: 6px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #25336e;
+    margin-right: 1.5rem;
+    color:#f3f4f6; 
+    border-color: #25336e;
+    border-radius: 9px;
+    width: 7rem;
+    height: 2rem ;
+    font-size: 14px;
+  }
+  .form-control {
+    margin-bottom: 8px !important;
+    height: 37px !important;
+  }
+  
+ 
+  
+  .input-feedback {
+    margin-top: 33px !important;
+    margin-left: 3rem;
+    margin-bottom: 12rem !important;
+
+  } 
+  

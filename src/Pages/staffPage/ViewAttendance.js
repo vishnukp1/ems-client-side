@@ -94,7 +94,7 @@ function ViewAttendance() {
           selected={startDate}
           onChange={(date) => setStartDate(date)}
         />
-        <div
+        <div  className="sub-container"
           style={{
             width: "100%",
             display: "flex",

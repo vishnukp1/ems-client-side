@@ -1,14 +1,34 @@
 import axios from "../../Autherization/Autherization";
 import React, { useEffect, useRef, useState } from "react";
-import "../../styles/company.css";
+import "../../styles/CreateStaff.css";
 import { useDispatch } from "react-redux";
 import { setremove } from "../../Reducers/addstaffReducer";
+import Form from 'react-bootstrap/Form';
+import Select from 'react-select';
+import TextareaAutosize from 'react-textarea-autosize';
+const options = [
+  { value: 'Male', label: 'Male' },
+  { value: 'Female', label: 'Female' },
+ 
+]
+
+
 
 function CreateStaff() {
   const formRef = useRef(null);
   const dispatch = useDispatch();
   const [department, setDepartment] = useState([]);
+  const [validated, setValidated] = useState(false);
 
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   
   let menuRef = useRef();
 
@@ -29,8 +49,14 @@ function CreateStaff() {
   });
 
 
-  const submitButton = async (e) => {
-    e.preventDefault();
+  const submitButton = async (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
     const items = {
       name: formRef.current.name.value,
   
@@ -79,113 +105,180 @@ function CreateStaff() {
     getDepartment();
   }, []);
 
-  return (
+  return(
     <div className="form-taskadd" ref={menuRef}>
-      <form ref={formRef} onSubmit={submitButton}>
-        <h2 style={{ textAlign: "center" }}>Add Staff</h2>
-        <div className="form-body">
-          <div className="username">
-            <label className="form__label" for="firstName">
-              Name{" "}
-            </label>
-            <input
-              className="input_form"
-              type="text"
-              id="firstName"
-              name="name"
-            />
-          </div>
-          
-          <div className="username" style={{ display: "flex" }}>
-            <label className="form__label" for="firstName">
-              Image{" "}
-            </label>
-            <input
-              style={{ marginLeft: "48px" }}
-              className="input_form"
-              type="file"
-              id="lastName"
-              placeholder="image"
-              name="image"
-            />
-          </div>
-          <div className="username">
-            <label className="form__label" for="firstName">
-              Phone{" "}
-            </label>
-            <input
-              className="input_form"
-              type="text"
-              id="lastName"
-              name="phone"
-            />
-          </div>
-
-          <div className="username">
-            <label className="form__label" for="firstName">
-              Email{" "}
-            </label>
-            <input className="input_form" id="lastName" name="email" />
-          </div>
-
-          <div className="email">
-            <label className="form__label" for="email">
-              Address{" "}
-            </label>
-            <input className="input_form" name="address" />
-          </div>
-          <div className="password">
-            <label className="form__label" for="password">
-              Gender{" "}
-            </label>
-            <select name="gender" className="select-custom-addstaff">
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-          <div className="password">
-            <label className="form__label" for="password">
-              Salary{" "}
-            </label>
-            <input className="input_form" id="password" name="salary" />
-          </div>
-          <div className="password">
-            <label className="form__label" for="password">
-              Department{" "}
-            </label>
-            <select
-              className="select-custom-addstaff"
-              style={{ backgroundColor: "white" }}
-              name="position"
-              onChange={(e) => searchDepartment(e.target.value)}
-            >
-              <option name="position" value="">
-                Select Department
-              </option>
-              {department.map((post, index) => (
-                <option
-                  name="position"
-                  style={{ fontSize: "18px", textAlign: "start" }}
-                  key={index}
-                  value={post.title}
-                >
-                  {post.title}
-                </option>
-              ))}
-            </select>
-          </div>
+  <Form noValidate ref={formRef} validated={validated} onSubmit={submitButton}>
+    <h2 style={{ textAlign: "center" }}>Add Staff</h2>
+    
+    {/* Name */}
+    <div className="input-field">
+      <Form.Group className="form__label" controlId="validationCustom01">
+        <Form.Label>Name</Form.Label>
+        <div style={{ display: "flex" }}>
+          <Form.Control
+           className="input_form"
+            required
+            type="text"
+            placeholder="Name"
+            name="name"
+          />
         </div>
-        <div class="footer">
-          <button className="btn-task" type="submit">
-            Add Staff
-          </button>
-          <button className="btn-task" onClick={() => dispatch(setremove())}>
-            cancel
-          </button>
-        </div>
-      </form>
+        <Form.Control.Feedback className="input-feedback" type="invalid">
+          Please provide a valid name.
+        </Form.Control.Feedback>
+      </Form.Group>
     </div>
+ 
+
+    {/* Phone */}
+    <div className="input-field">
+      <Form.Group className="form__label" controlId="validationCustom02">
+        <Form.Label>Phone</Form.Label>
+        <div style={{ display: "flex" }}>
+          <Form.Control
+           className="input_form"
+            required
+            type="text"
+            placeholder="Phone"
+            name="phone"
+          />
+        </div>
+        <Form.Control.Feedback className="input-feedback" type="invalid">
+          Please provide a valid phone number.
+        </Form.Control.Feedback>
+      </Form.Group>
+    </div>
+
+    {/* Image */}
+    <div className="input-field">
+      <Form.Group className="form__label" controlId="validationCustomImage">
+        <Form.Label>Image</Form.Label>
+        <div className="username" style={{ display: "flex" }}>
+          <input
+          
+            className="input_form"
+            type="file"
+            id="lastName"
+            placeholder="image"
+            name="image"
+            required
+          />
+        </div>
+        <Form.Control.Feedback className="input-feedback" type="invalid">
+          Please choose an image.
+        </Form.Control.Feedback>
+      </Form.Group>
+    </div>
+
+    {/* Email */}
+    <div className="input-field">
+      <Form.Group className="form__label" controlId="validationCustom03">
+        <Form.Label>Email</Form.Label>
+        <div style={{ display: "flex" }}>
+          <Form.Control
+            className="input_form"
+            type="email"
+            placeholder="Email"
+            name="email"
+            required
+          />
+        </div>
+        <Form.Control.Feedback className="input-feedback" type="invalid">
+          Please provide a valid email address.
+        </Form.Control.Feedback>
+      </Form.Group>
+    </div>
+
+    {/* Address */}
+    <div className="input-field">
+      <Form.Group className="form__label" controlId="validationCustom04">
+        <Form.Label>Address</Form.Label>
+        <div style={{ display: "flex" }}>
+        
+             <TextareaAutosize   className="input_form"
+                 style={{ backgroundColor: "white",height:"55px",borderRadius:"5px" }}
+            type="text"
+            placeholder="Address"
+            name="address"
+            required />
+        </div>
+        <Form.Control.Feedback className="input-feedback" type="invalid">
+          Please provide a valid address.
+        </Form.Control.Feedback>
+      </Form.Group>
+    </div>
+ 
+    {/* Gender */}
+    <div className="input-field">
+      <label className="form__label" htmlFor="password">
+        Gender
+      </label>
+      <div style={{width:"49rem"}}>
+      <Select name="gender" options={options} />
+      </div>
+    </div>
+
+    {/* Salary */}
+    <div className="input-field">
+      <Form.Group className="form__label" controlId="validationCustom05">
+        <Form.Label>Salary</Form.Label>
+        <div style={{ display: "flex" }}>
+          <Form.Control
+            className="input_form"
+            type="text"
+            placeholder="Salary"
+            name="salary"
+            required
+          />
+        </div>
+        <Form.Control.Feedback className="input-feedback" type="invalid">
+          Please provide a valid salary.
+        </Form.Control.Feedback>
+      </Form.Group>
+    </div>
+
+    {/* Department */}
+    <div className="input-field">
+      <label className="form__label" htmlFor="password">
+        Department
+      </label>
+      <div style={{ display: "flex" }}>
+        <select
+          className="select-custom-addstaff"
+          style={{ backgroundColor: "white",height:"37px" ,border:"0px"}}
+          name="position"
+          onChange={(e) => searchDepartment(e.target.value)}
+        >
+          <option name="position" value=""  style={{ fontSize: "18px",textAlign:"center"}}>
+            Select Department
+          </option>
+          {department.map((post, index) => (
+            <option
+              name="position"
+              style={{ fontSize: "22px",textAlign:"center"}}
+              key={index}
+              value={post.title}
+            >
+              {post.title}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {/* Submit and Cancel Buttons */}
+    <div className="input-field">
+      <div className="footer">
+        <button className="btn-task" type="submit">
+          Add Staff
+        </button>
+        <button className="btn-task cancel" onClick={() => dispatch(setremove())}>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </Form>
+</div>
   );
 }
 

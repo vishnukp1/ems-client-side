@@ -1,12 +1,12 @@
-import React, { Component, useRef } from 'react'
+import React, {  useRef } from 'react'
 import "../styles/Login.css"
 import { useDispatch } from 'react-redux';
 import { setLogin, setSignup } from '../Reducers/loginReducer';
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from "../Reducers/useReducer";
-import jwt_decode from "jwt-decode";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login () {
@@ -37,7 +37,10 @@ function Login () {
 
       if (data.token) {
         try {
-          alert("Login Successfully!");
+          
+            toast.success('SUCCESSFULLY LOGIN!');
+       
+       
           navigate("/company/dashboard");
           localStorage.setItem("token", data.token);
           localStorage.setItem("companyId", data.companyId);
@@ -47,6 +50,7 @@ function Login () {
           console.log(token);
        
         } catch (error) {
+          
           console.error("Error in token:", error);
         }
       } else {
@@ -59,6 +63,7 @@ function Login () {
       console.error("Error getting customer data:", error);
     }
   };
+ 
  
     return (
         <div className='form-login'>
@@ -95,9 +100,11 @@ function Login () {
           </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="form-btn">
+          <button type="submit"  className="form-btn">
             Submit
           </button>
+         
+      <ToastContainer />
         </div>
    
         <p className="forgot-password text-right">

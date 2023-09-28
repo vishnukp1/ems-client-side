@@ -103,15 +103,15 @@ function Department() {
         <Table className="department-table-text" striped bordered hover size="sm" >
           <thead className='table-head'>
             <tr>
-              <th style={{ width: "10%" }}>#</th>
-              <th style={{ width: "55%" }}>Departments</th>
+              <th style={{ width: "10%",color:"white"  }}>#</th>
+              <th style={{ width: "55%",color:"white"  }}>Departments</th>
             
-              <th style={{ width: "10%" }}>Actions</th>
+              <th style={{ width: "10%" ,color:"white"  }}>Actions</th>
               
             </tr>
           </thead>
           {department.length > 0 ? (
-            <tbody>
+            <tbody className="table-body">
               {department.map((post, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>

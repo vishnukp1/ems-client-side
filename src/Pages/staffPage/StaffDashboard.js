@@ -22,7 +22,7 @@ function StaffDashboard() {
       <StaffSidebar/>
       <div
         className="main-container"
-        style={{ backgroundColor: "#1E1E2E", display: "flex" }}
+        style={{ backgroundColor: "#1E1E2E", display: "flex" ,overflowY:"auto" }}
       >
         <div
           className="dashboard-div"

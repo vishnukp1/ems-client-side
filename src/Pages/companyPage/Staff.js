@@ -15,12 +15,13 @@ import axios from "../../Autherization/Autherization";
 
 function Staff() {
   const buttonStyle = {
-    fontSize: "8px",
+    fontSize: "10px",
     padding: "2px 5px",
     marginLeft: "2px",
     border: "1px solid #343a40",
   };
   const addstaf = useSelector((state) => state.addstaff);
+  
 
   console.log(addstaf);
 
@@ -112,7 +113,7 @@ function Staff() {
           paddingRight:"1rem",
         }}
       >
-        <h3
+        <h2
           style={{
             textAlign: "left",
             marginTop: "1.3rem",
@@ -120,8 +121,10 @@ function Staff() {
             fontFamily: "Arial, sans-serif",
           }}
         >
-          EMPLOYEES
-        </h3>
+         EMPLOYEES
+        </h2>
+       
+        <div style={{flex: 1, height: '2.9px', backgroundColor: '#1B1E36',marginBottom: "21px" ,marginTop:"-14px"}} />
 
         <div className="sub-container"
           style={{
@@ -150,8 +153,8 @@ function Staff() {
             <Button
               style={{
                 height: "2rem",
-                width: "6rem",
-                fontSize: ".5rem",
+                width: "7rem",
+                fontSize: "10px",
                 background: "#14539A",
               }}
               onClick={() => dispatch(addStaff())}
@@ -165,7 +168,7 @@ function Staff() {
             <MDBCol md="14">
               <div className="active-pink-3 active-pink-4 mb-4 ">
                 <input
-                  className="form-control"
+                  className="form-control-pages"
                   type="text"
                   placeholder="Search"
                   aria-label="Search"
@@ -179,27 +182,27 @@ function Staff() {
           <Table className="table-text" striped bordered hover size="sm">
             <thead>
               <tr className="table-head">
-                <th style={{ width: "3%" }}>#</th>
-                <th style={{ width: "14%" }}>Name</th>
-                <th style={{ width: "8%" }}>Photo</th>
-                <th style={{ width: "12%" }}>Department</th>
-                <th style={{ width: "6%" }}>Gender</th>
-                <th style={{ width: "14%" }}>Phone</th>
-                <th style={{ width: "14%" }}>Email</th>
-                <th style={{ width: "8%" }}>Salary</th>
-                <th style={{ width: "18%" }}>Address</th>
-                <th style={{ width: "28%" }}>Actions</th>
+                <th style={{ width: "3%",color:"white" }}>#</th>
+                <th style={{ width: "14%",color:"white"  }}>Name</th>
+                <th style={{ width: "8%" ,color:"white"  }}>Photo</th>
+                <th style={{ width: "12%" ,color:"white" }}>Department</th>
+                <th style={{ width: "6%" ,color:"white"  }}>Gender</th>
+                <th style={{ width: "14%",color:"white"  }}>Phone</th>
+                <th style={{ width: "14%" ,color:"white" }}>Email</th>
+                <th style={{ width: "8%"  ,color:"white" }}>Salary</th>
+                <th style={{ width: "18%",color:"white"  }}>Address</th>
+                <th style={{ width: "28%" ,color:"white" }}>Actions</th>
               </tr>
             </thead>
             {staff.length > 0 ? (
-              <tbody style={{fontSize:"17px"}}>
+              <tbody className="table-body">
                 {staff.map((post, index) => (
-                  <tr key={post._id}>
+                  <tr key={post._id} style={{}}>
                     <td>{index + 1}</td>
                     <td>{post.name}</td>
                     <td>
                       <img
-                        style={{ height: "55px", width: "55px" }}
+                        style={{ height: "55px", width: "55px" ,objectFit:"cover"}}
                         src={post.imagepath}
                         alt="User"
                       />

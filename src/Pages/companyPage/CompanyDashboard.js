@@ -21,7 +21,7 @@ function CompanyMain() {
     <Navbars />
     <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <Sidebars />
-      <div className="main-container" style={{ backgroundColor: "#1E1E2E",display:"flex", }}>
+      <div className="main-container" style={{ backgroundColor: "#1E1E2E",display:"flex",overflowY:"auto" }}>
         <div className="dashboard-div" style={{display:"flex",justifyContent:"space-around",width:"100%",flexWrap: "wrap" ,marginTop:"-55px"}}>
        
         <Card 

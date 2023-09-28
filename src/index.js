@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { store } from './Store/store';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +18,7 @@ root.render(
     <BrowserRouter>
     <Provider store={store}>
     <App />
+    <ToastContainer />
     </Provider>
     </BrowserRouter>
     

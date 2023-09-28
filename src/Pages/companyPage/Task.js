@@ -107,7 +107,7 @@ function Task() {
         >
           STAFF TASK{" "}
         </h3>
-        <div
+        <div  className="sub-container"
           style={{
             width: "100%",
             display: "flex",
@@ -138,7 +138,7 @@ function Task() {
             <MDBCol md="12">
               <div className="active-pink-3 active-pink-4 mb-4 ">
                 <input
-                  className="form-control"
+                 className="form-control-pages"
                   type="text"
                   placeholder="Search"
                   aria-label="Search"
@@ -148,20 +148,21 @@ function Task() {
             </MDBCol>
           </div>
         </div>
+        <div className="table-responsive">
         <Table className="table-text"  striped bordered hover size="sm">
           <thead className="table-head">
-            <tr>
-              <th style={{ width: "5%" }}>#</th>
-              <th style={{ width: "14%" }}>Task Title</th>
-              <th style={{ width: "14%" }}>Assigned to</th>
-              <th style={{ width: "10%" }}>Start time</th>
-              <th style={{ width: "10%" }}>End time</th>
-              <th style={{ width: "14%" }}>Status</th>
-              <th style={{ width: "4.6%" }}>Actions</th>
+            <tr className="table-head">
+              <th style={{ width: "5%" ,color:"white" }}>#</th>
+              <th style={{ width: "14%" ,color:"white" }}>Task Title</th>
+              <th style={{ width: "14%",color:"white"  }}>Assigned to</th>
+              <th style={{ width: "10%" ,color:"white" }}>Start time</th>
+              <th style={{ width: "10%" ,color:"white" }}>End time</th>
+              <th style={{ width: "14%",color:"white"  }}>Status</th>
+              <th style={{ width: "4.6%",color:"white"  }}>Actions</th>
             </tr>
           </thead>
           {task.length > 0 ? (
-            <tbody>
+            <tbody className="table-body">
               {task.map((post, index) =>{
                  if (post.tasks.length > 0) {
       const fromDate = new Date(post.tasks[0]?.startTime);
@@ -215,6 +216,7 @@ function Task() {
             </tbody>
           )}
         </Table>
+        </div>
         </div>
       </div>
     </div>

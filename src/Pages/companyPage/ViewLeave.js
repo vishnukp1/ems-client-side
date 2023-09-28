@@ -79,19 +79,18 @@ function ViewLeave() {
  
  
   
-   
+  <div className="table-responsive">
       
       <Table className="table-text" striped bordered hover size="sm">
     
         <thead>
-          <tr>
-            <th>From Date</th>
-            <th>To Date</th>
-            <th>Reason</th>
-            <th>Status</th>
-            <th>Description</th>
-            <th>Apply On</th>
-            <th>Actions</th>
+          <tr className="table-head">
+            <th style={{color:"white" }}>From Date</th>
+            <th style={{color:"white" }}>To Date</th>
+            <th style={{color:"white" }}>Reason</th>
+            <th style={{color:"white" }}>Status</th>
+            <th style={{color:"white" }}>Apply On</th>
+            <th style={{color:"white" }}>Actions</th>
           </tr>
         </thead>
         {leave.length > 0 ?(
@@ -107,7 +106,7 @@ const formattedToDate = toDate.toLocaleDateString('en-GB');
 const formattedApplyON = ApplyOn.toLocaleDateString('en-GB'); 
 
   return (
-    <tr key={index}>
+    <tr key={index} className="table-body">
       <td>{formattedFromDate}</td>
       <td>{formattedToDate}</td>
       <td>{leave.reason}</td>
@@ -138,6 +137,7 @@ const formattedApplyON = ApplyOn.toLocaleDateString('en-GB');
           </tbody>
         )}
       </Table>
+      </div>
     </div>
 </div>
 </div>

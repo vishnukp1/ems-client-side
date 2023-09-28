@@ -113,7 +113,7 @@ function ViewEmployee() {
           EMPLOYEES
         </h4>
 
-        <div
+        <div  className="sub-container"
           style={{
             width: "100%",
             display: "flex",
@@ -145,7 +145,7 @@ function ViewEmployee() {
             <MDBCol md="14">
               <div className="active-pink-3 active-pink-4 mb-4 ">
                 <input
-                  className="form-control"
+                  className="form-control-pages"
                   type="text"
                   placeholder="Search"
                   aria-label="Search"

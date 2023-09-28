@@ -5,6 +5,7 @@ import { setLogin, setSignup } from '../Reducers/loginReducer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from "../Reducers/useReducer";
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUp () {
   

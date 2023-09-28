@@ -4,14 +4,13 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Attendance from "./Pages/companyPage/Attendance";
 
 import StaffLogin from "./Pages/staffPage/StaffLogin";
-import Navbars from "./component/Navbars";
 import CompanyLogin from "./Pages/companyPage/CompanyLogin";
 import CreateStaff from "./Pages/companyPage/CreateStaff";
 import Salary from "./Pages/companyPage/Salary";
 import Updatestaff from "./Pages/companyPage/Updatestaff";
 import Addtask from "./Pages/companyPage/Addtask";
 import ViewAttendance from "./Pages/staffPage/ViewAttendance";
-import ViewPerformance from "./Pages/staffPage/ViewPerformace";
+
 import ViewTask from "./Pages/staffPage/ViewTask";
 import Profile from "./Pages/staffPage/Profile";
 import AdminLogin from "./Pages/adminPage/AdminLogin";
@@ -35,22 +34,17 @@ import StaffHome from "./Pages/staffPage/StaffHome";
 import Users from "./Pages/adminPage/Users";
 import AddUsers from "./Pages/adminPage/AddUsers";
 import Notification from "./Pages/staffPage/Notification";
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import AddAttendance from "./Pages/companyPage/AddAttendance";
 
 function App() {
-  // const location = useLocation()
-  // const [admin, setAdmin] = useState(false);
-  // useEffect(()=>{
-  //   if(location.pathname.includes("admin")){
-  // setAdmin(true)
-  // }else{
-  // setAdmin(false)
-  // }
-  // },[location])
+
   return (
     <div className="App " style={{ background: "#f0f9ff", height: "100%" }}>
       <div style={{ display: "flex" }}>
         <Routes>
-          {/* {admin ? null : <Sidebars />} */}
+          
           <Route exact path="/" element={<Home />} />
           <Route exact path="/admin" element={<AdminLogin />} />
           <Route exact path="/admin/allusers" element={<Allusers />} />
@@ -63,7 +57,12 @@ function App() {
             path="/company/dashboard"
             element={<CompanyDashboard />}
           />
-          <Route exact path="/company/attendance" element={<Attendance />} />
+           <Route exact path="/company/attendance" element={
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Attendance />
+          </LocalizationProvider>
+        } />
+          
           <Route
             exact
             path="/employees/Dashboard"
@@ -81,6 +80,8 @@ function App() {
             element={<Updatestaff />}
           />
           <Route exact path="/company/addtask/:id" element={<Addtask />} />
+
+          <Route exact path="/company/addmark" element={<AddAttendance />} />
           a
           <Route exact path="/company/addleave/:id" element={<Addleave />} />
           <Route
@@ -96,11 +97,6 @@ function App() {
             element={<ViewAttendance />}
           />
           <Route exact path="/employees/viewstaff" element={<ViewEmployee />} />
-          <Route
-            exact
-            path="/employees/performance"
-            element={<ViewPerformance />}
-          />
           <Route exact path="/employees/addleave" element={<ApplyLeave />} />
           <Route exact path="/employees/viewtask" element={<ViewTask />} />
           <Route exact path="/employees/stafflogin" element={<StaffLogin />} />

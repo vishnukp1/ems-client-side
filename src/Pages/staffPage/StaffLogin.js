@@ -4,6 +4,8 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import {  toast } from 'react-toastify';
+
 
 function Login() {
   const navigate = useNavigate();
@@ -30,7 +32,8 @@ function Login() {
 
       if (data.token) {
         try {
-          alert("Login Successfully!");
+        
+          toast.success('SUCCESSFULLY LOGIN!');
           navigate("/employees/Dashboard");
           localStorage.setItem("token", data.token);
           localStorage.setItem("userid", data.id);
