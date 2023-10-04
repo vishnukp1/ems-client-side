@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../../styles/company.css";
-
+import "../../styles/updatePage.css"
 import Sidebars from "../../component/Sidebars";
 import Navbars from "../../component/Navbars";
 
@@ -37,7 +36,7 @@ function Updatestaff() {
         const response = await axios.get(
           `http://localhost:4444/company/staff/${id}`
         );
-        console.log(response.data);
+        console.log("reall one",response.data.data);
         setData(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -83,10 +82,10 @@ function Updatestaff() {
       <Sidebars />
       <div className="form-upadate">
         <form onSubmit={handleSubmit}>
-          <h2 style={{ textAlign: "center" }}>Edit Staff</h2>
+          <h2 style={{ textAlign: "center" ,color:"black"}}>EDIT STAFF</h2>
           <div className="form-body">
             <div className="form-body">
-              <div className="username">
+              <div className="form-div">
                 <label className="form__label" htmlFor="name">
                   Name
                 </label>
@@ -95,12 +94,12 @@ function Updatestaff() {
                   type="text"
                   id="name"
                   placeholder="Name"
-                  value={data.name}
+                  value={ data.name}
                   name="name"
                   onChange={handleChange}
                 />
               </div>
-              <div className="email">
+              <div className="form-div">
                 <label className="form__label" htmlFor="email">
                   Email
                 </label>
@@ -114,7 +113,7 @@ function Updatestaff() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="username">
+              <div className="form-div">
                 <label className="form__label" htmlFor="phone">
                   Phone
                 </label>
@@ -128,20 +127,20 @@ function Updatestaff() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="username" style={{ display: "flex" }}>
+              <div className="form-div" style={{ display: "flex" }}>
                 <label className="form__label" for="firstName">
                   Image{" "}
                 </label>
                 <input
                   style={{ marginLeft: "48px" }}
-                  className="input_form"
+                  className="input_image"
                   type="file"
                   id="lastName"
                   placeholder="image"
                   name="image"
                 />
               </div>
-              <div className="email">
+              <div className="form-div">
                 <label className="form__label" htmlFor="imagepath">
                   Salary
                 </label>
@@ -154,12 +153,12 @@ function Updatestaff() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="password">
+              <div className="form-div">
                 <label className="form__label" for="password">
                   Postion{" "}
                 </label>
                 <select
-                  className="select-custom-addstaff"
+                  className="select-custom-addstaff1"
                   style={{ backgroundColor: "white" }}
                   name="position"
                   onChange={(e) => searchDepartment(e.target.value)}
@@ -179,17 +178,17 @@ function Updatestaff() {
                   ))}
                 </select>
               </div>
-              <div className="password">
+              <div className="form-div">
                 <label className="form__label" for="password">
                   Gender{" "}
                 </label>
-                <select name="gender" className="select-custom-addstaff">
+                <select name="gender" className="select-custom-addstaff1">
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
               </div>
-              <div className="password">
+              <div className="form-div">
                 <label className="form__label" htmlFor="address">
                   Address
                 </label>
@@ -206,7 +205,7 @@ function Updatestaff() {
             </div>
           </div>
           <div className="footer">
-            <button className="btn-task" type="submit">
+            <button className="btn-task1" type="submit">
               Update Staff
             </button>
           </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import "../styles/company.css"
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -37,6 +39,9 @@ function StaffSidebar() {
          
             <NavLink exact to="/employees/viewattendance" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Attendance</CDBSidebarMenuItem>
+              <Badge badgeContent={4} color="primary">
+  <MailIcon color="action" />
+</Badge>
             </NavLink>
             <NavLink exact to="/employees/addleave" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Apply Leave</CDBSidebarMenuItem>

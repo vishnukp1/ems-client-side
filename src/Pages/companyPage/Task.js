@@ -17,6 +17,7 @@ function Task() {
     border: "1px solid #343a40",
   };
   const [task, setTasks] = useState([]);
+  console.log(task);
 
   const [department, setDepartment] = useState([]);
 
@@ -97,16 +98,18 @@ function Task() {
         className="form"
         style={{ width: "100%", height: "100vh",marginTop:"0rem" }}
       >
-        <h3
+       <h2
           style={{
             textAlign: "left",
-          
+            marginTop: ".3rem",
             marginBottom: "1.2rem",
             fontFamily: "Arial, sans-serif",
           }}
         >
-          STAFF TASK{" "}
-        </h3>
+        TASKS
+        </h2>
+       
+        <div style={{flex: 1, height: '2.9px', backgroundColor: '#1B1E36',marginBottom: "21px" ,marginTop:"-14px"}} />
         <div  className="sub-container"
           style={{
             width: "100%",
@@ -184,7 +187,7 @@ function Task() {
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <Button
                         variant="outline-dark"
-                        onClick={() => deleteTask(post.staffId, post.taskId)}
+                        onClick={() => deleteTask(post._id, post.tasks[0]?._id)}
                         style={buttonStyle}
                       >
                         Delete
@@ -194,7 +197,7 @@ function Task() {
                         style={buttonStyle}
                         onClick={() =>
                           navigate(
-                            `/company/updatetask/${post.staffId}/${post.taskId}`
+                            `/company/updatetask/${post._id}/${post.tasks[0]?._id}`
                           )
                         }
                       >

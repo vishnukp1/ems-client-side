@@ -20,15 +20,7 @@ function CreateStaff() {
   const [department, setDepartment] = useState([]);
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
 
-    setValidated(true);
-  };
   
   let menuRef = useRef();
 
@@ -51,38 +43,38 @@ function CreateStaff() {
 
   const submitButton = async (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
     setValidated(true);
-    const items = {
-      name: formRef.current.name.value,
   
-      phone: formRef.current.phone.value,
-      email: formRef.current.email.value,
-      imagepath: formRef.current.image.files[0],
-      gender: formRef.current.gender.value,
-      salary: formRef.current.salary.value,
-      department: formRef.current.position.value,
-      address: formRef.current.address.value,
-    };
-
-    await axios
-      .post(`/company/createstaff`, items, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => console.log(response.data))
-      .catch((error) => {
-        console.error("Error fetching customer data:", error);
-      });
-    
-      formRef.current.reset();
-
+    if (form.checkValidity() === false) {
+      event.preventDefault(); // Prevent form submission if validation fails
+      event.stopPropagation();
+    } else {
+      const items = {
+        name: formRef.current.name.value,
+        phone: formRef.current.phone.value,
+        email: formRef.current.email.value,
+        imagepath: formRef.current.image.files[0],
+        gender: formRef.current.gender.value,
+        salary: formRef.current.salary.value,
+        department: formRef.current.position.value,
+        address: formRef.current.address.value,
+      };
+  
+      await axios
+        .post(`/company/createstaff`, items, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => console.log(response.data))
+        .catch((error) => {
+          console.error("Error fetching customer data:", error);
+        });
+  
+      formRef.current.reset(); // Reset the form only if validation succeeds
+    }
   };
+  
 
   const searchDepartment = async (key) => {
     console.log(key);
@@ -198,7 +190,7 @@ function CreateStaff() {
              <TextareaAutosize   className="input_form"
                  style={{ backgroundColor: "white",height:"55px",borderRadius:"5px" }}
             type="text"
-            placeholder="Address"
+            placeholder="  Address"
             name="address"
             required />
         </div>

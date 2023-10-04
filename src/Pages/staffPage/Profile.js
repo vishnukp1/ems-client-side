@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import "../../styles/staffProfile.css"
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import Staff from '../companyPage/Staff';
 import StaffNav from '../../component/StaffNav';
 import StaffSidebar from '../../component/StaffSidebar';
 
@@ -13,7 +11,7 @@ export default function Profile() {
 
   const [department,setDepartment] = useState()
 
-  const navigate = useNavigate()
+ 
 
   const getStaffData = async () => {
     try {

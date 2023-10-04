@@ -60,12 +60,11 @@ function ViewTask() {
           <Table className="table-text" striped bordered hover size="sm">
             <thead className="table-head">
               <tr>
-                <th style={{ width: "5%" }}>#</th>
-                <th style={{ width: "14%" }}>Task Title</th>
-
-                <th style={{ width: "10%" }}>Start time</th>
-                <th style={{ width: "10%" }}>End time</th>
-                <th style={{ width: "14%" }}>Status</th>
+              <th style={{ width: "5%" ,color:"white" }}>#</th>
+              <th style={{ width: "14%" ,color:"white" }}>Task Title</th>
+              <th style={{ width: "10%" ,color:"white" }}>Start time</th>
+              <th style={{ width: "10%" ,color:"white" }}>End time</th>
+              <th style={{ width: "14%",color:"white"  }}>Status</th>
               </tr>
             </thead>
             {task.length > 0 ? (
@@ -74,7 +73,6 @@ function ViewTask() {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{post.title}</td>
-
                     <td>{post.startTime}</td>
                     <td>{post.endTime}</td>
                     <td>{post.status}</td>

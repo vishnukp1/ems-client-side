@@ -20,6 +20,7 @@ width:100%;
  .form-body > *{
     padding: 5px;
  }
+
  
  .form__label{
     width: 40%;
@@ -99,6 +100,14 @@ width:100%;
    width: 35rem !important;
 }
 
+/* Add this CSS to your stylesheets */
+.TimePicker:hover {
+   /* Your hover styles here */
+   background-color: #e0e0e0; /* Change the background color on hover */
+   cursor: pointer; /* Change the cursor to a pointer on hover */
+   /* Add any other styles you want to apply on hover */
+ }
+ 
 
 .department-div{
    display: flex;
@@ -186,18 +195,7 @@ width:100%;
 }
 
 
-.form-upadate {
-   background-color:  rgb(233, 238, 247);
-    border-radius: 5px;
-    width: 375px;
-    height: 28rem;
-    margin: 20px auto;
-    padding: 12px;
-    /* height: 600px; */
-    margin-top: 2rem;
-    margin-bottom: 6rem;
-    
-}
+
 
 .add-task-section {
  

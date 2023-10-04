@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import React from "react"
 import axios from "../../Autherization/Autherization";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import StaffNav from "../../component/StaffNav";
 import StaffSidebar from "../../component/StaffSidebar";
+import { useDispatch, useSelector } from "react-redux";
+import { requestLeave } from "../../Reducers/addstaffReducer";
+import  ApplyLeave  from "../staffPage/ApplyLeave";
 
 function Notification() {
     const [leave, setLeave] = useState([]);
+    const applyLeave = useSelector((state) => state.addstaff);
+    const dispatch = useDispatch([]);
 
     console.log(leave);
+
+    console.log("apply",applyLeave);
 
     const getLeaveData = async () => {
 
@@ -52,7 +59,17 @@ function Notification() {
 
 
  
- 
+      <Button
+                style={{
+                  height: "2rem",
+                  width: "7rem",
+                  fontSize: "10px",
+                  background: "#14539A",
+                }}
+                onClick={() => dispatch(requestLeave())}
+              >
+                Add Staff
+              </Button>
   
    
       
@@ -94,6 +111,11 @@ const formattedApplyON = ApplyOn.toLocaleDateString('en-GB');
         )}
       </Table>
     </div>
+    {applyLeave ? (
+            <div className="overlay">
+              <ApplyLeave />
+            </div>
+          ) : null}
 </div>
 </div>
   )

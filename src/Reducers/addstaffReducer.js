@@ -11,8 +11,26 @@ const addstaffSlice = createSlice({
     setremove: (state, action) => {
         return state= false;
        },
+       editStaff: (state, action) => {
+        return state= true;
+       },
+       editStaffremove: (state, action) => {
+           return state= false;
+          },
+          AddTask: (state, action) => {
+            return state= true;
+           },
+           removeTask: (state, action) => {
+               return state= false;
+              },
+              requestLeave: (state, action) => {
+                return state= true;
+               },
+               RemoveLeave: (state, action) => {
+                   return state= false;
+                  },
   },
 });
 
-export const { addStaff,setremove} = addstaffSlice.actions;
+export const { addStaff,setremove,requestLeave,RemoveLeave} = addstaffSlice.actions;
 export default addstaffSlice.reducer;

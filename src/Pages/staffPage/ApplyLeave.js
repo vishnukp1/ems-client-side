@@ -4,9 +4,59 @@ import { Form, Row } from "react-bootstrap";
 import StaffNav from "../../component/StaffNav";
 import StaffSidebar from "../../component/StaffSidebar";
 import "../../styles/company.css";
+import { useEffect, useState } from "react";
+
+
+import { Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { RemoveLeave } from "../../Reducers/addstaffReducer";
+
+
 
 function Addemployee() {
   const formRef = useRef(null);
+  const [leave, setLeave] = useState([]);
+  const removeLeave = useSelector((state) => state.addstaff);
+  const dispatch = useDispatch([]);
+
+  console.log(leave);
+  let menuRef = useRef();
+
+  useEffect(() => {
+    let handler = (e)=>{
+      if (menuRef.current && !menuRef.current.contains(e.target)){
+  dispatch(RemoveLeave())
+      }      
+    };
+
+    document.addEventListener("mousedown", handler);
+    
+
+    return() =>{
+      document.removeEventListener("mousedown", handler);
+    }
+
+  });
+
+  const getLeaveData = async () => {
+
+      try {
+      
+          const id = localStorage.getItem("userid");
+      
+        const response = await axios.get(`/approvedleave/${id}`);
+        setLeave(response.data.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching leave data:", error);
+        setLeave([]); 
+      }
+    }
+
+    
+useEffect(() => {
+  getLeaveData();
+}, []);
 
   const submitButton = async (e) => {
     e.preventDefault();
@@ -31,13 +81,11 @@ function Addemployee() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <StaffNav />
-      <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
-        <StaffSidebar />
+  
         <div
           class="add-employee-section"
           style={{ marginLeft: "15rem", marginTop: "7rem", fontSize: "18px" }}
+          ref={menuRef}
         >
           <form
             className="container mt-3 mb-3"
@@ -72,6 +120,7 @@ function Addemployee() {
                   type="starttime"
                   name="from"
                   className="form-control"
+                  placeholder="YYYY-MM-DD"
                 />
               </Form.Group>
             </Row>
@@ -82,6 +131,7 @@ function Addemployee() {
                   type="endtime"
                   name="to"
                   className="form-control"
+                  placeholder="YYYY-MM-DD"
                 />
               </Form.Group>
               <Form.Group
@@ -118,17 +168,20 @@ function Addemployee() {
                 </button>
                 <button
                   type="reset"
-                  onClick="{resetButton}"
+              
                   className="apply-btn me-4 btn  btn-block"
+                  onClick={() => dispatch(RemoveLeave())}
                 >
                   Cancel
                 </button>
               </Form.Group>
             </Row>
           </form>
-        </div>
-      </div>{" "}
+    
+         
+     
     </div>
+  
   );
 }
 

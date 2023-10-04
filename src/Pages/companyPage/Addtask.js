@@ -46,50 +46,66 @@ function Addemployee() {
           ref={formRef}
           onSubmit={submitButton}
         >
-          <h2>Add Task</h2>
-          <Row className="mb-3">
+          <h2 style={{marginBottom:"2rem",fontFamily:'serif',fontSize:"40px",color:"black"}}>Add Task</h2>
+          <div style={{display:"flex", flexDirection:"column"}}>
+         
             <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-              <Form.Label>Task Title</Form.Label>
+<div style={{display:"flex",width:"62vh",justifyContent:"space-between"}}>
+<Form.Label style={{fontFamily:"sans-serif",fontSize:"23px",color:"black" ,marginBottom:"1rem"}}>Task Title</Form.Label>
               <Form.Control
                 type="title"
                 name="title"
                 className="form-control"
+                style={{  maxWidth: '16.5rem' }}
               />
+              </div>
             </Form.Group>
-            <br></br>
+            
             <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-              <Form.Label>Start time</Form.Label>
+           <div style={{display:"flex",width:"62vh",justifyContent:"space-between"}}>
+              <Form.Label style={{fontFamily:"sans-serif",fontSize:"23px",color:"black" ,marginBottom:"1rem"}}>Start Time</Form.Label>
               <Form.Control
                 type="starttime"
                 name="starttime"
+                placeholder="DD/MM/YYYY"
                 className="form-control"
+                style={{  maxWidth: '16.5rem' }}
               />
+                </div>
             </Form.Group>
-          </Row>
-          <Row className="mb-3">
+        
+      
             <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-              <Form.Label>End time</Form.Label>
+           <div style={{display:"flex",width:"62vh",justifyContent:"space-between"}}>
+           <Form.Label style={{fontFamily:"sans-serif",fontSize:"23px",color:"black" ,marginBottom:"1rem"}}>End Time</Form.Label>
               <Form.Control
                 type="endtime"
                 name="endtime"
                 className="form-control"
+                placeholder="DD/MM/YYYY"
+                style={{  maxWidth: '16.5rem' }}
               />
+                </div>
             </Form.Group>
-            <br></br>
+          
             <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-              <Form.Label>Status</Form.Label>
+           <div style={{display:"flex",width:"62vh",justifyContent:"space-between"}}>
+           <Form.Label style={{fontFamily:"sans-serif",fontSize:"23px",color:"black" ,marginBottom:"1rem"}}>Status</Form.Label>
               <Form.Control
                 type="status"
                 name="status"
                 className="form-control"
+                style={{  maxWidth: '16.5rem' }}
               />
+                </div>
             </Form.Group>
-          </Row>
+       
+          </div>
           <Row className="mb-3">
             <Form.Group
               controlId="formGridCheckbox"
               className="col col-sm-5"
-              style={{ marginLeft: "10.5rem" }}
+              style={{ marginLeft: "8.5rem",marginTop:".8rem" }}
             >
               <button type="submit" className="btn-task me-4  btn-lg btn-block">
                 Submit
@@ -109,5 +125,5 @@ function Addemployee() {
  </div>
   );
 }
-
+ 
 export default Addemployee;

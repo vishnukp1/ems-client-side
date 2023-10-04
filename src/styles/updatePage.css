@@ -1,0 +1,103 @@
+.form-upadate {
+    background-color:  #CDD2FE;
+     border-radius: 5px;
+     width: 375px;
+     height: auto;
+     margin: 20px auto;
+     padding: 12px;
+     /* height: 600px; */
+     margin-top: 2rem;
+     margin-bottom: 9rem;
+     
+ }
+
+ /* Add custom styles to your form elements */
+.form-taskadd {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    height: auto;
+  }
+  
+  .input-field {
+    margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+
+width: 100%;
+flex-direction: row;
+
+  }
+ 
+
+  .form__label {
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .input_form {
+    width: 15rem!important;
+    margin-left: 1rem !important;
+  }
+  
+  .select-custom-addstaff1 {
+    width: 29rem;
+    padding: 4px;
+
+  }
+  
+  .footer {
+    display: flex;
+  
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 3rem;
+  }
+  
+  .btn-task1 {
+    
+   
+    padding: 6px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #1e2a5b;
+    margin-right:3rem;
+    color:#f3f4f6; 
+    border-color: #25336e;
+    border-radius: 9px;
+    width: 9rem;
+    height: 2.2rem ;
+    font-size: 15px;
+    MARGIN-LEFT: 3.3REM;
+    margin-bottom: 5rem !important;
+  }
+  .form-control {
+    margin-bottom: 8px !important;
+    height: 37px !important;
+  }
+  
+ 
+  
+  .input-feedback {
+    margin-top: 33px !important;
+    margin-left: 3rem;
+    margin-bottom: 12rem !important;
+
+  } 
+
+  .form-div{
+    display: flex;
+  }
+  
+  .input_form{
+    height: 32px;
+    border-radius: 5px;
+  }
+
+  .input_image{
+    margin-right: -18px;
+    width: 55rem;
+}
+  

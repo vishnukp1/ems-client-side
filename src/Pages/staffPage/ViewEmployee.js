@@ -1,31 +1,25 @@
 import { MDBCol } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+
 import axios from "../../Autherization/Autherization";
 import "../../styles/company.css";
-import Sidebars from "../../component/Sidebars";
-import { useDispatch, useSelector } from "react-redux";
+
+
 import CreateStaff from "./../companyPage/CreateStaff";
-import { addStaff } from "../../Reducers/addstaffReducer";
+
 import StaffSidebar from "../../component/StaffSidebar";
 import StaffNav from "../../component/StaffNav";
+import { useSelector } from "react-redux";
 
 function ViewEmployee() {
-  const buttonStyle = {
-    fontSize: "8px",
-    padding: "2px 5px",
-    marginLeft: "2px",
-    border: "1px solid #343a40",
-  };
+
   const addstaf = useSelector((state) => state.addstaff);
 
-  const dispatch = useDispatch([]);
 
   const [department, setDepartment] = useState([]);
 
-  const navigate = useNavigate();
+ 
   const [staff, setStaff] = useState([]);
 
   const getStaffData = async () => {
@@ -40,14 +34,7 @@ function ViewEmployee() {
     }
   };
 
-  const handleDeleteStaff = async (staffId) => {
-    try {
-      await axios.delete(`/company/staff/${staffId}`);
-      getStaffData();
-    } catch (error) {
-      console.error("Error deleting staff:", error);
-    }
-  };
+
 
   useEffect(() => {
     getDepartment();
@@ -70,7 +57,8 @@ function ViewEmployee() {
     const response = await axios.get(
       `/company/searchdepartment?department=${key}`
     );
-    const responseData = response.data;
+    const responseData = response.data.data;
+    console.log(responseData);
     if (responseData) {
       setStaff(responseData);
     }
@@ -93,16 +81,19 @@ function ViewEmployee() {
     <StaffNav />
     <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <StaffSidebar/>
-      <div
+     
+<div
+   
         className="col-sm mt-1 me-2"
         style={{
           width: "100%",
           height: "100vh",
-          marginLeft: "1rem",
+          paddingLeft:"1rem",
           backgroundColor: " rgb(233, 238, 247)",
+          paddingRight:"1rem",
         }}
       >
-        <h4
+        <h2
           style={{
             textAlign: "left",
             marginTop: "1.3rem",
@@ -110,10 +101,12 @@ function ViewEmployee() {
             fontFamily: "Arial, sans-serif",
           }}
         >
-          EMPLOYEES
-        </h4>
+         EMPLOYEES
+        </h2>
+       
+        <div style={{flex: 1, height: '2.9px', backgroundColor: '#1B1E36',marginBottom: "21px" ,marginTop:"-14px"}} />
 
-        <div  className="sub-container"
+        <div className="sub-container"
           style={{
             width: "100%",
             display: "flex",
@@ -121,20 +114,20 @@ function ViewEmployee() {
           }}
         >
           <div style={{ display: "flex", gap: ".5rem" }}>
-            {" "}
+        
             <select
               className="select-custom"
               onChange={(e) => searchDepartment(e.target.value)}
             >
               <option>Select Department</option>
               {department.map((post, index) => (
+                
                 <option
-                  style={{ fontSize: "18px", textAlign: "start" }}
+                  style={{ fontSize: "18px" }}
                   key={index}
-                  value={post.title}
-                >
-                  {post.title}
-                </option>
+                  value={post._id}
+               
+                >{post.title}</option>
               ))}
             </select>
     
@@ -159,15 +152,15 @@ function ViewEmployee() {
           <Table className="table-text" striped bordered hover size="sm">
             <thead>
               <tr className="table-head">
-                <th style={{ width: "3%" }}>#</th>
-                <th style={{ width: "14%" }}>Name</th>
-                <th style={{ width: "8%" }}>Photo</th>
-                <th style={{ width: "12%" }}>Department</th>
-                <th style={{ width: "6%" }}>Gender</th>
-                <th style={{ width: "14%" }}>Phone</th>
-                <th style={{ width: "14%" }}>Email</th>
-                <th style={{ width: "8%" }}>Salary</th>
-                <th style={{ width: "18%" }}>Address</th>
+              <th style={{ width: "3%",color:"white" }}>#</th>
+                <th style={{ width: "14%",color:"white"  }}>Name</th>
+                <th style={{ width: "8%" ,color:"white"  }}>Photo</th>
+                <th style={{ width: "12%" ,color:"white" }}>Department</th>
+                <th style={{ width: "6%" ,color:"white"  }}>Gender</th>
+                <th style={{ width: "14%",color:"white"  }}>Phone</th>
+                <th style={{ width: "14%" ,color:"white" }}>Email</th>
+                <th style={{ width: "8%"  ,color:"white" }}>Salary</th>
+                <th style={{ width: "18%",color:"white"  }}>Address</th>
               
               </tr>
             </thead>
@@ -184,15 +177,13 @@ function ViewEmployee() {
                         alt="User"
                       />
                     </td>
-               <td>{post.department[0]?.title || ''}</td>
+               <td>{post.department.title || ''}</td>
                     <td>{post.gender}</td>
                     <td>{post.phone}</td>
                     <td>{post.email}</td>
                     <td>{post.salary}</td>
                     <td>{post.address}</td>
-                    <td>
-                     
-                    </td>
+                  
                   </tr>
                 ))}
               </tbody>

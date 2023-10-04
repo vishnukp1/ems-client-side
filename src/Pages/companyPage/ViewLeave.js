@@ -52,6 +52,11 @@ function ViewLeave() {
     }
   };
 
+  const deleteLeave = async(id) =>{
+    await axios.delete(`/deleteleave/${id}`)
+    getLeaveData(startDate)
+  }
+
   useEffect(() => {
     getLeaveData(startDate); 
   }, [startDate]);
@@ -64,16 +69,18 @@ function ViewLeave() {
       className="form"
       style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
     >
-      <h3
-        style={{
-          textAlign: "left",
-          marginTop: "1.3rem",
-          marginBottom: "1.2rem",
-          fontFamily: "Arial, sans-serif",
-        }}
-      >
-        VIEW LEAVE{" "}
-      </h3>
+      <h2
+          style={{
+            textAlign: "left",
+            marginTop: ".4rem",
+            marginBottom: "1.2rem",
+            fontFamily: "Arial, sans-serif",
+          }}
+        >
+    VIEW LEAVE
+        </h2>
+       
+        <div style={{flex: 1, height: '2.9px', backgroundColor: '#1B1E36',marginBottom: "21px" ,marginTop:"-14px"}} />
 
   <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
  
@@ -85,11 +92,14 @@ function ViewLeave() {
     
         <thead>
           <tr className="table-head">
+          <th style={{color:"white" }}>#</th>
+          <th style={{color:"white" }}>Name</th>
             <th style={{color:"white" }}>From Date</th>
             <th style={{color:"white" }}>To Date</th>
             <th style={{color:"white" }}>Reason</th>
             <th style={{color:"white" }}>Status</th>
             <th style={{color:"white" }}>Apply On</th>
+            <th style={{color:"white" }}>Description</th>
             <th style={{color:"white" }}>Actions</th>
           </tr>
         </thead>
@@ -107,12 +117,15 @@ const formattedApplyON = ApplyOn.toLocaleDateString('en-GB');
 
   return (
     <tr key={index} className="table-body">
+      <td>{index+1}</td>
+      <td>{leave.staffName}</td>
       <td>{formattedFromDate}</td>
       <td>{formattedToDate}</td>
       <td>{leave.reason}</td>
       <td>{leave.status}</td>
-      <td>{leave.description}</td>
+    
       <td>{formattedApplyON}</td>
+      <td>{leave.description}</td>
       <td>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Button
@@ -121,6 +134,13 @@ const formattedApplyON = ApplyOn.toLocaleDateString('en-GB');
             onClick={()=>approveLeave(leave._id)}
           >
             Approve
+          </Button>
+           <Button
+            variant="outline-dark"
+            style={buttonStyle}
+            onClick={()=>deleteLeave(leave._id)}
+          >
+        Delete
           </Button>
         </div>
       </td>
