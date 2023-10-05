@@ -152,7 +152,7 @@ const formattedApplyON = ApplyOn.toLocaleDateString('en-GB');
         ) : (
           <tbody>
             <tr>
-              <td colSpan="7">No leave application</td>
+              <td colSpan="9">No leave application</td>
             </tr>
           </tbody>
         )}

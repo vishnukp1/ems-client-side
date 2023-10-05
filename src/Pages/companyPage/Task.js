@@ -184,14 +184,8 @@ function Task() {
                   <td>{formattedEndTime}</td>
                   <td>{post.tasks[0]?.status}</td>
                   <td>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <Button
-                        variant="outline-dark"
-                        onClick={() => deleteTask(post._id, post.tasks[0]?._id)}
-                        style={buttonStyle}
-                      >
-                        Delete
-                      </Button>
+                    <div style={{ display: "flex", marginLeft:"8px" }}>
+                     
                       <Button
                         variant="outline-dark"
                         style={buttonStyle}
@@ -202,6 +196,13 @@ function Task() {
                         }
                       >
                         Update
+                      </Button>
+                      <Button
+                        variant="outline-dark"
+                        onClick={() => deleteTask(post._id, post.tasks[0]?._id)}
+                        style={buttonStyle}
+                      >
+                        Delete
                       </Button>
                     </div>
                   </td>

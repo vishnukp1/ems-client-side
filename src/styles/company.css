@@ -135,6 +135,10 @@ width:100%;
    font-size: 19px;
 
 }
+.react-select{
+   width: 12rem;
+   margin-right: 1px;
+}
 
 
 .delete-button:hover {

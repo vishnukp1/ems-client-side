@@ -39,15 +39,12 @@ function StaffSidebar() {
          
             <NavLink exact to="/employees/viewattendance" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Attendance</CDBSidebarMenuItem>
-              <Badge badgeContent={4} color="primary">
-  <MailIcon color="action" />
-</Badge>
+          
+
             </NavLink>
-            <NavLink exact to="/employees/addleave" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Apply Leave</CDBSidebarMenuItem>
-            </NavLink>
+            
             <NavLink exact to="/notification" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Notification</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="chart-line">Apply Leave</CDBSidebarMenuItem>
             </NavLink>
 
            

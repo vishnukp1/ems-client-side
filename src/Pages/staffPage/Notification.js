@@ -47,15 +47,26 @@ function Notification() {
       className="form"
       style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
     >
-      <h3
-        style={{
-          textAlign: "left",
-          marginTop: "1.3rem",
-          marginBottom: "1.2rem",
-          fontFamily: "Arial, sans-serif",
-        }}
-      > NOTIFICATION
-      </h3>
+     <h2
+            style={{
+              textAlign: "left",
+              marginTop: "1.3rem",
+              marginBottom: "1.2rem",
+              fontFamily: "Arial, sans-serif",
+            }}
+          >
+          APPLY LEAVE
+          </h2>
+
+          <div
+            style={{
+              flex: 1,
+              height: "2.9px",
+              backgroundColor: "#1B1E36",
+              marginBottom: "21px",
+              marginTop: "-14px",
+            }}
+          />
 
 
  
@@ -65,10 +76,12 @@ function Notification() {
                   width: "7rem",
                   fontSize: "10px",
                   background: "#14539A",
+                  marginBottom:"1rem",
+             
                 }}
                 onClick={() => dispatch(requestLeave())}
               >
-                Add Staff
+              Apply Leave
               </Button>
   
    

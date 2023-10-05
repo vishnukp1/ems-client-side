@@ -193,26 +193,42 @@ function ViewAttendance() {
                     Time Out
                   </th>
                   <th scope="col" style={{ color: "white" }}>
-                    Select
+                 Status
                   </th>
                 </tr>
               </thead>
 
               <tbody>
-                {staff.map((staff, index) => (
-                  <tr key={staff._id} className="table-body">
-                    <td>{index + 1}</td>
-                    <td>{staff.name}</td>
-                    <td>{staff.department}</td>
-                    <td style={{ width: "180px" }}>
-                      {staff.attendance[0]?.TimeIn >0 ? staff.attendance[0]?.TimeIn : null}
-                    </td>
-                    <td style={{ width: "180px" }}>
-                      {staff.attendance[0]?.TimeOut >0 ? staff.attendance[0]?.TimeOut : null}
-                    </td>
-                    <td>{staff.attendance[0]?.status}</td>
-                  </tr>
-                ))}
+              {staff.map((staff, index) => {
+  if (staff.attendance.length > 0) {
+    const fromDate = new Date(staff.attendance[0]?.TimeIn);
+    const toDate = new Date(staff.attendance[0]?.TimeOut);
+
+    const formattedTimeIn = fromDate.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    });
+    const formattedTimeOut = toDate.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    });
+
+    return (
+      <tr key={staff._id} className="table-body">
+        <td>{index + 1}</td>
+        <td>{staff.name}</td>
+        <td>{staff.department}</td>
+        <td style={{ width: "180px" }}>{formattedTimeIn}</td>
+        <td style={{ width: "180px" }}>{formattedTimeOut}</td>
+        <td>{staff.attendance[0]?.status}</td>
+      </tr>
+    );
+  }
+  return null; // Return null for staff with no attendance
+})}
+
               </tbody>
             </Table>
           </div>

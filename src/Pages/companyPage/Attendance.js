@@ -18,6 +18,18 @@ const options = [
 ];
 
 function Attendance() {
+  const buttonStyle = {
+    fontSize: '17px',
+    padding: '3px 7px',
+marginTop:"2REM",
+    border: 'solid #6bb7fa',
+    backgroundColor: '#6bb7fa',
+    borderRadius: '4px',
+    width:"5rem",
+    marginLeft:"-2rem"
+};
+
+
   const [staff, setStaff] = useState([]);
   const [department, setDepartment] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
@@ -259,27 +271,27 @@ function Attendance() {
             <Table className="table-text" striped bordered hover size="sm">
               <thead>
                 <tr className="table-head">
-                  <th scope="col" style={{ color: "white" }}>
+                  <th scope="col" style={{ color: "white" ,width:"3rem" }}>
                     No
                   </th>
-                  <th scope="col" style={{ color: "white" }}>
+                  <th scope="col" style={{ color: "white" ,width:"18rem" }}>
                     Name
                   </th>
-                  <th scope="col" style={{ color: "white" }}>
+                  <th scope="col" style={{ color: "white",width:"18rem" }}>
                     Department
                   </th>
-                  <th scope="col" style={{ color: "white" }}>
+                  <th scope="col" style={{ color: "white" ,width:"11rem"  }}>
                     Time In
                   </th>
-                  <th scope="col" style={{ color: "white" }}>
+                  <th scope="col" style={{ color: "white"  ,width:"11rem" }}>
                     Time Out
                   </th>
-                  <th scope="col" style={{ color: "white" }}>
+                  <th scope="col" style={{ color: "white" ,width:"22px"}}>
                     Select
                   </th>
                 </tr>
               </thead>
-
+              {staff.length > 0 ? (
               <tbody>
                 {staff.map((staff, index) => (
                   <tr key={staff._id} className="table-body">
@@ -327,6 +339,8 @@ function Attendance() {
                       <ReactSelect
                         name="status"
                         options={options}
+                        className="react-select"
+                       
                         value={
                           staff.attendance && staff.attendance[0]
                             ? options.find(
@@ -348,10 +362,18 @@ function Attendance() {
                   </tr>
                 ))}
               </tbody>
+               ) : (
+                <tbody>
+                  <tr>
+                    <td colSpan="7">No staffs available</td>
+                  </tr>
+                </tbody>
+              )}
             </Table>
           </div>
+          <button style={buttonStyle} onClick={handleSubmit}>Submit</button>
         </div>
-        <button onClick={handleSubmit}>Submit</button>
+      
       </div>
     </div>
   );

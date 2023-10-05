@@ -36,7 +36,7 @@ function ViewTask() {
           className="form"
           style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
         >
-          <h4
+        <h2
             style={{
               textAlign: "left",
               marginTop: "1.3rem",
@@ -44,8 +44,10 @@ function ViewTask() {
               fontFamily: "Arial, sans-serif",
             }}
           >
-            STAFF TASK{" "}
-          </h4>
+          YOUR TASKS
+          </h2>
+
+        
           <div
             className="sub-container"
             style={{
@@ -67,25 +69,36 @@ function ViewTask() {
               <th style={{ width: "14%",color:"white"  }}>Status</th>
               </tr>
             </thead>
+           
             {task.length > 0 ? (
-              <tbody>
-                {task.map((post, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{post.title}</td>
-                    <td>{post.startTime}</td>
-                    <td>{post.endTime}</td>
-                    <td>{post.status}</td>
-                  </tr>
-                ))}
-              </tbody>
-            ) : (
-              <tbody>
-                <tr>
-                  <td colSpan="7">No tasks available</td>
-                </tr>
-              </tbody>
-            )}
+  <tbody>
+    {task.reverse().
+    map((post, index) => {
+      const fromDate = new Date(post.startTime);
+      const toDate = new Date(post.endTime);
+                  
+      const formattedStartTime = fromDate.toLocaleDateString('en-GB'); // Format: "dd/mm/yyyy"
+      const formattedEndTime = toDate.toLocaleDateString('en-GB');     // Format: "dd/mm/yyyy"
+                  
+      return (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{post.title}</td>
+          <td>{formattedStartTime}</td>
+          <td>{formattedEndTime}</td>
+          <td>{post.status}</td>
+        </tr>
+      );
+    })}
+  </tbody>
+) : (
+  <tbody>
+    <tr>
+      <td colSpan="5">No tasks available</td>
+    </tr>
+  </tbody>
+)}
+
           </Table>
         </div>
       </div>

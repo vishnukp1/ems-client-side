@@ -55,7 +55,7 @@ function UpdateTasks() {
         `/company/${staffId}/task/${taskId}`,
         task
       );
-
+      navigate("/company/task")
       console.log(response.data);
     } catch (error) {
       console.error("Error updating task:", error);
@@ -68,7 +68,7 @@ function UpdateTasks() {
       <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
         <Sidebars />
         <div class="add-task-section">
-          <input></input>
+         
           <form className="container mt-3 mb-3" onSubmit={handleSubmit}>
             <h2
               style={{
@@ -78,7 +78,7 @@ function UpdateTasks() {
                 color: "black",
               }}
             >
-              Add Task
+              Update Task
             </h2>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <Form.Group controlId="formBasicEmail" className="col col-sm-6">
@@ -203,6 +203,7 @@ function UpdateTasks() {
                 <button
                   type="submit"
                   className="btn-task me-4  btn-lg btn-block"
+                 
                 >
                   Submit
                 </button>

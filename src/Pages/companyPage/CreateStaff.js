@@ -6,6 +6,8 @@ import { setremove } from "../../Reducers/addstaffReducer";
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import TextareaAutosize from 'react-textarea-autosize';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const options = [
   { value: 'Male', label: 'Male' },
   { value: 'Female', label: 'Female' },
@@ -46,8 +48,8 @@ function CreateStaff() {
     setValidated(true);
   
     if (form.checkValidity() === false) {
-      event.preventDefault(); // Prevent form submission if validation fails
-      event.stopPropagation();
+      event.preventDefault(); 
+    
     } else {
       const items = {
         name: formRef.current.name.value,
@@ -67,11 +69,15 @@ function CreateStaff() {
           },
         })
         .then((response) => console.log(response.data))
+       
+      
         .catch((error) => {
           console.error("Error fetching customer data:", error);
         });
   
-      formRef.current.reset(); // Reset the form only if validation succeeds
+      formRef.current.reset();
+      toast.success('STAFF CREATED....!')
+    
     }
   };
   
@@ -188,7 +194,7 @@ function CreateStaff() {
         <div style={{ display: "flex" }}>
         
              <TextareaAutosize   className="input_form"
-                 style={{ backgroundColor: "white",height:"55px",borderRadius:"5px" }}
+                 style={{ backgroundColor: "white",height:"65px",borderRadius:"5px" }}
             type="text"
             placeholder="  Address"
             name="address"
@@ -267,8 +273,11 @@ function CreateStaff() {
         <button className="btn-task cancel" onClick={() => dispatch(setremove())}>
           Cancel
         </button>
+    
       </div>
     </div>
+             
+    <ToastContainer />
   </Form>
 </div>
   );

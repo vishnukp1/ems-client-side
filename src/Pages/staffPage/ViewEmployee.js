@@ -172,7 +172,11 @@ function ViewEmployee() {
                     <td>{post.name}</td>
                     <td>
                       <img
-                        style={{ height: "55px", width: "55px" }}
+                        style={{
+                          height: "55px",
+                          width: "55px",
+                          objectFit: "cover",
+                        }}
                         src={post.imagepath}
                         alt="User"
                       />
