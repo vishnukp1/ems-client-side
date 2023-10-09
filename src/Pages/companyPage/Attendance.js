@@ -21,7 +21,7 @@ function Attendance() {
   const buttonStyle = {
     fontSize: '17px',
     padding: '3px 7px',
-marginTop:"2REM",
+    marginTop:"2REM",
     border: 'solid #6bb7fa',
     backgroundColor: '#6bb7fa',
     borderRadius: '4px',

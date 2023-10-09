@@ -10,6 +10,7 @@ import CreateStaff from "./CreateStaff";
 import { addStaff } from "../../Reducers/addstaffReducer";
 import Navbars from "../../component/Navbars";
 import axios from "../../Autherization/Autherization";
+import { PaginationControl } from 'react-bootstrap-pagination-control';
 
 function Staff() {
   const buttonStyle = {
@@ -26,6 +27,7 @@ function Staff() {
   const dispatch = useDispatch([]);
 
   const [department, setDepartment] = useState([]);
+  const [page, setPage] = useState(1)
 
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
@@ -34,9 +36,9 @@ function Staff() {
 
   const getStaffData = async () => {
     try {
-      const response = await axios.get(`http://localhost:4444/company/staff`);
+      const response = await axios.get(`http://localhost:4444/company/staffPage?page=${page}`);
       const responseData = response.data.data;
-
+console.log(page);
       setStaff(responseData);
       console.log(responseData);
     } catch (error) {
@@ -56,7 +58,7 @@ function Staff() {
   useEffect(() => {
     getDepartment();
     getStaffData();
-  }, [addstaf]);
+  }, [addstaf,page]);
 
   const searchHandle = async (e) => {
     let key = e.target.value;
@@ -258,6 +260,16 @@ function Staff() {
                 </tbody>
               )}
             </Table>
+            <PaginationControl
+    page={page}
+    between={4}
+    total={250}
+    limit={20}
+    changePage={(page) => {
+      setPage(page)
+    }}
+    ellipsis={1}
+  />
           </div>
           {addstaf ? (
             <div className="overlay">
