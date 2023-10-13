@@ -21,9 +21,10 @@ function CompanyMain() {
     <Navbars />
     <div style={{display:"flex", width:"100vw",height:"100vh"}}>
       <Sidebars />
-      <div className="main-container" style={{ backgroundColor: "#1E1E2E",display:"flex",overflowY:"auto" }}>
+      <div className="main-container" style={{ backgroundColor: "#1E1E2E",display:"flex",overflowY:"auto",paddingBottom:"106px",paddingTop:"55px"  }}>
+      <h2 style={{color:"white",marginBottom:"1PX",paddingBottom:"1px"}}>DASHBOARD</h2>
         <div className="dashboard-div" style={{display:"flex",justifyContent:"space-around",width:"100%",flexWrap: "wrap" ,marginTop:"-55px"}}>
-       
+    
         <Card 
         className="card-dashboard"
           style={{

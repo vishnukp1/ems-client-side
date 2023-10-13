@@ -10,6 +10,7 @@ import Navbars from "../../component/Navbars";
 import { TimePicker } from "@mui/x-date-pickers";
 import DatePicker from "react-datepicker";
 import ReactSelect from "react-select";
+import { ToastContainer, toast } from "react-toastify";
 const options = [
   { value: "Present", label: "Present" },
   { value: "Absent", label: "Absent" },
@@ -142,6 +143,7 @@ function Attendance() {
       setStaff(response.data.data);
       setDataChanged(false);
       getAttendance(startDate);
+      toast.success('ATTENDANCE GAVE SUCCESSFULLY!');
 
       console.log("Attendance data submitted successfully:", response.data);
     } catch (error) {
@@ -372,6 +374,8 @@ function Attendance() {
             </Table>
           </div>
           <button style={buttonStyle} onClick={handleSubmit}>Submit</button>
+                
+      <ToastContainer />
         </div>
       
       </div>
