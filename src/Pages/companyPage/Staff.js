@@ -178,7 +178,7 @@ console.log(page);
                     aria-label="Search"
                     onChange={searchHandle}
                   />
-                </div>j
+                </div>
               </MDBCol>
             </div>
           </div>
