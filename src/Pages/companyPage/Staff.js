@@ -175,7 +175,7 @@ console.log(page);
                     className="form-control-pages"
                     type="text"
                     placeholder="Search"
-                    aria-label="Search"
+                    aria-label="Search" b
                     onChange={searchHandle}
                   />
                 </div>
