@@ -37,6 +37,7 @@ import Notification from "./Pages/staffPage/Notification";
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import AddAttendance from "./Pages/companyPage/AddAttendance";
+import SalaryPaymentForm from "./Pages/companyPage/SalaryPaymentForm";
 
 function App() {
 
@@ -74,6 +75,7 @@ function App() {
           <Route exact path="/company/task" element={<Task />} />
           <Route exact path="/company/staff" element={<Staff />} />
           <Route exact path="/company/salary" element={<Salary />} />
+          <Route exact path="/company/salary-payment" element={<SalaryPaymentForm />} />
           <Route
             exact
             path="/company/updatestaff/:id"

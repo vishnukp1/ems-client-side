@@ -87,8 +87,8 @@ console.log(page);
     try {
       const response = await axios.get(`/company/department`);
       const responseData = response.data.data;
-      setDepartment(responseData);
       console.log(responseData);
+      setDepartment(responseData);
     } catch (error) {
       console.error("Error fetching department data:", error);
     }

@@ -30,9 +30,7 @@ const Sidebars = () => {
             <NavLink exact to="/company/staff" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Employees</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/company/department" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Departments</CDBSidebarMenuItem>
-            </NavLink>
+           
             <NavLink exact to="/company/task" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Tasks</CDBSidebarMenuItem>
             </NavLink>
@@ -43,6 +41,15 @@ const Sidebars = () => {
             <NavLink exact to="/company/viewleave" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Leave</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/company/salary" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="table">Salary</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/company/department" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="table">Departments</CDBSidebarMenuItem>
+            </NavLink>
+
+            {/* /company/salary */}
+
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
