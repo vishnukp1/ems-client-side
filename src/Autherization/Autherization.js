@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 const companyId =  localStorage.getItem("companyId")
 
 const api = axios.create({
-  baseURL: 'http://localhost:4444', 
+  baseURL: 'https://ems-app1.onrender.com', 
   headers: {
     'Authorization': `Bearer ${token}`, 
     'Content-Type': 'application/json',
