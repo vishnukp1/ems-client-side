@@ -3,7 +3,7 @@ import "../styles/Login.css"
 import { useDispatch } from 'react-redux';
 import { setLogin, setSignup } from '../Reducers/loginReducer';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../Autherization/Autherization';
 import { setToken } from "../Reducers/useReducer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -29,7 +29,7 @@ function Login () {
 
     try {
       const response = await axios.post(
-        "http://localhost:4444/company/login",
+        "/company/login",
         items
       );
       const data = response.data;
