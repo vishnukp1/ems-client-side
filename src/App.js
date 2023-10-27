@@ -40,7 +40,7 @@ import AddAttendance from "./Pages/companyPage/AddAttendance";
 import SalaryPaymentForm from "./Pages/companyPage/SalaryPaymentForm";
 
 function App() {
-t
+
   return (
     <div className="App " style={{ background: "#f0f9ff", height: "100%" }}>
       <div style={{ display: "flex" }}>
