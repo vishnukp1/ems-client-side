@@ -18,7 +18,7 @@ function Staff() {
     fontSize: "10px",
     padding: "2px 5px",
     marginLeft: "2px",
-    border: "1px solid #343a40",
+    border: "1px solid #343a40",,
   };
   const addstaf = useSelector((state) => state.addstaff);
   
