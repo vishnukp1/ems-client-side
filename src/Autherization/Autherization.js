@@ -8,7 +8,7 @@ const api = axios.create({
   headers: {
     'Authorization': `Bearer ${token}`, 
     'Content-Type': 'application/json',
-    'x-company-id': companyId, // Add the 'x-company-id' header here
+    'x-company-id': companyId, 
   },
 });
 
