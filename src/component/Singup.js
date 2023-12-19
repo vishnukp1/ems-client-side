@@ -2,7 +2,7 @@ import React, {  useRef} from 'react'
 import "../styles/Login.css"
 import { useDispatch } from 'react-redux';
 import { setLogin, setSignup } from '../Reducers/loginReducer';
-import axios from 'axios';
+import axios from '../Autherization/Autherization';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from "../Reducers/useReducer";
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,7 +33,7 @@ function SignUp () {
     };
 
     const response =await axios
-      .post(`http://localhost:4444/company/register`, item)
+      .post(`/company/register`, item)
       const data = response.data;
       console.log(response.data);
      

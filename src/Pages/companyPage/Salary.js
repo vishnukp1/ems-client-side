@@ -34,7 +34,7 @@ function Salary() {
 
   const getStaffData = async () => {
     try {
-      const response = await axios.get(`http://localhost:4444/company/staffPage?page=${page}`);
+      const response = await axios.get(`/company/staffPage?page=${page}`);
       const responseData = response.data.data;
 console.log(page);
       setStaff(responseData);

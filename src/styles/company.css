@@ -76,6 +76,7 @@ body {
   border: 0px solid #b6bec4 !important;
   background-color: #d3ecfc;
   overflow-x: auto;
+ 
 }
 
 .button-style {
@@ -172,7 +173,7 @@ body {
 }
 .table-responsive {
   overflow-x: auto;
-}
+  }
 
 .btn-task {
   background-color: #25336e;
