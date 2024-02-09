@@ -35,7 +35,7 @@ function AddAttendance() {
                   type="text"
                   value={item.name}
                   onChange={(e) =>
-                    handleInputChange(item.id, 'name', e.target.value)
+                  handleInputChange(item.id, 'name', e.target.value)
                   }
                 />
               </td>
@@ -44,7 +44,7 @@ function AddAttendance() {
                   type="number"
                   value={item.age}
                   onChange={(e) =>
-                    handleInputChange(item.id, 'age', e.target.value)
+                  handleInputChange(item.id, 'age', e.target.value)
                   }
                 />
               </td>

@@ -84,7 +84,7 @@ function App() {
           <Route exact path="/company/addtask/:id" element={<Addtask />} />
 
           <Route exact path="/company/addmark" element={<AddAttendance />} />
-          a
+          
           <Route exact path="/company/addleave/:id" element={<Addleave />} />
           <Route
             exact

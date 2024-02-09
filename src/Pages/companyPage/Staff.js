@@ -103,7 +103,6 @@ console.log(page);
           className="col-sm mt-1 me-2"
           style={{
             width: "100%",
-            height: "100vh",
             paddingLeft: "1rem",
             backgroundColor: " rgb(233, 238, 247)",
             paddingRight: "1rem",

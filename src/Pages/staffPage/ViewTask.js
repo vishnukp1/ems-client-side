@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/esm/Table";
-
 import axios from "../../Autherization/Autherization";
 import "../../styles/company.css";
-
 import StaffNav from "../../component/StaffNav";
 import StaffSidebar from "../../component/StaffSidebar";
 
@@ -36,7 +34,7 @@ function ViewTask() {
           className="form"
           style={{ width: "100rem", height: "100vh", marginTop: "0px" }}
         >
-        <h2
+          <h2
             style={{
               textAlign: "left",
               marginTop: "1.3rem",
@@ -44,10 +42,9 @@ function ViewTask() {
               fontFamily: "Arial, sans-serif",
             }}
           >
-          YOUR TASKS
+            YOUR TASKS
           </h2>
 
-        
           <div
             className="sub-container"
             style={{
@@ -62,43 +59,42 @@ function ViewTask() {
           <Table className="table-text" striped bordered hover size="sm">
             <thead className="table-head">
               <tr>
-              <th style={{ width: "5%" ,color:"white" }}>#</th>
-              <th style={{ width: "14%" ,color:"white" }}>Task Title</th>
-              <th style={{ width: "10%" ,color:"white" }}>Start time</th>
-              <th style={{ width: "10%" ,color:"white" }}>End time</th>
-              <th style={{ width: "14%",color:"white"  }}>Status</th>
+                <th style={{ width: "5%", color: "white" }}>#</th>
+                <th style={{ width: "14%", color: "white" }}>Task Title</th>
+                <th style={{ width: "10%", color: "white" }}>Start time</th>
+                <th style={{ width: "10%", color: "white" }}>End time</th>
+                <th style={{ width: "14%", color: "white" }}>Status</th>
               </tr>
             </thead>
-           
-            {task.length > 0 ? (
-  <tbody>
-    {task.reverse().
-    map((post, index) => {
-      const fromDate = new Date(post.startTime);
-      const toDate = new Date(post.endTime);
-                  
-      const formattedStartTime = fromDate.toLocaleDateString('en-GB'); // Format: "dd/mm/yyyy"
-      const formattedEndTime = toDate.toLocaleDateString('en-GB');     // Format: "dd/mm/yyyy"
-                  
-      return (
-        <tr key={index}>
-          <td>{index + 1}</td>
-          <td>{post.title}</td>
-          <td>{formattedStartTime}</td>
-          <td>{formattedEndTime}</td>
-          <td>{post.status}</td>
-        </tr>
-      );
-    })}
-  </tbody>
-) : (
-  <tbody>
-    <tr>
-      <td colSpan="5">No tasks available</td>
-    </tr>
-  </tbody>
-)}
 
+            {task.length > 0 ? (
+              <tbody>
+                {task.reverse().map((post, index) => {
+                  const fromDate = new Date(post.startTime);
+                  const toDate = new Date(post.endTime);
+
+                  const formattedStartTime =
+                    fromDate.toLocaleDateString("en-GB"); // Format: "dd/mm/yyyy"
+                  const formattedEndTime = toDate.toLocaleDateString("en-GB"); // Format: "dd/mm/yyyy"
+
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{post.title}</td>
+                      <td>{formattedStartTime}</td>
+                      <td>{formattedEndTime}</td>
+                      <td>{post.status}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            ) : (
+              <tbody>
+                <tr>
+                  <td colSpan="5">No tasks available</td>
+                </tr>
+              </tbody>
+            )}
           </Table>
         </div>
       </div>
