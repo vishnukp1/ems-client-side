@@ -41,8 +41,7 @@ function CreateStaff() {
     }
 
   });
-
-
+  
   const submitButton = async (event) => {
     const form = event.currentTarget;
     setValidated(true);

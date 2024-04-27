@@ -7,8 +7,6 @@ function UpdateAttendance() {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
 
-  
-
   const handleUpdateAttendance = async () => {
     try {
       const response = await axios.put(`/updateAttendance/${staffId}`, {
